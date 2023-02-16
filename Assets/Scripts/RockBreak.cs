@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class RockBreak : MonoBehaviour
 {
@@ -20,14 +21,15 @@ public class RockBreak : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        var current = Keyboard.current;
 
-        if (Input.GetKey(KeyCode.F))
+        if (current.fKey.wasPressedThisFrame)
         {
             Debug.Log("‰ó‚ê‚½");
             text.SetActive(true);
             Destroy();
         }
-        else if (Input.GetKey(KeyCode.E))
+        else if (current.eKey.wasPressedThisFrame)
         {
             Debug.Log("‰ó‚ê‚È‚¢");
             text2.SetActive(true);
