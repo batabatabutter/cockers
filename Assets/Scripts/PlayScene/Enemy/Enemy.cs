@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+///////////////////////
+/// 敵の継承元クラス///
+///////////////////////
+
 public class Enemy : MonoBehaviour
 {
     //  ステータス格納用
