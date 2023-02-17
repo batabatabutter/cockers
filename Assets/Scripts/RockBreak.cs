@@ -7,15 +7,23 @@ public class RockBreak : MonoBehaviour
 {
     bool Rock = true;
     GameObject Object_Rock;
+    GameObject PlayerStatus;
     [SerializeField] GameObject text;
     [SerializeField] GameObject text2;
     float time = 0.0f;
+
+    public int carbohydrates;  //炭水化物
+    public int proteins;       //タンパク質
+    public int lipid;          //脂質
+    public int vitamins;       //ビタミン
+    public int minerals;       //無機質
 
 
     // Start is called before the first frame update
     void Start()
     {
         Object_Rock = GameObject.Find("Rock");
+        PlayerStatus = GameObject.Find("Player");
     }
 
     // Update is called once per frame
@@ -23,13 +31,15 @@ public class RockBreak : MonoBehaviour
     {
         var current = Keyboard.current;
 
-        if (current.fKey.wasPressedThisFrame)
+        carbohydrates = PlayerStatus.GetComponent<PlayerStatus>().Get_carbohydrates();
+
+        if (carbohydrates >= 30 && current.fKey.wasPressedThisFrame)
         {
             Debug.Log("壊れた");
             text.SetActive(true);
             Destroy();
         }
-        else if (current.eKey.wasPressedThisFrame)
+        else if (carbohydrates < 30 && current.fKey.wasPressedThisFrame)
         {
             Debug.Log("壊れない");
             text2.SetActive(true);
