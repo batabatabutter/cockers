@@ -12,10 +12,20 @@ public enum EnemyID
     [InspectorName("")]                EnemyNum
 }
 
+//  敵のステータス
+public struct EnemyStatas
+{
+    public int HP;
+    public int ATK;
+}
+
 public class EnemyManager : MonoBehaviour
 {
     //  敵のオブジェクトを格納しておく
     [SerializeField] List<GameObject> Enemys;
+
+    //  敵とどれくらい離れていたら動作を止めるか判断
+    [SerializeField] float distance;
 
     //  配列か仮格納用
     GameObject[] HolderArray;
@@ -32,16 +42,16 @@ public class EnemyManager : MonoBehaviour
     {
         //  敵のスポーンを格納
         HolderArray = GameObject.FindGameObjectsWithTag("EnemySpawn");
-        Debug.Log(HolderArray);
         //  Listに再格納
         foreach (GameObject obj in HolderArray)
         {
-            if (obj.GetComponent<EnemySpawn>() == null) Debug.Log("クラスEnemySpaenが見つかりませんでした。" + obj);
+            if (obj.GetComponent<EnemySpawn>() == null) Debug.Log("Error : クラス EnemySpaen が見つかりませんでした。" + obj);
             enemySpawns.Add(obj.GetComponent<EnemySpawn>());
         }
 
         //  プレイヤーを格納しておく
         player = GameObject.FindWithTag("Player");
+        if (player == null) Debug.Log("Error : プレイヤーがみつかりません");
     }
 
     //  更新
@@ -62,7 +72,7 @@ public class EnemyManager : MonoBehaviour
         //  敵の更新
         foreach(GameObject enemy in enemyObjects)
         {
-
+            //  敵とプレイヤーの位置関係比較
         }
     }
 }
