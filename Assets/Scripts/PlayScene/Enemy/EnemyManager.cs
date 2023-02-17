@@ -17,6 +17,7 @@ public struct EnemyStatas
 {
     public int HP;
     public int ATK;
+    public bool death;
 }
 
 public class EnemyManager : MonoBehaviour
@@ -72,7 +73,20 @@ public class EnemyManager : MonoBehaviour
         //  敵の更新
         foreach(GameObject enemy in enemyObjects)
         {
+            //  なかったらスキップ
+            if (enemy == null) continue;
+
             //  敵とプレイヤーの位置関係比較
+            if(Vector3.Distance(enemy.transform.position,player.transform.position) > distance)
+            {
+                //  遠かったら実行停止
+                enemy.SetActive(false);
+            }
+            else
+            {
+                //  近づいたら実行
+                enemy.SetActive(true);
+            }
         }
     }
 }

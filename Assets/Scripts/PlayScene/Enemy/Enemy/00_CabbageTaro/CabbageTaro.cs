@@ -2,13 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CabbageTaro : MonoBehaviour
+public class CabbageTaro : Enemy
 {
-    //  ステータス用
-    [SerializeField] EnemyStatas statas;
-
     //  移動速度
-    [SerializeField] float speed;
+    [SerializeField, HeaderAttribute("個別")] float speed;
 
     //  切り替えしタイミング
     [SerializeField] float inversionTime;
@@ -20,14 +17,14 @@ public class CabbageTaro : MonoBehaviour
     private float time;
 
     //  最初に実行
-    private void Start()
+    public override void EnemyStart()
     {
         time = inversionTime;
     }
 
 
     //  更新
-    void Update()
+    public override void EnemyUpdate()
     {
         //  時間減少
         time -= Time.deltaTime;

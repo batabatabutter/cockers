@@ -46,3 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Enemys:
   - {fileID: 8255535140438971876, guid: 06083c8d1d5fb1348936bbb08be8d29e, type: 3}
+  distance: 12
+  enemySpawns: []
+  enemyObjects: []

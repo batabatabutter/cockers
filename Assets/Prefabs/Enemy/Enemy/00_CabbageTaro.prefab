@@ -98,9 +98,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0f5b3a1516496445abc330a610728ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 15
+  atk: 15
   speed: 1
   inversionTime: 3
-  collisionDMG: 0
+  collisionDMG: 1
 --- !u!54 &-4732964138819660442
 Rigidbody:
   m_ObjectHideFlags: 0
