@@ -11,8 +11,15 @@ public class Enemy : MonoBehaviour
 {
     //  ステータス格納用
     protected EnemyStatas statas;
+
+    //  敵の種類を設定
+    [SerializeField, HeaderAttribute("敵種類")] EnemyID enemyID;
+
     [SerializeField, HeaderAttribute("ステータス")] int hp;
     [SerializeField] int atk;
+
+    //  ドロップアイテム
+    [SerializeField] List<GameObject> dropItem;
 
     // Start is called before the first frame update
     void Start()
@@ -27,15 +34,14 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //  死んでいるなら戻す
+        if (statas.death) return;
+
         //  体力が0ならDeath!！！
         if (statas.HP <= 0)
         {
-            statas.death = true;
-            Destroy(gameObject, 1.0f);
+            Death();
         }
-
-        //  死んでいるなら戻す
-        if (statas.death) return;
 
         //  敵更新
         EnemyUpdate();
@@ -82,5 +88,16 @@ public class Enemy : MonoBehaviour
     public bool GetIsDath()
     {
         return statas.death;
+    }
+
+    //  死んだ処理
+    public virtual void Death()
+    {
+        statas.death = true;
+        Destroy(gameObject, 0.3f);
+        foreach(GameObject obj in dropItem)
+        {
+            Instantiate(obj, gameObject.transform.position, Quaternion.identity);
+        }
     }
 }

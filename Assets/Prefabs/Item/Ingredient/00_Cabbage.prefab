@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8255535140438971876
+--- !u!1 &3157011182269079429
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,49 +8,49 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2818513138048179728}
-  - component: {fileID: 7685018526059799204}
-  - component: {fileID: 2824225754054124084}
-  - component: {fileID: -6096217141739629717}
-  - component: {fileID: -4732964138819660442}
-  - component: {fileID: 8954209709969289572}
+  - component: {fileID: 3157011182269079160}
+  - component: {fileID: 3157011182269079161}
+  - component: {fileID: 3157011182269079162}
+  - component: {fileID: 3157011182269079428}
+  - component: {fileID: 3157011182269079163}
+  - component: {fileID: 5800424860166117929}
   m_Layer: 0
-  m_Name: 00_CabbageTaro
-  m_TagString: Enemy
+  m_Name: 00_Cabbage
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2818513138048179728
+--- !u!4 &3157011182269079160
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8255535140438971876}
+  m_GameObject: {fileID: 3157011182269079429}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0.85, z: 1.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &7685018526059799204
+--- !u!33 &3157011182269079161
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8255535140438971876}
+  m_GameObject: {fileID: 3157011182269079429}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &2824225754054124084
+--- !u!23 &3157011182269079162
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8255535140438971876}
+  m_GameObject: {fileID: 3157011182269079429}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -86,34 +86,39 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &-6096217141739629717
+--- !u!114 &3157011182269079428
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8255535140438971876}
+  m_GameObject: {fileID: 3157011182269079429}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0f5b3a1516496445abc330a610728ec, type: 3}
+  m_Script: {fileID: 11500000, guid: c1fd8e8640078af48a6ebbf587f3edf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyID: 0
-  hp: 15
-  atk: 15
-  dropItem:
-  - {fileID: 3157011182269079429, guid: 7ca4d30983654034795c8db7bdb873da, type: 3}
-  - {fileID: 3157011182269079429, guid: 7ca4d30983654034795c8db7bdb873da, type: 3}
-  speed: 1
-  inversionTime: 3
-  collisionDMG: 1
---- !u!54 &-4732964138819660442
+  itemID: 0
+--- !u!135 &3157011182269079163
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3157011182269079429}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &5800424860166117929
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8255535140438971876}
+  m_GameObject: {fileID: 3157011182269079429}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
@@ -123,16 +128,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
---- !u!135 &8954209709969289572
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8255535140438971876}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
