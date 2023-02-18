@@ -9,10 +9,12 @@ public class PlayerController : MonoBehaviour
     Rigidbody rigid;
 
     //プレイヤーの移動スピード、速度倍率
-    [SerializeField] private float move_speed = 1.0f;
+    [SerializeField,HeaderAttribute("移動ステータス")] private float move_speed = 1.0f;
     [SerializeField] private float speed_force = 4.0f;
     [SerializeField] private float jump_speed = 1.0f;
     [SerializeField] private float jump_force = 4.0f;
+
+    [SerializeField, HeaderAttribute("所持武器")] private List<GameObject> weapons_list;
 
     //プレイヤーの速度
     private float horizontal_speed;
@@ -24,6 +26,7 @@ public class PlayerController : MonoBehaviour
 
     //ジャンプしてるか
     private bool isJumping;
+    private bool isJumpFinish;
 
     //着地してるか
     private bool isGround;
@@ -31,10 +34,17 @@ public class PlayerController : MonoBehaviour
     //rayの距離
     [SerializeField] private float ray_dist = 0.5f;
 
+    //現在の使用武器番号
+    private int now_use_weapon_no;
+
     // Start is called before the first frame update
     void Start()
     {
         rigid = transform.GetComponent<Rigidbody>();
+        isJumping = true;
+        isJumpFinish = true;
+        isGround = false;
+        now_use_weapon_no = 0;
     }
 
     private void Update()
@@ -60,10 +70,11 @@ public class PlayerController : MonoBehaviour
         if (isGround)
         {
             jump_time = 0.0f;
+            isJumpFinish = false;
         }
 
         //ジャンプ後、落下する処理
-        else if(!keyboard.upArrowKey.isPressed || jump_time >= max_jump_time)
+        else if(isJumpFinish)
         {
             vertical_speed = -jump_speed;
             isJumping = false;
@@ -76,9 +87,29 @@ public class PlayerController : MonoBehaviour
             jump_time = 0.0f;
             vertical_speed = jump_speed;
         }
-        if (isJumping && keyboard.upArrowKey.isPressed && jump_time < max_jump_time)
+
+        if (isJumping && 
+            !isJumpFinish && 
+            keyboard.upArrowKey.isPressed && 
+            jump_time < max_jump_time)
         {
             vertical_speed = jump_speed;
+        }
+
+        if(isJumping && keyboard.upArrowKey.wasReleasedThisFrame)
+        {
+            isJumpFinish = true;
+        }
+
+        //攻撃処理
+        if (keyboard.xKey.wasPressedThisFrame) {
+            weapons_list[now_use_weapon_no].GetComponent<WeaponManager>().Attack();
+        }
+
+        if (keyboard.cKey.wasPressedThisFrame)
+        {
+            now_use_weapon_no++;
+            now_use_weapon_no %= weapons_list.Count;
         }
     }
 
