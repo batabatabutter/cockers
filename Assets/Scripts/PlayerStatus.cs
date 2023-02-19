@@ -15,11 +15,11 @@ public class PlayerStatus : MonoBehaviour
 
         public void Zero()
         {
-            carbohydrates = 0;
-            proteins = 0;
-            lipid = 0;
-            vitamins = 0;
-            minerals = 0;
+            carbohydrates = 80;
+            proteins = 10;
+            lipid = 50;
+            vitamins = 20;
+            minerals = 60;
         }
     }
 
