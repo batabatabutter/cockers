@@ -6,13 +6,13 @@ public class Item : MonoBehaviour
 {
     [SerializeField, HeaderAttribute("アイテム種類")] ItemID itemID;
 
-    ItemManger itemManger;
+    ItemManager itemManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        itemManger = GameObject.Find("ItemManager").GetComponent<ItemManger>();
-        gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(0.0f, 10.0f, 0.0f));
+        itemManager = GameObject.Find("ItemManager").GetComponent<ItemManager>();
+        gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(0.0f, 100.0f, 0.0f));
     }
 
     // Update is called once per frame
@@ -26,7 +26,17 @@ public class Item : MonoBehaviour
         //  プレイヤーが触れたら
         if (other.gameObject.tag == "Player")
         {
-            itemManger.GetItem(itemID, 1);
+            itemManager.GetItem(itemID, 1);
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        //  プレイヤーが触れたら
+        if (other.gameObject.tag == "Player")
+        {
+            itemManager.GetItem(itemID, 1);
             Destroy(gameObject);
         }
     }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3157011182269079428}
   - component: {fileID: 3157011182269079163}
   - component: {fileID: 5800424860166117929}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: 00_Cabbage
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0fe8319b653eb2647ab26a5f79464457, type: 2}
+  - {fileID: 2100000, guid: 7c8c252357075dd42be46acf89a6163a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

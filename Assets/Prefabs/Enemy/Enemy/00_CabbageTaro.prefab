@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -6096217141739629717}
   - component: {fileID: -4732964138819660442}
   - component: {fileID: 8954209709969289572}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 00_CabbageTaro
   m_TagString: Enemy
   m_Icon: {fileID: 0}
