@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
     {
         var keyboard = Keyboard.current;
         horizontal_speed = 0;
-        vertical_speed = 0;
+        vertical_speed = -jump_speed;
 
         if (keyboard != null)
         {
@@ -71,12 +71,13 @@ public class PlayerController : MonoBehaviour
         {
             jump_time = 0.0f;
             isJumpFinish = false;
+            vertical_speed = 0;
         }
 
         //ÉWÉÉÉìÉvå„ÅAóéâ∫Ç∑ÇÈèàóù
-        else if(isJumpFinish)
+        if(isJumpFinish)
         {
-            vertical_speed = -jump_speed;
+            //vertical_speed = -jump_speed;
             isJumping = false;
         }
 
@@ -96,7 +97,7 @@ public class PlayerController : MonoBehaviour
             vertical_speed = jump_speed;
         }
 
-        if(isJumping && keyboard.upArrowKey.wasReleasedThisFrame)
+        if(isJumping && !isJumpFinish && keyboard.upArrowKey.wasReleasedThisFrame)
         {
             isJumpFinish = true;
         }
