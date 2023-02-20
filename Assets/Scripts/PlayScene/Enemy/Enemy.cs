@@ -84,6 +84,12 @@ public class Enemy : MonoBehaviour
 
     }
 
+    //  ダメージ処理
+    public void Damage(int dmg)
+    {
+        statas.HP -= dmg;
+    }
+
     //  死んでいる確認
     public bool GetIsDath()
     {

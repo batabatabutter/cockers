@@ -22,7 +22,6 @@ public class CabbageTaro : Enemy
         time = inversionTime;
     }
 
-
     //  XV
     public override void EnemyUpdate()
     {
