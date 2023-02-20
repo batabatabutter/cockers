@@ -1,0 +1,4 @@
+name,calory,carbohydrates,proteins,lipid,vitamins,minerals,full_stomach,need_material,need_value
+やみつきキャベツ,8,5,3,4,10,7,12,"""キャベツ""","""2"""
+豚とキャベツの冷しゃぶ,20,5,22,30,20,8,30,"""キャベツ,豚肉""","""1,1"""
+豚肉とキャベツの甘辛みそ炒め,30,6,25,34,28,10,40,"""キャベツ,豚肉,ニンジン""","""1,1,1"""
