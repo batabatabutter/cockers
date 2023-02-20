@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class RockBreak : MonoBehaviour
 {
-    bool Rock = true;
+    bool RockFlag = false;
     GameObject Object_Rock;
     GameObject PlayerStatus;
     [SerializeField] GameObject text;
@@ -33,13 +33,13 @@ public class RockBreak : MonoBehaviour
 
         carbohydrates = PlayerStatus.GetComponent<PlayerStatus>().Get_carbohydrates();
 
-        if (carbohydrates >= 30 && current.fKey.wasPressedThisFrame)
+        if (RockFlag == true && carbohydrates >= 30 && current.cKey.wasPressedThisFrame)
         {
             Debug.Log("‰ó‚ê‚½");
             text.SetActive(true);
             Destroy();
         }
-        else if (carbohydrates < 30 && current.fKey.wasPressedThisFrame)
+        else if (RockFlag == true && carbohydrates < 30 && current.cKey.wasPressedThisFrame)
         {
             Debug.Log("‰ó‚ê‚È‚¢");
             text2.SetActive(true);
@@ -73,4 +73,24 @@ public class RockBreak : MonoBehaviour
     {
         Object_Rock.SetActive(true);
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name == "Player")
+        {
+            RockFlag = true;
+            Debug.Log("Hit");
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.name == "Player")
+        {
+            RockFlag = false;
+            Debug.Log("exit");
+        }
+    }
+
 }
+
