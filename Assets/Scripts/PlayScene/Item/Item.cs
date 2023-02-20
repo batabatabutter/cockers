@@ -12,7 +12,7 @@ public class Item : MonoBehaviour
     void Start()
     {
         itemManager = GameObject.Find("ItemManager").GetComponent<ItemManager>();
-        gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(0.0f, 100.0f, 0.0f));
+        gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(0.0f, 200.0f, 0.0f));
     }
 
     // Update is called once per frame
@@ -23,12 +23,6 @@ public class Item : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        //  ÉvÉåÉCÉÑÅ[Ç™êGÇÍÇΩÇÁ
-        if (other.gameObject.tag == "Player")
-        {
-            itemManager.GetItem(itemID, 1);
-            Destroy(gameObject);
-        }
     }
 
     private void OnTriggerEnter(Collider other)
