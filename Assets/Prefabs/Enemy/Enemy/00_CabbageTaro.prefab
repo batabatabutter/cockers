@@ -101,9 +101,8 @@ MonoBehaviour:
   enemyID: 0
   hp: 15
   atk: 15
-  dropItem:
-  - {fileID: 3157011182269079429, guid: 7ca4d30983654034795c8db7bdb873da, type: 3}
-  - {fileID: 3157011182269079429, guid: 7ca4d30983654034795c8db7bdb873da, type: 3}
+  dropItem: 00000000
+  dropItemNum: 02000000
   speed: 1
   inversionTime: 3
   collisionDMG: 1
