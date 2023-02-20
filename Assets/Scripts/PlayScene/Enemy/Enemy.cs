@@ -12,6 +12,9 @@ public class Enemy : MonoBehaviour
     //  ステータス格納用
     protected EnemyStatas statas;
 
+    //  無敵時間
+    protected float invincibilityTime;
+
     //  敵の種類を設定
     [SerializeField, HeaderAttribute("敵種類")] EnemyID enemyID;
 
@@ -23,10 +26,12 @@ public class Enemy : MonoBehaviour
     [SerializeField] List<int> dropItemNum;
 
     ItemManager itemManager;
+    EnemyManager enemyManager;
 
     // Start is called before the first frame update
     void Start()
     {
+        enemyManager = GameObject.Find("EnemyManager").GetComponent<EnemyManager>();
         itemManager = GameObject.Find("ItemManager").GetComponent<ItemManager>();
         //  ステータス格納
         statas.HP = hp;
@@ -46,6 +51,10 @@ public class Enemy : MonoBehaviour
         {
             Death();
         }
+
+        //  無敵時間更新
+        invincibilityTime -= Time.deltaTime;
+        if (invincibilityTime < 0.0f) invincibilityTime = 0.0f;
 
         //  敵更新
         EnemyUpdate();
@@ -75,6 +84,15 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    //  当たり判定
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.GetComponent<PlayerStatus>().Damage(statas.ATK);
+        }
+    }
+
     //  敵の初期設定
     public virtual void EnemyStart()
     {
@@ -90,7 +108,9 @@ public class Enemy : MonoBehaviour
     //  ダメージ処理
     public void Damage(int dmg)
     {
+        if (invincibilityTime > 0.0f) return;
         statas.HP -= dmg;
+        invincibilityTime = enemyManager.GetInvincibilityTime();
     }
 
     //  死んでいる確認

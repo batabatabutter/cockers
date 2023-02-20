@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CabbageTaro : Enemy
+public class PigSoldier : Enemy
 {
     //  ˆÚ“®‘¬“x
     [SerializeField, HeaderAttribute("ŒÂ•Ê")] float speed;

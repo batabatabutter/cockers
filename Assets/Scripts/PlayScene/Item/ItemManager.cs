@@ -14,9 +14,6 @@ public enum ItemID
 
 public class ItemManager : MonoBehaviour
 {
-    //  ŠƒAƒCƒeƒ€”
-    public List<int> itemNum;
-
     //  “G‚ÌƒIƒuƒWƒFƒNƒg‚ğŠi”[‚µ‚Ä‚¨‚­
     [SerializeField] List<GameObject> Items;
 
@@ -24,7 +21,7 @@ public class ItemManager : MonoBehaviour
     [SerializeField] float distance;
 
     //  ƒ‚ƒfƒ‹•`‰æŠÖŒW
-    [SerializeField] float modelSpeed;
+    [SerializeField, HeaderAttribute("ƒ‚ƒfƒ‹•`‰æŠÖŒW")] float modelSpeed;
     [SerializeField] float modelRange;
 
     //  ”z—ñ‚©‰¼Ši”[—p
@@ -33,6 +30,8 @@ public class ItemManager : MonoBehaviour
     public List<ItemSpawn> itemSpawns;
     //  “G‚ğŠi”[
     public List<GameObject> itemObjects;
+    //  ŠƒAƒCƒeƒ€”
+    public List<int> itemNum;
 
     //  ƒvƒŒƒCƒ„[‚ğŠi”[‚µ‚Ä‚¨‚­
     GameObject player;
