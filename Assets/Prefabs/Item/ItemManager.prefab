@@ -47,8 +47,10 @@ MonoBehaviour:
   itemNum: 
   Items:
   - {fileID: 3157011182269079429, guid: 7ca4d30983654034795c8db7bdb873da, type: 3}
-  - {fileID: 3157011182269079429, guid: 10a9680be0343ef4abc00e44e0513e12, type: 3}
-  - {fileID: 3157011182269079429, guid: fe6a6b7ab3d6f52428f02a7095ba4587, type: 3}
+  - {fileID: 3157011182269079429, guid: d4607dd656cdd2346857a877fa66f162, type: 3}
+  - {fileID: 3157011182269079429, guid: 054681fb190d22a4a9999f55afe2e864, type: 3}
   distance: 30
+  modelSpeed: 2
+  modelRange: 0.2
   itemSpawns: []
   itemObjects: []

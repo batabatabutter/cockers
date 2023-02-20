@@ -23,6 +23,10 @@ public class ItemManager : MonoBehaviour
     //  “G‚Æ‚Ç‚ê‚­‚ç‚¢—£‚ê‚Ä‚¢‚½‚ç“®ì‚ğ~‚ß‚é‚©”»’f
     [SerializeField] float distance;
 
+    //  ƒ‚ƒfƒ‹•`‰æŠÖŒW
+    [SerializeField] float modelSpeed;
+    [SerializeField] float modelRange;
+
     //  ”z—ñ‚©‰¼Ši”[—p
     GameObject[] HolderArray;
     //  “G‚Ì¶¬‚ğŠi”[
@@ -91,6 +95,12 @@ public class ItemManager : MonoBehaviour
         }
     }
 
+    //  ƒAƒCƒeƒ€ƒIƒuƒWƒFƒNƒgó“n
+    public GameObject GetItemObject(ItemID ID)
+    {
+        return Items[(int)ID];
+    }
+
     //  ƒAƒCƒeƒ€æ“¾ˆ—
     public void GetItem(ItemID ID, int num)
     {
@@ -110,5 +120,17 @@ public class ItemManager : MonoBehaviour
     public int GetItemNum(ItemID ID)
     {
         return itemNum[(int)ID];
+    }
+
+    //  ƒ‚ƒfƒ‹ˆÚ“®‘¬“xó“n
+    public float GetModelSpeed()
+    {
+        return modelSpeed;
+    }
+
+    //  ƒ‚ƒfƒ‹ˆÚ“®•ó“n
+    public float GetModelRange()
+    {
+        return modelRange;
     }
 }

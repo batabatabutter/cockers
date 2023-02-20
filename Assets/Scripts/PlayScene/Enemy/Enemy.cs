@@ -19,11 +19,15 @@ public class Enemy : MonoBehaviour
     [SerializeField] int atk;
 
     //  ドロップアイテム
-    [SerializeField] List<GameObject> dropItem;
+    [SerializeField] List<ItemID> dropItem;
+    [SerializeField] List<int> dropItemNum;
+
+    ItemManager itemManager;
 
     // Start is called before the first frame update
     void Start()
     {
+        itemManager = GameObject.Find("ItemManager").GetComponent<ItemManager>();
         //  ステータス格納
         statas.HP = hp;
         statas.ATK = atk;
@@ -67,8 +71,7 @@ public class Enemy : MonoBehaviour
         // Aキーが押された瞬間かどうか
         if (aKey.wasPressedThisFrame)
         {
-            statas.HP -= 5;
-            Debug.Log(statas.HP);
+            Damage(5);
         }
     }
 
@@ -101,9 +104,14 @@ public class Enemy : MonoBehaviour
     {
         statas.death = true;
         Destroy(gameObject, 0.3f);
-        foreach(GameObject obj in dropItem)
+        
+        //  アイテム生成
+        for (int i = 0; i < dropItem.Count; i++)
         {
-            Instantiate(obj, gameObject.transform.position, Quaternion.identity);
+            for (int j = 0; j < dropItemNum[i]; j++)
+            {
+                Instantiate(itemManager.GetItemObject(dropItem[i]), gameObject.transform.position, Quaternion.identity);
+            }
         }
     }
 }
