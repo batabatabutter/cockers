@@ -133,7 +133,7 @@ public class PlayerController : MonoBehaviour
             jump_time += Time.fixedDeltaTime;
         }
 
-        rigid.AddForce(speed_force * (velocity - now_y));
+        rigid.AddForce(jump_force * (velocity - now_y));
     }
 
     private void CheckGround()
