@@ -28,6 +28,9 @@ public class EnemyManager : MonoBehaviour
     //  “G‚Æ‚Ç‚ê‚­‚ç‚¢—£‚ê‚Ä‚¢‚½‚ç“®ì‚ğ~‚ß‚é‚©”»’f
     [SerializeField] float distance;
 
+    //  “G‚Ì–³“GŠÔİ’è
+    [SerializeField, HeaderAttribute("ˆê—¥ƒXƒe[ƒ^ƒX")] float invincibilityTime;
+
     //  ”z—ñ‚©‰¼Ši”[—p
     GameObject[] HolderArray;
     //  “G‚Ì¶¬‚ğŠi”[
@@ -88,5 +91,11 @@ public class EnemyManager : MonoBehaviour
                 enemy.SetActive(true);
             }
         }
+    }
+
+    //  –³“GŠÔæ“¾
+    public float GetInvincibilityTime()
+    {
+        return invincibilityTime;
     }
 }
