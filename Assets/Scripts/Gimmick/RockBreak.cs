@@ -33,13 +33,13 @@ public class RockBreak : MonoBehaviour
 
         carbohydrates = PlayerStatus.GetComponent<PlayerStatus>().Get_carbohydrates();
 
-        if (RockFlag == true && carbohydrates >= 30 && current.cKey.wasPressedThisFrame)
+        if (RockFlag == true && carbohydrates >= 30 && current.zKey.wasPressedThisFrame)
         {
             Debug.Log("‰ó‚ê‚½");
             text.SetActive(true);
             Destroy();
         }
-        else if (RockFlag == true && carbohydrates < 30 && current.cKey.wasPressedThisFrame)
+        else if (RockFlag == true && carbohydrates < 30 && current.zKey.wasPressedThisFrame)
         {
             Debug.Log("‰ó‚ê‚È‚¢");
             text2.SetActive(true);
@@ -74,23 +74,25 @@ public class RockBreak : MonoBehaviour
         Object_Rock.SetActive(true);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.name == "Player")
+        if (other.gameObject.name == "Player")
         {
             RockFlag = true;
             Debug.Log("Hit");
         }
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerExit(Collider other)
     {
-        if (collision.gameObject.name == "Player")
+        if (other.gameObject.name == "Player")
         {
             RockFlag = false;
             Debug.Log("exit");
         }
+
     }
+
 
 }
 
