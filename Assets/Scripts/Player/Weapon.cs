@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class WeaponManager : MonoBehaviour
+public class Weapon : MonoBehaviour
 {
+    [SerializeField] private GameObject player;
     [SerializeField,HeaderAttribute("ステータス")] private int atk;
     [SerializeField] private float atk_enable_time;
-    [SerializeField] private float cool_time;
+    [SerializeField] private float atk_per_sec;
 
     private float now_atk_enable_time;
     private float now_cool_time;
@@ -46,7 +47,7 @@ public class WeaponManager : MonoBehaviour
         if (now_cool_time > 0.0f) return;
         transform.GetComponent<BoxCollider>().enabled = true;
         now_atk_enable_time = atk_enable_time;
-        now_cool_time = cool_time;
+        now_cool_time = 1.0f / (atk_per_sec * player.GetComponent<PlayerStatus>().Get_atk_itr());
     }
 
     private void OnTriggerEnter(Collider other)

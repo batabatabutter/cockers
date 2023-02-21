@@ -28,18 +28,22 @@ public class PlayerStatus : MonoBehaviour
     private const int Min_nut = 0;
     private const int Max_nut = 100;
 
-    private const int def_hp = 100;
-    private const int def_atk = 10;
-    private const int def_dfc = 10;
-    private const int def_atk_itv = 1;
-    private const int def_spd = 10;
+    [SerializeField, HeaderAttribute("Šî‘bƒXƒe[ƒ^ƒX")] private const int def_hp = 100;    //‘Ì—Í
+    [SerializeField] private const int def_atk = 10;                                       //UŒ‚—Í
+    [SerializeField] private const int def_dfc = 10;                                       //–hŒä—Í
+    [SerializeField] private const int def_atk_itv = 1;                                    //UŒ‚‰ñ””{—¦
+    [SerializeField] private const int def_spd = 10;                                       //ƒXƒs[ƒh
+    [SerializeField] private float invincible_time = 2.0f;                                 //–³“GŽžŠÔ
 
-    private int hp;
-    private int atk;
-    private int dfc;
-    private int atk_itv;
-    private int spd;
-    private int full_stomach;
+    [SerializeField, HeaderAttribute("Œ»ÝƒXƒe[ƒ^ƒX")] private int hp;                    //‘Ì—Í
+    [SerializeField] private int atk;                                                      //UŒ‚—Í
+    [SerializeField] private int dfc;                                                      //–hŒä—Í
+    [SerializeField] private int atk_itv;                                                  //UŒ‚‰ñ””{—¦
+    [SerializeField] private int spd;                                                      //ƒXƒs[ƒh
+    [SerializeField] private int full_stomach;                                             //–ž• “x
+    [SerializeField] private float now_invincible_time;                                    //–³“GŽžŠÔ
+
+    
 
     // Start is called before the first frame update
     void Start()
@@ -54,10 +58,17 @@ public class PlayerStatus : MonoBehaviour
     }
 
     // Update is called once per frame
-    //void Update()
-    //{
-
-    //}
+    void Update()
+    {
+        if (now_invincible_time > 0.0f)
+        {
+            now_invincible_time -= Time.deltaTime;
+            if (now_invincible_time <= 0.0f)
+            {
+                now_invincible_time = 0.0f;
+            }
+        }
+    }
 
     //’l‚ÌÝ’è
     public void Set_carbohydrates(int val) { nutrients.carbohydrates = val; }
@@ -148,7 +159,10 @@ public class PlayerStatus : MonoBehaviour
     //“G‚©‚çƒ_ƒ[ƒW‚ð•‰‚Á‚½‚Æ‚«
     public void Damage(int val)
     {
+        //–³“GŽžŠÔ’†‚È‚çƒ_ƒ[ƒW‚ðŽó‚¯‚È‚¢
+        if (now_invincible_time > 0.0f) return;
         hp -= val;
         Mathf.Clamp(hp, 0, 10000);
+        now_invincible_time = invincible_time;
     }
 }
