@@ -8,10 +8,13 @@ using System.Linq;
 
 public class Cook : MonoBehaviour
 {
-    [SerializeField] EventSystem eventSystem;
-    [SerializeField] ItemManager item_manager;
-    [SerializeField] MenuManager menu_manager;
-    [SerializeField] GameObject content;
+    [SerializeField] public EventSystem eventSystem;
+    [SerializeField] public ItemManager item_manager;
+    [SerializeField] public MenuManager menu_manager;
+    [SerializeField] public GameObject content;
+    [SerializeField] public PlayerStatus player_status;
+    [SerializeField] public GameObject item_text_def;
+    public Text cooking_text;
 
     private int now_select;
     private GameObject selected_obj;
@@ -19,15 +22,16 @@ public class Cook : MonoBehaviour
     private Dictionary<string, ItemID> dic;
     [SerializeField] private List<KeyValuePair<ItemID, int>> item_val;
 
-    //選んだ料理のステータス
-    int calore;
-    int full;
+    private GameObject item_content;
+    private List<GameObject> item_text;
+    private bool first_flg;
 
 
     //[SerializeField,ReadOnly, HeaderAttribute("今持ってる素材の種類と数を")]
     // Start is called before the first frame update
     void Start()
     {
+        item_manager = GameObject.Find("ItemManager").GetComponent<ItemManager>();
         menu_manager = transform.GetComponent<MenuManager>();
         Add_Menu_button();
         now_select = 0;
@@ -41,6 +45,11 @@ public class Cook : MonoBehaviour
         {
             item_val.Add(new KeyValuePair<ItemID, int>(item.Value, 0));
         }
+        player_status = GameObject.Find("Player").GetComponent<PlayerStatus>();
+        item_content = GameObject.Find("ItemContent");
+        first_flg = true;
+        item_text = new List<GameObject>();
+        cooking_text = GameObject.Find("MenuText").GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -48,6 +57,11 @@ public class Cook : MonoBehaviour
     {
         All_Item_Val_Check();
         All_Menu_Cookable_Check();
+        if (first_flg)
+        {
+            Item_List_Create();
+            first_flg = false;
+        }
         var keyboard = Keyboard.current;
         if (keyboard.upArrowKey.wasReleasedThisFrame) Check_Now_SelectButton();
         if (keyboard.downArrowKey.wasReleasedThisFrame) Check_Now_SelectButton();
@@ -73,7 +87,6 @@ public class Cook : MonoBehaviour
             now_select++;
 
         }
-        Debug.Log(now_select);
     }
 
     //すべての素材の所持状況の取得
@@ -104,17 +117,49 @@ public class Cook : MonoBehaviour
 
     public void Cooking()
     {
-        List<KeyValuePair<string, int>> need_material;
-        need_material = menu_manager.Get_Need_material(now_select);
-        foreach (var material in need_material)
+        if (!menu_manager.Get_menu_cookable(now_select)) return;
+        Menu menu = menu_manager.Get_Menu(now_select);
+        foreach (var material in menu.need_material)
         {
             item_manager.SpendItem(dic[material.Key], material.Value);
         }
+        player_status.Add_carbohydrates(menu.carbohydrates);
+        player_status.Add_lipid(menu.lipid);
+        player_status.Add_minerals(menu.minerals);
+        player_status.Add_proteins(menu.proteins);
+        player_status.Add_vitamins(menu.vitamins);
+        All_Item_Val_Check();
+        Item_List_Create();
     }
 
     private void OnButtonPress()
     {
         selected_obj = eventSystem.currentSelectedGameObject.gameObject;
         selected_obj.GetComponent<Button>().onClick.Invoke();
+    }
+
+    public void Item_List_Create()
+    {
+        if (item_text.Count() > 0)
+        {
+            for(int i = 0; i < item_text.Count; ++i)
+            {
+                Destroy(item_text[i]);
+            }
+            item_text = new List<GameObject>();
+        }
+        All_Item_Val_Check();
+        foreach (var item in dic)
+        {
+            int val = item_val[(int)item.Value].Value;
+            if (val <= 0) continue;
+            GameObject obj = Instantiate<GameObject>(item_text_def,item_content.transform);
+            Text new_txt = obj.GetComponent<Text>();
+            new_txt.text = item.Key + " : " + val.ToString();
+            obj.transform.localPosition = Vector3.zero;
+            obj.transform.localScale = Vector3.one;
+            obj.GetComponent<Text>().text = new_txt.text;
+            item_text.Add(obj);
+        }
     }
 }
