@@ -1,9 +1,13 @@
 using System;
+using System.Text;
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 //using ServiceStack.Text;
+
+
 
 [System.Serializable]
 public class Menu
@@ -39,6 +43,9 @@ public class MenuManager : MonoBehaviour
 
     [SerializeField] public List<Menu> menu=new List<Menu>();
     [SerializeField] private InputMenu[] inputmenu;
+    [SerializeField] private Button[] menu_list;
+    [SerializeField] private GameObject content;
+    [SerializeField] private GameObject btn_prefab;
 
     private static char erase_str = '"';
 
@@ -48,6 +55,8 @@ public class MenuManager : MonoBehaviour
         TextAsset csv_file = new TextAsset();
         csv_file = Resources.Load("CookData",typeof(TextAsset)) as TextAsset;
         inputmenu = CSVSerializer.Deserialize<InputMenu>(csv_file.text);
+        GameObject new_btn = btn_prefab;
+        Navigation navigation = new_btn.GetComponent<Button>().navigation;
         
         foreach(InputMenu m in inputmenu)
         {
@@ -72,6 +81,8 @@ public class MenuManager : MonoBehaviour
                 new_menu.need_material.Add(new KeyValuePair<string,int>(material,int.Parse(value)));
             }
             menu.Add(new_menu);
+            Instantiate<GameObject>(new_btn);
+            new_btn.transform.SetParent(content.transform);
         }
     }
 
