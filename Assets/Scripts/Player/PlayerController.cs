@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour
 
         //UŒ‚ˆ—
         if (keyboard.xKey.wasPressedThisFrame) {
-            weapons_list[now_use_weapon_no].GetComponent<WeaponManager>().Attack();
+            weapons_list[now_use_weapon_no].GetComponent<Weapon>().Attack();
         }
 
         if (keyboard.cKey.wasPressedThisFrame)
