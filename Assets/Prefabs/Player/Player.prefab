@@ -319,15 +319,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4044031700050031883}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7138606, w: 0.7002879}
+  m_LocalPosition: {x: -0.0844839, y: -0.08612163, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4044031699421813831}
   m_Father: {fileID: 4044031701359591069}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 91.1}
 --- !u!33 &4044031700050031887
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -487,8 +487,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.4, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 2, y: 2, z: 15}
+  m_Center: {x: 0, y: -0.5, z: 0}
 --- !u!114 &3179250895976372742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -501,10 +501,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 234694ebde8dd2b44bd6f732e335b9e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 4044031700620459803}
-  atk: 0
-  atk_enable_time: 0
-  atk_per_sec: 0
+  player: {fileID: 4044031700620459804}
+  atk: 5
+  atk_enable_time: 1
+  atk_per_sec: 1.3
 --- !u!1 &4044031700407166171
 GameObject:
   m_ObjectHideFlags: 0

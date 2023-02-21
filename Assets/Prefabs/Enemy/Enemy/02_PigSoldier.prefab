@@ -31,8 +31,8 @@ Transform:
   m_GameObject: {fileID: 8255535140438971876}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0.85, z: 1.2}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -100,12 +100,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyID: 2
-  hp: 30
-  atk: 12
+  hp: 60
+  atk: 20
   dropItem: 02000000
   dropItemNum: 02000000
-  speed: 0
-  inversionTime: 0
+  swordDmgRate: 2
+  coolTime: 5
 --- !u!54 &-4732964138819660442
 Rigidbody:
   m_ObjectHideFlags: 0

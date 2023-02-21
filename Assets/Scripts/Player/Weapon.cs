@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class Weapon : MonoBehaviour
 {
-    [SerializeField] private GameObject player;
+    [SerializeField] private PlayerStatus player;
     [SerializeField,HeaderAttribute("ステータス")] private int atk;
     [SerializeField] private float atk_enable_time;
     [SerializeField] private float atk_per_sec;
@@ -47,17 +47,18 @@ public class Weapon : MonoBehaviour
         if (now_cool_time > 0.0f) return;
         transform.GetComponent<BoxCollider>().enabled = true;
         now_atk_enable_time = atk_enable_time;
-        now_cool_time = 1.0f / (atk_per_sec * player.GetComponent<PlayerStatus>().Get_atk_itr());
+        now_cool_time = 1.0f / (atk_per_sec * player.Get_atk_itr());
     }
 
     private void OnTriggerEnter(Collider other)
     {
         int atk_value = atk;
-        atk += transform.parent.GetComponent<PlayerStatus>().Get_atk();
+        atk_value += player.Get_atk();
         //タグがenemyなら
         if (other.CompareTag("Enemy"))
         {
             //敵にダメージを与える処理
+            other.GetComponent<Enemy>().Damage(atk_value);
         }
     }
 }
