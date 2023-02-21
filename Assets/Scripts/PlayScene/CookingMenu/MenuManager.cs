@@ -91,4 +91,16 @@ public class MenuManager : MonoBehaviour
     {
         
     }
+
+    GameObject ButtonSetting(GameObject obj)
+    {
+        obj.AddComponent<RectTransform>();
+        obj.AddComponent<CanvasRenderer>();
+        obj.AddComponent<Image>();
+        Button b = obj.AddComponent<Button>() as Button;
+        ColorBlock colors = b.colors;
+        colors.pressedColor = new Color(0.1476682f, 0.4789405f, 0.6415094f);
+        colors.selectedColor = new Color(0.2352941f, 0.7137255f, 0.945098f);
+        return obj;
+    }
 }
