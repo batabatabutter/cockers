@@ -7,23 +7,32 @@ public class RockBreak : MonoBehaviour
 {
     bool RockFlag = false;
     GameObject Object_Rock;
-    GameObject PlayerStatus;
     [SerializeField] GameObject text;
     [SerializeField] GameObject text2;
     float time = 0.0f;
 
-    public int carbohydrates;  //炭水化物
-    public int proteins;       //タンパク質
-    public int lipid;          //脂質
-    public int vitamins;       //ビタミン
-    public int minerals;       //無機質
+    //  プレイヤー格納用
+    private PlayerStatus player;
+
+    //  各ステータス要求量
+    //[SerializeField] int carbohydrates;     //  炭水化物
+    [SerializeField] int proteins;          //  タンパク質
+    //[SerializeField] int lipid;             //  脂質
+    //[SerializeField] int vitamins;          //  ビタミン
+    //[SerializeField] int minerals;          //  無機質
+
+    //public int carbohydrates;  //炭水化物
+    //public int proteins;       //タンパク質
+    //public int lipid;          //脂質
+    //public int vitamins;       //ビタミン
+    //public int minerals;       //無機質
 
 
     // Start is called before the first frame update
     void Start()
     {
         Object_Rock = GameObject.Find("Rock");
-        PlayerStatus = GameObject.Find("Player");
+        player = GameObject.Find("Player").GetComponent<PlayerStatus>();
     }
 
     // Update is called once per frame
@@ -31,17 +40,13 @@ public class RockBreak : MonoBehaviour
     {
         var current = Keyboard.current;
 
-        carbohydrates = PlayerStatus.GetComponent<PlayerStatus>().Get_carbohydrates();
-
-        if (RockFlag == true && carbohydrates >= 30 && current.zKey.wasPressedThisFrame)
+        if (RockFlag == true && player.Get_proteins() >= proteins && current.cKey.wasPressedThisFrame)
         {
-            Debug.Log("壊れた");
             text.SetActive(true);
             Destroy();
         }
-        else if (RockFlag == true && carbohydrates < 30 && current.zKey.wasPressedThisFrame)
+        else if (RockFlag == true && player.Get_proteins() < proteins && current.cKey.wasPressedThisFrame)
         {
-            Debug.Log("壊れない");
             text2.SetActive(true);
             DontDestroy();
         }
@@ -79,7 +84,6 @@ public class RockBreak : MonoBehaviour
         if (other.gameObject.name == "Player")
         {
             RockFlag = true;
-            Debug.Log("Hit");
         }
     }
 
@@ -88,7 +92,6 @@ public class RockBreak : MonoBehaviour
         if (other.gameObject.name == "Player")
         {
             RockFlag = false;
-            Debug.Log("exit");
         }
 
     }

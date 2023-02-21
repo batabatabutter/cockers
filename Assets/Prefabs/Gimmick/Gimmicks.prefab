@@ -145,11 +145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 0}
   text2: {fileID: 0}
-  carbohydrates: 0
-  proteins: 0
-  lipid: 0
-  vitamins: 0
-  minerals: 0
+  proteins: 30
 --- !u!65 &177723878180641498
 BoxCollider:
   m_ObjectHideFlags: 0
