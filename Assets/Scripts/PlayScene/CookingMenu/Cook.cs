@@ -39,7 +39,6 @@ public class Cook : MonoBehaviour
         dic.Add("キャベツ", ItemID.Cabbage);
         dic.Add("ニンジン", ItemID.Carrot);
         dic.Add("豚肉", ItemID.Pork);
-        Debug.Log(dic.Count);
         item_val = new List<KeyValuePair<ItemID, int>>();
         foreach (var item in dic)
         {

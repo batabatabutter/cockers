@@ -21,7 +21,6 @@ public class KitchenManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(IsPlayerIn);
         var keyboard = Keyboard.current;
         if(IsPlayerIn && keyboard.cKey.wasPressedThisFrame)
         {

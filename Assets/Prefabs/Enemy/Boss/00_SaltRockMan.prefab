@@ -780,7 +780,7 @@ GameObject:
   - component: {fileID: -7407340893960536572}
   m_Layer: 0
   m_Name: 00_SaltRockMan
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -822,12 +822,6 @@ MonoBehaviour:
   distance: 10
   rushTime: 2
   rushSpeed: 7
-  throwSaltTime: 1
-  throwSaltForwordTime: 2
-  throwSaltDmgRate: 40
-  throwSaltSpeed: 0
-  throwSaltObject: {fileID: 8592149738081341322, guid: 268d4c8c1db67564f858c3156d633e64,
-    type: 3}
   armTime: 0.5
   armForwordTime: 1
   arm: {fileID: 200716112478765866}

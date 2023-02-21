@@ -60,5 +60,10 @@ public class Weapon : MonoBehaviour
             //敵にダメージを与える処理
             other.GetComponent<Enemy>().Damage(atk_value);
         }
+        else if(other.CompareTag("Boss"))
+        {
+            //ボスにダメージを与える処理
+            other.GetComponent<Boss>().Damage(atk_value);
+        }
     }
 }

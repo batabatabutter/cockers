@@ -43,7 +43,6 @@ public class PigSoldier : Enemy
 
         if (!move)
         {
-            Debug.Log(player);
             float distance = (player.transform.position.x - gameObject.transform.position.x);
             if(distance < 0.0f) transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.x, 0.0f, transform.rotation.z));
             else transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.x, 180.0f, transform.rotation.z));
