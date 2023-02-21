@@ -5,10 +5,10 @@ using UnityEngine;
 public class PigSoldier : Enemy
 {
     //  移動速度
-    [SerializeField, HeaderAttribute("個別")] float speed;
+    [SerializeField, HeaderAttribute("個別")] float swordDmgRate;
 
-    //  切り替えしタイミング
-    [SerializeField] float inversionTime;
+    //  振るタイミング
+    [SerializeField] float coolTime;
 
     //  時間カウント用
     private float time;
@@ -16,7 +16,7 @@ public class PigSoldier : Enemy
     //  最初に実行
     public override void EnemyStart()
     {
-        time = inversionTime;
+        time = coolTime;
     }
 
     //  更新
@@ -27,11 +27,7 @@ public class PigSoldier : Enemy
         //  条件が合えば左右反転
         if (time < 0.0f)
         {
-            this.gameObject.transform.Rotate(new Vector3(0.0f, 180.0f, 0.0f));
-            time = inversionTime;
+            time = coolTime;
         }
-
-        //  移動
-        this.gameObject.transform.position += speed * Time.deltaTime * this.gameObject.transform.right;
     }
 }

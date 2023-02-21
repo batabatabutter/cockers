@@ -15,6 +15,15 @@ public class Enemy : MonoBehaviour
     //  無敵時間
     protected float invincibilityTime;
 
+    //  プレイヤー
+    protected GameObject player;
+
+    //  物理移動
+    protected Vector3 vec;
+
+    //  物理制御
+    protected Rigidbody rb;
+
     //  敵の種類を設定
     [SerializeField, HeaderAttribute("敵種類")] EnemyID enemyID;
 
@@ -33,10 +42,13 @@ public class Enemy : MonoBehaviour
     {
         enemyManager = GameObject.Find("EnemyManager").GetComponent<EnemyManager>();
         itemManager = GameObject.Find("ItemManager").GetComponent<ItemManager>();
+        player = enemyManager.GetPlayer();
+        rb = gameObject.GetComponent<Rigidbody>();
         //  ステータス格納
         statas.HP = hp;
         statas.ATK = atk;
         statas.death = false;
+        vec = Vector3.zero;
         EnemyStart();
     }
 
@@ -55,6 +67,9 @@ public class Enemy : MonoBehaviour
         //  無敵時間更新
         invincibilityTime -= Time.deltaTime;
         if (invincibilityTime < 0.0f) invincibilityTime = 0.0f;
+
+        //  物理制御
+        rb.MovePosition(rb.position + (Vector3.down * Time.deltaTime * enemyManager.GetGravity()));
 
         //  敵更新
         EnemyUpdate();
@@ -76,20 +91,34 @@ public class Enemy : MonoBehaviour
 
         // Aキーの入力状態取得
         var aKey = current.aKey;
+        var bKey = current.bKey;
 
         // Aキーが押された瞬間かどうか
         if (aKey.wasPressedThisFrame)
         {
             Damage(5);
         }
+        if(bKey.wasPressedThisFrame)
+        {
+            rb.velocity = Vector3.zero;
+        }
     }
 
     //  当たり判定
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<PlayerStatus>().Damage(statas.ATK);
+        }
+        rb.velocity = Vector3.zero;
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            rb.velocity = Vector3.zero;
         }
     }
 

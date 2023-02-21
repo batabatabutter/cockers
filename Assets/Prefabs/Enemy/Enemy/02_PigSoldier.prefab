@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 2818513138048179728}
   - component: {fileID: 7685018526059799204}
   - component: {fileID: 2824225754054124084}
-  - component: {fileID: -6096217141739629717}
+  - component: {fileID: 4557846350255848878}
   - component: {fileID: -4732964138819660442}
   - component: {fileID: 8954209709969289572}
-  - component: {fileID: 1997801769330343762}
+  - component: {fileID: 3566941100258633366}
   m_Layer: 6
-  m_Name: 00_CabbageTaro
+  m_Name: 02_PigSoldier
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0fe8319b653eb2647ab26a5f79464457, type: 2}
+  - {fileID: 2100000, guid: adf582f26e1b7b540bb414da24bf5800, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -87,7 +87,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &-6096217141739629717
+--- !u!114 &4557846350255848878
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,16 +96,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 8255535140438971876}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0f5b3a1516496445abc330a610728ec, type: 3}
+  m_Script: {fileID: 11500000, guid: d6126c0f60fe97b44a7e057c5ee31329, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyID: 0
-  hp: 15
-  atk: 15
-  dropItem: 00000000
-  dropItemNum: 01000000
-  speed: 1
-  inversionTime: 3
+  enemyID: 2
+  hp: 30
+  atk: 12
+  dropItem: 02000000
+  dropItemNum: 02000000
+  speed: 0
+  inversionTime: 0
 --- !u!54 &-4732964138819660442
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -135,7 +135,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &1997801769330343762
+--- !u!65 &3566941100258633366
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -146,5 +146,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.88, y: 0.88, z: 0.97}
+  m_Size: {x: 1, y: 0.99999994, z: 0.99999994}
   m_Center: {x: 0, y: 0, z: 0}
