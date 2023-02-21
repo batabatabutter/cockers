@@ -22,20 +22,12 @@ public class Item : MonoBehaviour
         itemModel.SetModelRange(itemManager.GetModelRange());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
-    private void OnCollisionEnter(Collision other)
-    {
-    }
-
+    //  “–‚½‚è”»’è
     private void OnTriggerEnter(Collider other)
     {
         //  ƒvƒŒƒCƒ„[‚ªG‚ê‚½‚ç
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.CompareTag("Player"))
         {
             itemManager.GetItem(itemID, 1);
             Destroy(gameObject);

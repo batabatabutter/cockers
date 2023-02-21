@@ -30,6 +30,8 @@ public class EnemyManager : MonoBehaviour
 
     //  敵の無敵時間設定
     [SerializeField, HeaderAttribute("一律ステータス")] float invincibilityTime;
+    //  重力設定
+    [SerializeField] float gravity;
 
     //  配列か仮格納用
     GameObject[] HolderArray;
@@ -80,7 +82,7 @@ public class EnemyManager : MonoBehaviour
             if (enemy == null) continue;
 
             //  敵とプレイヤーの位置関係比較
-            if(Vector3.Distance(enemy.transform.position,player.transform.position) > distance)
+            if (Vector3.Distance(enemy.transform.position, player.transform.position) > distance)
             {
                 //  遠かったら実行停止
                 enemy.SetActive(false);
@@ -97,5 +99,17 @@ public class EnemyManager : MonoBehaviour
     public float GetInvincibilityTime()
     {
         return invincibilityTime;
+    }
+
+    //  重力取得
+    public float GetGravity()
+    {
+        return gravity;
+    }
+
+    //  プレイヤー取得
+    public GameObject GetPlayer()
+    {
+        return player;
     }
 }

@@ -27,11 +27,11 @@ public class CabbageTaro : Enemy
         //  ğŒ‚ª‡‚¦‚Î¶‰E”½“]
         if (time < 0.0f)
         {
-            this.gameObject.transform.Rotate(new Vector3(0.0f, 180.0f, 0.0f));
+            gameObject.transform.Rotate(new Vector3(0.0f, 180.0f, 0.0f));
             time = inversionTime;
         }
 
         //  ˆÚ“®
-        this.gameObject.transform.position += speed * Time.deltaTime * this.gameObject.transform.right;
+        rb.MovePosition(rb.position + speed * Time.deltaTime * gameObject.transform.right);
     }
 }
