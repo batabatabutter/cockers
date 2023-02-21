@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4044031699421813834}
   - component: {fileID: 4044031699421813833}
   - component: {fileID: 4044031699421813832}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RightArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 4044031699506516074}
   - component: {fileID: 4044031699506516073}
   - component: {fileID: 4044031699506516072}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RightArmPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,7 +208,7 @@ GameObject:
   - component: {fileID: 4044031699966616487}
   - component: {fileID: 4044031699966616486}
   - component: {fileID: 4044031699966616485}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Knife
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -305,7 +305,7 @@ GameObject:
   - component: {fileID: 4044031700050031887}
   - component: {fileID: 4044031700050031886}
   - component: {fileID: 4044031700050031885}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RightArmPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -403,8 +403,8 @@ GameObject:
   - component: {fileID: 4044031700365780097}
   - component: {fileID: 4044031700365780096}
   - component: {fileID: 4044031700365780127}
-  - component: {fileID: 4044031700365780098}
-  m_Layer: 0
+  - component: {fileID: 3179250895976372742}
+  m_Layer: 7
   m_Name: Knife
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -489,7 +489,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.4, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4044031700365780098
+--- !u!114 &3179250895976372742
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -501,8 +501,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 234694ebde8dd2b44bd6f732e335b9e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atk: 5
-  cool_time: 1.3
+  player: {fileID: 4044031700620459803}
+  atk: 0
+  atk_enable_time: 0
+  atk_per_sec: 0
 --- !u!1 &4044031700407166171
 GameObject:
   m_ObjectHideFlags: 0
@@ -515,7 +517,7 @@ GameObject:
   - component: {fileID: 4044031700407166175}
   - component: {fileID: 4044031700407166174}
   - component: {fileID: 4044031700407166173}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LeftArmWrap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -616,7 +618,7 @@ GameObject:
   - component: {fileID: 4044031700620459806}
   - component: {fileID: 4044031700620459805}
   - component: {fileID: 4044031700620459804}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -751,6 +753,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 452fbe14c15b502439597b5c036de74b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  invincible_time: 2
+  hp: 0
+  atk: 0
+  dfc: 0
+  atk_itv: 0
+  spd: 0
+  full_stomach: 0
+  now_invincible_time: 0
 --- !u!1 &4044031700755753798
 GameObject:
   m_ObjectHideFlags: 0
@@ -763,7 +773,7 @@ GameObject:
   - component: {fileID: 4044031700755753802}
   - component: {fileID: 4044031700755753801}
   - component: {fileID: 4044031700755753800}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RightArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -861,7 +871,7 @@ GameObject:
   - component: {fileID: 4044031701359591040}
   - component: {fileID: 4044031701359591071}
   - component: {fileID: 4044031701359591070}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RightArmWrap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
