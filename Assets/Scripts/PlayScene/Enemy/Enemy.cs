@@ -118,7 +118,7 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            rb.velocity = Vector3.zero;
+            //rb.velocity = Vector3.zero;
         }
     }
 

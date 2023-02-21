@@ -100,8 +100,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyID: 0
-  hp: 15
-  atk: 15
+  hp: 45
+  atk: 30
   dropItem: 00000000
   dropItemNum: 01000000
   speed: 1

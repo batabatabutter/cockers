@@ -161,6 +161,8 @@ public class PlayerStatus : MonoBehaviour
     {
         //–³“GŽžŠÔ’†‚È‚çƒ_ƒ[ƒW‚ðŽó‚¯‚È‚¢
         if (now_invincible_time > 0.0f) return;
+        val -= Get_dfc();
+        Mathf.Clamp(val, 1, 9999);
         hp -= val;
         Mathf.Clamp(hp, 0, 10000);
         now_invincible_time = invincible_time;
