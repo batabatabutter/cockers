@@ -24,6 +24,9 @@ public class Enemy : MonoBehaviour
     //  •¨—§Œä
     protected Rigidbody rb;
 
+    //  UŒ‚ƒtƒ‰ƒO
+    protected bool nowAttack;
+
     //  “G‚Ìí—Ş‚ğİ’è
     [SerializeField, HeaderAttribute("“Gí—Ş")] EnemyID enemyID;
 
@@ -43,6 +46,7 @@ public class Enemy : MonoBehaviour
         enemyManager = GameObject.Find("EnemyManager").GetComponent<EnemyManager>();
         itemManager = GameObject.Find("ItemManager").GetComponent<ItemManager>();
         player = enemyManager.GetPlayer();
+        nowAttack = false;
         rb = gameObject.GetComponent<Rigidbody>();
         //  ƒXƒe[ƒ^ƒXŠi”[
         statas.HP = hp;
@@ -107,7 +111,7 @@ public class Enemy : MonoBehaviour
     //  “–‚½‚è”»’è
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && nowAttack)
         {
             collision.gameObject.GetComponent<PlayerStatus>().Damage(statas.ATK);
         }
@@ -120,6 +124,11 @@ public class Enemy : MonoBehaviour
         {
             //rb.velocity = Vector3.zero;
         }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        rb.velocity = Vector3.zero;
     }
 
     //  “G‚Ì‰Šúİ’è
