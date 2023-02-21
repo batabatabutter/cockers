@@ -72,7 +72,7 @@ public class PigSoldier : Enemy
             nowAttack = false;
             move = false;
             arm.Rotate(new Vector3(0.0f, 0.0f, -90.0f));
+            rb.velocity = Vector3.zero;
         }
-
     }
 }
