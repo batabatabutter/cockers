@@ -128,7 +128,7 @@ public class Enemy : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        rb.velocity = Vector3.zero;
+        //rb.velocity = Vector3.zero;
     }
 
     //  “G‚Ì‰Šúİ’è
