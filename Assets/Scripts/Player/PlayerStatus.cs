@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
 using UnityEngine;
 
 public class PlayerStatus : MonoBehaviour
@@ -28,22 +30,22 @@ public class PlayerStatus : MonoBehaviour
     private const int Min_nut = 0;
     private const int Max_nut = 100;
 
-    [SerializeField, HeaderAttribute("Šî‘bƒXƒe[ƒ^ƒX")] private const int def_hp = 100;    //‘Ì—Í
-    [SerializeField] private const int def_atk = 10;                                       //UŒ‚—Í
-    [SerializeField] private const int def_dfc = 10;                                       //–hŒä—Í
-    [SerializeField] private const int def_atk_itv = 1;                                    //UŒ‚‰ñ””{—¦
-    [SerializeField] private const int def_spd = 10;                                       //ƒXƒs[ƒh
-    [SerializeField] private float invincible_time = 2.0f;                                 //–³“GŽžŠÔ
+    [SerializeField, HeaderAttribute("Šî‘bƒXƒe[ƒ^ƒX")] private int def_hp = 100;    //‘Ì—Í
+    [SerializeField] private int def_atk = 10;                                       //UŒ‚—Í
+    [SerializeField] private int def_dfc = 10;                                       //–hŒä—Í
+    [SerializeField] private int def_atk_itv = 1;                                    //UŒ‚‰ñ””{—¦
+    [SerializeField] private int def_spd = 10;                                       //ƒXƒs[ƒh
+    [SerializeField] private float invincible_time = 1.0f;                           //–³“GŽžŠÔ
 
-    [SerializeField, HeaderAttribute("Œ»ÝƒXƒe[ƒ^ƒX")] private int hp;                    //‘Ì—Í
-    [SerializeField] private int atk;                                                      //UŒ‚—Í
-    [SerializeField] private int dfc;                                                      //–hŒä—Í
-    [SerializeField] private int atk_itv;                                                  //UŒ‚‰ñ””{—¦
-    [SerializeField] private int spd;                                                      //ƒXƒs[ƒh
-    [SerializeField] private int full_stomach;                                             //–ž• “x
-    [SerializeField] private float now_invincible_time;                                    //–³“GŽžŠÔ
+    [SerializeField, ReadOnly, HeaderAttribute("Œ»ÝƒXƒe[ƒ^ƒX(•ÒW‚·‚é‚È)")] private int hp;        //‘Ì—Í
+    [SerializeField, ReadOnly] private int atk;                                                      //UŒ‚—Í
+    [SerializeField, ReadOnly] private int dfc;                                                      //–hŒä—Í
+    [SerializeField, ReadOnly] private int atk_itv;                                                  //UŒ‚‰ñ””{—¦
+    [SerializeField, ReadOnly] private int spd;                                                      //ƒXƒs[ƒh
+    [SerializeField, ReadOnly] private int full_stomach;                                             //–ž• “x
+    [SerializeField, ReadOnly] private float now_invincible_time;                                    //–³“GŽžŠÔ
 
-    
+
 
     // Start is called before the first frame update
     void Start()
@@ -82,7 +84,7 @@ public class PlayerStatus : MonoBehaviour
     {
         nutrients.carbohydrates += val;
         hp = Mathf.CeilToInt(def_hp * (1 + (nutrients.carbohydrates * 0.01f)));
-        nutrients.carbohydrates = Mathf.Clamp(nutrients.carbohydrates, Min_nut,Max_nut);
+        nutrients.carbohydrates = Mathf.Clamp(nutrients.carbohydrates, Min_nut, Max_nut);
     }
     public void Add_proteins(int val)
     {
@@ -162,7 +164,7 @@ public class PlayerStatus : MonoBehaviour
         //–³“GŽžŠÔ’†‚È‚çƒ_ƒ[ƒW‚ðŽó‚¯‚È‚¢
         if (now_invincible_time > 0.0f) return;
         hp -= val;
-        Mathf.Clamp(hp, 0, 10000);
+        hp = Mathf.Clamp(hp, 0, 10000);
         now_invincible_time = invincible_time;
     }
 }

@@ -14,4 +14,10 @@ public class FirstButtonSelect : MonoBehaviour
         //ボタンが選択された状態になる
         button.Select();
     }
+
+    public void First_Select() {
+        button = GameObject.Find("Menu1").GetComponent<Button>();
+        //ボタンが選択された状態になる
+        button.Select();
+    }
 }

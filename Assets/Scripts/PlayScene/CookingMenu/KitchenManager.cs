@@ -8,6 +8,7 @@ public class KitchenManager : MonoBehaviour
 
     private bool IsPlayerIn;
     [SerializeField] GameObject KitchenPanel;
+    [SerializeField] private FirstButtonSelect first_button_select;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +27,7 @@ public class KitchenManager : MonoBehaviour
             if (KitchenPanel.activeSelf)
             {
                 Time.timeScale = 0f;
+                first_button_select.First_Select();
             }
             else
             {

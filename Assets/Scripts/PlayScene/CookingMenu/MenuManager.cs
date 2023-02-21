@@ -5,8 +5,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-//using ServiceStack.Text;
-
 
 
 [System.Serializable]
@@ -43,21 +41,20 @@ public class MenuManager : MonoBehaviour
 
     [SerializeField] public List<Menu> menu=new List<Menu>();
     [SerializeField] private InputMenu[] inputmenu;
-    [SerializeField] private Button[] menu_list;
-    [SerializeField] private GameObject content;
-    [SerializeField] private GameObject btn_prefab;
+    [SerializeField] private List<Text> menutext;
+    private List<bool> menu_cookable;
 
     private static char erase_str = '"';
 
     // Start is called before the first frame update
     void Start()
     {
+        menu_cookable = new List<bool>();
+        //料理を外部ファイルから読み込む
         TextAsset csv_file = new TextAsset();
         csv_file = Resources.Load("CookData",typeof(TextAsset)) as TextAsset;
         inputmenu = CSVSerializer.Deserialize<InputMenu>(csv_file.text);
-        GameObject new_btn = btn_prefab;
-        Navigation navigation = new_btn.GetComponent<Button>().navigation;
-        
+        int cnt = 0;
         foreach(InputMenu m in inputmenu)
         {
             Menu new_menu = new Menu();
@@ -71,18 +68,16 @@ public class MenuManager : MonoBehaviour
             new_menu.full_stomach= m.full_stomach;
             for(int i = 0; i < m.need_material.Length; ++i)
             {
-                Debug.Log(i);
                 string material = m.need_material[i];
                 string value = m.need_value[i];
-                Debug.Log("before : " + material + " : " + value);
                 material=material.Replace(erase_str.ToString(), "");
                 value=value.Replace(erase_str.ToString(), "");
-                Debug.Log("after : " + material + " : " + value);
                 new_menu.need_material.Add(new KeyValuePair<string,int>(material,int.Parse(value)));
             }
             menu.Add(new_menu);
-            Instantiate<GameObject>(new_btn);
-            new_btn.transform.SetParent(content.transform);
+            menutext[cnt].text = new_menu.name;
+            menu_cookable.Add(false);
+            cnt++;
         }
     }
 
@@ -92,15 +87,27 @@ public class MenuManager : MonoBehaviour
         
     }
 
-    GameObject ButtonSetting(GameObject obj)
+    //現在の料理メニュー数の取得
+    public int Get_Menu_Num()
     {
-        obj.AddComponent<RectTransform>();
-        obj.AddComponent<CanvasRenderer>();
-        obj.AddComponent<Image>();
-        Button b = obj.AddComponent<Button>() as Button;
-        ColorBlock colors = b.colors;
-        colors.pressedColor = new Color(0.1476682f, 0.4789405f, 0.6415094f);
-        colors.selectedColor = new Color(0.2352941f, 0.7137255f, 0.945098f);
-        return obj;
+        return menu.Count;
+    }
+
+    //メニューに必要な素材一覧の取得
+    public List<KeyValuePair<string,int>> Get_Need_material(int button_id)
+    {
+        return menu[button_id].need_material;
+    }
+
+    public void Set_cookable(int button_id, bool cookable)
+    {
+        if (cookable)
+        {
+            menutext[button_id].color = new Color(1.0f, 0.67711f, 0.0f);
+        }
+        else
+        {
+            menutext[button_id].color = new Color(0.3098039f, 0.3098039f, 0.3098039f);
+        }
     }
 }
