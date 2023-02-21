@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
 using UnityEngine;
 
 public class PlayerStatus : MonoBehaviour
@@ -28,22 +30,22 @@ public class PlayerStatus : MonoBehaviour
     private const int Min_nut = 0;
     private const int Max_nut = 100;
 
-    [SerializeField, HeaderAttribute("基礎ステータス")] private const int def_hp = 100;    //体力
-    [SerializeField] private const int def_atk = 10;                                       //攻撃力
-    [SerializeField] private const int def_dfc = 10;                                       //防御力
-    [SerializeField] private const int def_atk_itv = 1;                                    //攻撃回数倍率
-    [SerializeField] private const int def_spd = 10;                                       //スピード
-    [SerializeField] private float invincible_time = 2.0f;                                 //無敵時間
+    [SerializeField, HeaderAttribute("基礎ステータス")] private int def_hp = 100;    //体力
+    [SerializeField] private int def_atk = 10;                                       //攻撃力
+    [SerializeField] private int def_dfc = 10;                                       //防御力
+    [SerializeField] private int def_atk_itv = 1;                                    //攻撃回数倍率
+    [SerializeField] private int def_spd = 10;                                       //スピード
+    [SerializeField] private float invincible_time = 1.0f;                           //無敵時間
 
-    [SerializeField, HeaderAttribute("現在ステータス")] private int hp;                    //体力
-    [SerializeField] private int atk;                                                      //攻撃力
-    [SerializeField] private int dfc;                                                      //防御力
-    [SerializeField] private int atk_itv;                                                  //攻撃回数倍率
-    [SerializeField] private int spd;                                                      //スピード
-    [SerializeField] private int full_stomach;                                             //満腹度
-    [SerializeField] private float now_invincible_time;                                    //無敵時間
+    [SerializeField, ReadOnly, HeaderAttribute("現在ステータス(編集するな)")] private int hp;        //体力
+    [SerializeField, ReadOnly] private int atk;                                                      //攻撃力
+    [SerializeField, ReadOnly] private int dfc;                                                      //防御力
+    [SerializeField, ReadOnly] private int atk_itv;                                                  //攻撃回数倍率
+    [SerializeField, ReadOnly] private int spd;                                                      //スピード
+    [SerializeField, ReadOnly] private int full_stomach;                                             //満腹度
+    [SerializeField, ReadOnly] private float now_invincible_time;                                    //無敵時間
 
-    
+
 
     // Start is called before the first frame update
     void Start()
@@ -82,7 +84,7 @@ public class PlayerStatus : MonoBehaviour
     {
         nutrients.carbohydrates += val;
         hp = Mathf.CeilToInt(def_hp * (1 + (nutrients.carbohydrates * 0.01f)));
-        nutrients.carbohydrates = Mathf.Clamp(nutrients.carbohydrates, Min_nut,Max_nut);
+        nutrients.carbohydrates = Mathf.Clamp(nutrients.carbohydrates, Min_nut, Max_nut);
     }
     public void Add_proteins(int val)
     {
@@ -164,7 +166,7 @@ public class PlayerStatus : MonoBehaviour
         val -= Get_dfc();
         Mathf.Clamp(val, 1, 9999);
         hp -= val;
-        Mathf.Clamp(hp, 0, 10000);
+        hp = Mathf.Clamp(hp, 0, 10000);
         now_invincible_time = invincible_time;
     }
 }
