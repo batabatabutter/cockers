@@ -42,7 +42,7 @@ public class WeaponManager : MonoBehaviour
         int atk_value = atk;
         atk += transform.parent.GetComponent<PlayerStatus>().Get_atk();
         //タグがenemyなら
-        if (other.CompareTag("enemy"))
+        if (other.CompareTag("Enemy"))
         {
             //敵にダメージを与える処理
         }
