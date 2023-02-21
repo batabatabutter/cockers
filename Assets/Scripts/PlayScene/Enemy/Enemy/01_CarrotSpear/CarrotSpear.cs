@@ -37,6 +37,7 @@ public class CarrotSpear : Enemy
         //  敵とプレイヤーの位置が近かったら攻撃
         if (Vector3.Distance(this.transform.position, player.transform.position) < distance && time <= 0.0f)
         {
+            nowAttack = true;
             Vector3 angle = (player.transform.position - transform.position);
             transform.rotation = Quaternion.Euler(new Vector3(-angle.normalized.x, angle.normalized.z, angle.normalized.y) * 180.0f);
             rb.velocity += angle.normalized * shotSpeed;
@@ -46,6 +47,7 @@ public class CarrotSpear : Enemy
         }
         else if (time <= coolTime && move)
         {
+            nowAttack = false;
             transform.rotation = Quaternion.identity;
             rb.velocity = Vector3.zero;
             move = false;
