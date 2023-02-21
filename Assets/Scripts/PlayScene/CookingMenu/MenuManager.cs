@@ -87,6 +87,10 @@ public class MenuManager : MonoBehaviour
         
     }
 
+    public Menu Get_Menu(int button_id) {
+        return menu[button_id];
+    }
+
     //Œ»İ‚Ì—¿—ƒƒjƒ…[”‚Ìæ“¾
     public int Get_Menu_Num()
     {
@@ -101,6 +105,7 @@ public class MenuManager : MonoBehaviour
 
     public void Set_cookable(int button_id, bool cookable)
     {
+        menu_cookable[button_id] = cookable;
         if (cookable)
         {
             menutext[button_id].color = new Color(1.0f, 0.67711f, 0.0f);
@@ -109,5 +114,10 @@ public class MenuManager : MonoBehaviour
         {
             menutext[button_id].color = new Color(0.3098039f, 0.3098039f, 0.3098039f);
         }
+    }
+
+    public bool Get_menu_cookable(int button_id)
+    {
+        return menu_cookable[button_id];
     }
 }

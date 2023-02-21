@@ -9,11 +9,13 @@ public class KitchenManager : MonoBehaviour
     private bool IsPlayerIn;
     [SerializeField] GameObject KitchenPanel;
     [SerializeField] private FirstButtonSelect first_button_select;
+    [SerializeField] private Cook cook;
 
     // Start is called before the first frame update
     void Start()
     {
         IsPlayerIn = false;
+        //KitchenPanel = GameObject.Find("CookingCamvas");
     }
 
     // Update is called once per frame
@@ -28,6 +30,7 @@ public class KitchenManager : MonoBehaviour
             {
                 Time.timeScale = 0f;
                 first_button_select.First_Select();
+                //cook.Item_List_Create();
             }
             else
             {
