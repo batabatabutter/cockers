@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 using System.Linq;
 
+
+
 public class Cook : MonoBehaviour
 {
     [SerializeField] public EventSystem eventSystem;
@@ -15,7 +17,6 @@ public class Cook : MonoBehaviour
     [SerializeField] public PlayerStatus player_status;
     [SerializeField] public GameObject item_text_def;
     public Text cooking_text;
-
     private int now_select;
     private GameObject selected_obj;
     [SerializeField] private List<GameObject> menu_button;
@@ -25,6 +26,8 @@ public class Cook : MonoBehaviour
     private GameObject item_content;
     private List<GameObject> item_text;
     private bool first_flg;
+
+    private const int Full = 100;
 
 
     //[SerializeField,ReadOnly, HeaderAttribute("¡Ž‚Á‚Ä‚é‘fÞ‚ÌŽí—Þ‚Æ”‚ð")]
@@ -118,6 +121,7 @@ public class Cook : MonoBehaviour
     {
         if (!menu_manager.Get_menu_cookable(now_select)) return;
         Menu menu = menu_manager.Get_Menu(now_select);
+        if (player_status.Get_full_stomach() + menu.full_stomach > Full) return;
         foreach (var material in menu.need_material)
         {
             item_manager.SpendItem(dic[material.Key], material.Value);
@@ -127,6 +131,7 @@ public class Cook : MonoBehaviour
         player_status.Add_minerals(menu.minerals);
         player_status.Add_proteins(menu.proteins);
         player_status.Add_vitamins(menu.vitamins);
+        player_status.Add_full_stomach(menu.full_stomach);
         All_Item_Val_Check();
         Item_List_Create();
     }

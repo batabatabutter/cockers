@@ -111,6 +111,12 @@ public class PlayerStatus : MonoBehaviour
         nutrients.minerals = Mathf.Clamp(nutrients.minerals, Min_nut, Max_nut);
     }
 
+    public void Add_full_stomach(int val)
+    {
+        full_stomach += val;
+        full_stomach = Mathf.Clamp(full_stomach, Min_nut, Max_nut);
+    }
+
     //’l‚ÌŒ¸ŽZ
     public void Sub_carbohydrates(int val)
     {
@@ -141,6 +147,12 @@ public class PlayerStatus : MonoBehaviour
         nutrients.minerals -= val;
         spd = Mathf.CeilToInt(def_spd * (1 + (nutrients.minerals * 0.01f)));
         nutrients.minerals = Mathf.Clamp(nutrients.minerals, Min_nut, Max_nut);
+    }
+
+    public void Sub_full_stomach(int val)
+    {
+        full_stomach -= val;
+        full_stomach = Mathf.Clamp(full_stomach, Min_nut, Max_nut);
     }
 
 
