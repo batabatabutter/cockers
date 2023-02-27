@@ -55,6 +55,7 @@ public class PlayerController : MonoBehaviour
 
         if (keyboard != null)
         {
+            //移動
             if (keyboard.rightArrowKey.isPressed)
             {
                 horizontal_speed = move_speed;
@@ -62,6 +63,18 @@ public class PlayerController : MonoBehaviour
             if (keyboard.leftArrowKey.isPressed)
             {
                 horizontal_speed = -move_speed;
+            }
+
+            //キャラクターの回転
+            if (keyboard.rightArrowKey.wasPressedThisFrame)
+            {
+                rigid.rotation = Quaternion.Euler(0, 0, 0);
+            }
+
+            //キャラクターの回転
+            if (keyboard.leftArrowKey.wasPressedThisFrame)
+            {
+                rigid.rotation = Quaternion.Euler(0, 180, 0);
             }
         }
 
