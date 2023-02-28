@@ -102,8 +102,9 @@ MonoBehaviour:
   enemyID: 0
   hp: 45
   atk: 30
-  dropItem: 00000000
-  dropItemNum: 01000000
+  dropItem:
+  - dropID: 0
+    dropNum: 1
   speed: 1
   inversionTime: 3
 --- !u!54 &-4732964138819660442

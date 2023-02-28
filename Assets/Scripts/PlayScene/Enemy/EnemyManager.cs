@@ -31,18 +31,18 @@ public struct EnemyStatas
 public class EnemyManager : MonoBehaviour
 {
     //  敵のオブジェクトを格納しておく
-    [SerializeField] List<GameObject> Enemys;
+    [SerializeField, Label("敵")] List<GameObject> Enemys;
 
     //  敵のオブジェクトを格納しておく
-    [SerializeField] List<GameObject> Bosses;
+    [SerializeField, Label("ボス")] List<GameObject> Bosses;
 
     //  敵とどれくらい離れていたら動作を止めるか判断
-    [SerializeField] float distance;
+    [SerializeField, Label("描画距離")] float distance;
 
     //  敵の無敵時間設定
-    [SerializeField, HeaderAttribute("一律ステータス")] float invincibilityTime;
+    [SerializeField, HeaderAttribute("一律ステータス"), Label("無敵時間")] float invincibilityTime;
     //  重力設定
-    [SerializeField] float gravity;
+    [SerializeField, Label("重力")] float gravity;
 
     //  配列か仮格納用
     GameObject[] HolderArray;
@@ -94,8 +94,23 @@ public class EnemyManager : MonoBehaviour
             //  生成されていなければ
             if (!enemy.GetIsSpawn())
             {
+                //  乱数取得
+                float rand = Random.Range(0.0f, 1.0f);
+
+                float totalPer = 0.0f;
+                int ID = 0;
+
                 //  生成
-                enemyObjects.Add(Instantiate(Enemys[(int)enemy.GetEnemyID()], enemy.GetEnemyDefPos(), Quaternion.identity));
+                foreach (EnemySpawnStatas statas in enemy.GetEnemySpawnStatas())
+                {
+                    totalPer += statas.GetEnemySpaenPer();
+                    if (rand <= totalPer)
+                    {
+                        enemyObjects.Add(Instantiate(Enemys[(int)statas.GetEnemyID()], enemy.transform.position, Quaternion.identity));
+                        break;
+                    }
+                    ID++;
+                }
                 enemy.SetIsSpawn(true);
             }
         }
@@ -106,8 +121,23 @@ public class EnemyManager : MonoBehaviour
             //  生成されていなければ
             if (!boss.GetIsSpawn())
             {
+                //  乱数取得
+                float rand = Random.Range(0.0f, 1.0f);
+
+                float totalPer = 0.0f;
+                int ID = 0;
+
                 //  生成
-                bossObjects.Add(Instantiate(Bosses[(int)boss.GetBossID()], boss.GetEnemyDefPos(), Quaternion.identity));
+                foreach (BossSpawnStatas statas in boss.GetBossSpawnStatas())
+                {
+                    totalPer += statas.GetBossSpaenPer();
+                    if (rand <= totalPer)
+                    {
+                        enemyObjects.Add(Instantiate(Enemys[(int)statas.GetBossID()], boss.transform.position, Quaternion.identity));
+                        break;
+                    }
+                    ID++;
+                }
                 boss.SetIsSpawn(true);
             }
         }

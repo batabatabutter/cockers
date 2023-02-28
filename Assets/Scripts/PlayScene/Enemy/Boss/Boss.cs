@@ -28,7 +28,7 @@ public class Boss : MonoBehaviour
     protected bool nowAttack;
 
     //  敵の種類を設定
-    [SerializeField, HeaderAttribute("敵種類")] BossID bossID;
+    [SerializeField, Label("ボス種類")] BossID bossID;
 
     [SerializeField, HeaderAttribute("ステータス")] int hp;
     [SerializeField] int atk;

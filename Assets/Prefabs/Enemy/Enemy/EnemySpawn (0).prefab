@@ -44,4 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7cd04d6647a8d743a84ea170cc871ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyID: 0
+  spawnStatas: []

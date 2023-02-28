@@ -2,32 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class ItemSpaenStatas
+{
+    [SerializeField, Label("“G‚Ìí—Ş")] ItemID itemSpawnID;
+    [SerializeField, Label("“G‚ÌoŒ»Šm—§"), Range(0.0f, 1.0f)] float itemSpawnPer;
+
+    public ItemID GetItemID() { return itemSpawnID; }         //  oŒ»í—Şó“n
+    public float GetItemSpaenPer() { return itemSpawnPer; }    //  oŒ»Šm—¦ó“n
+}
+
 public class ItemSpawn : MonoBehaviour
 {
     //  “G‚Ìí—Ş‚ğİ’è
-    [SerializeField] ItemID itemID;
-    //  À•WŠi”[
-    Vector3 itemDefPos;
+    [SerializeField, Label("ƒAƒCƒeƒ€‚Ì¶¬ƒf[ƒ^")] List<ItemSpaenStatas> spawnStatas;
+
     //  ¶¬‚³‚ê‚½‚©Šm”F
     bool isSpawn = false;
 
-    //  Å‰‚ÉÀs
-    private void Start()
+    //  ¶¬î•ñ‚ğ“n‚·
+    public List<ItemSpaenStatas> GetItemSpawnStatas()
     {
-        //  ‰ŠúÀ•WŠi”[
-        itemDefPos = transform.position;
-    }
-
-    //   ‰ŠúÀ•Wó“n
-    public Vector3 GetItemDefPos()
-    {
-        return itemDefPos;
-    }
-
-    //  ID‚ğ“n‚·
-    public ItemID GetItemID()
-    {
-        return itemID;
+        return spawnStatas;
     }
 
     //  ¶¬ó‹µó“n
