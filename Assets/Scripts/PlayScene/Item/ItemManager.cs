@@ -15,14 +15,14 @@ public enum ItemID
 public class ItemManager : MonoBehaviour
 {
     //  “G‚ÌƒIƒuƒWƒFƒNƒg‚ğŠi”[‚µ‚Ä‚¨‚­
-    [SerializeField] List<GameObject> Items;
+    [SerializeField, Label("ƒAƒCƒeƒ€")] List<GameObject> Items;
 
     //  “G‚Æ‚Ç‚ê‚­‚ç‚¢—£‚ê‚Ä‚¢‚½‚ç“®ì‚ğ~‚ß‚é‚©”»’f
-    [SerializeField] float distance;
+    [SerializeField, Label("•`‰æ‹——£")] float distance;
 
     //  ƒ‚ƒfƒ‹•`‰æŠÖŒW
-    [SerializeField, HeaderAttribute("ƒ‚ƒfƒ‹•`‰æŠÖŒW")] float modelSpeed;
-    [SerializeField] float modelRange;
+    [SerializeField, HeaderAttribute("ƒ‚ƒfƒ‹•`‰æŠÖŒW"), Label("—h‚ê‘¬“x")] float modelSpeed;
+    [SerializeField, Label("—h‚ê•")] float modelRange;
 
     //  ”z—ñ‚©‰¼Ši”[—p
     GameObject[] HolderArray;
@@ -68,8 +68,24 @@ public class ItemManager : MonoBehaviour
             //  ¶¬‚³‚ê‚Ä‚¢‚È‚¯‚ê‚Î
             if (!item.GetIsSpawn())
             {
+                //  —”æ“¾
+                float rand = Random.Range(0.0f, 1.0f);
+
+                float totalPer = 0.0f;
+                int ID = 0;
+
                 //  ¶¬
-                itemObjects.Add(Instantiate(Items[(int)item.GetItemID()], item.GetItemDefPos(), Quaternion.identity));
+                foreach (ItemSpaenStatas statas in item.GetItemSpawnStatas())
+                {
+                    totalPer += statas.GetItemSpaenPer();
+                    if (rand <= totalPer)
+                    {
+                        //  ¶¬
+                        itemObjects.Add(Instantiate(Items[(int)statas.GetItemID()], item.transform.position, Quaternion.identity));
+                        break;
+                    }
+                    ID++;
+                }
                 item.SetIsSpawn(true);
             }
         }

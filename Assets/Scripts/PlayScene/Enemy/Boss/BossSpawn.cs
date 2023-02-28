@@ -2,32 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class BossSpawnStatas
+{
+    [SerializeField, Label("ボスの種類")] BossID bossSpawnID;
+    [SerializeField, Label("ボスの出現確立"), Range(0.0f, 1.0f)] float bossSpawnPer;
+
+    public BossID GetBossID() { return bossSpawnID; }           //  出現種類受渡
+    public float GetBossSpaenPer() { return bossSpawnPer; }     //  出現確率受渡
+}
+
 public class BossSpawn : MonoBehaviour
 {
-    //  敵の種類を設定
-    [SerializeField] BossID bossID;
-    //  座標格納
-    Vector3 bossDefPos;
+    //  ボスの種類を設定
+    [SerializeField, Label("敵の生成データ")] List<BossSpawnStatas> spawnStatas;
+
     //  生成されたか確認
     bool isSpawn = false;
 
-    //  最初に実行
-    private void Start()
-    {
-        //  初期座標格納
-        bossDefPos = transform.position;
-    }
 
-    //   初期座標受渡
-    public Vector3 GetEnemyDefPos()
+    //  生成情報を渡す
+    public List<BossSpawnStatas> GetBossSpawnStatas()
     {
-        return bossDefPos;
-    }
-
-    //  IDを渡す
-    public BossID GetBossID()
-    {
-        return bossID;
+        return spawnStatas;
     }
 
     //  生成状況受渡

@@ -845,8 +845,9 @@ MonoBehaviour:
   enemyID: 2
   hp: 60
   atk: 40
-  dropItem: 02000000
-  dropItemNum: 02000000
+  dropItem:
+  - dropID: 2
+    dropNum: 2
   swordDmgRate: 2
   coolTime: 5
   swordTime: 0.25

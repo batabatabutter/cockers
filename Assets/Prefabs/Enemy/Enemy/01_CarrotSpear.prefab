@@ -102,8 +102,9 @@ MonoBehaviour:
   enemyID: 1
   hp: 30
   atk: 30
-  dropItem: 01000000
-  dropItemNum: 01000000
+  dropItem:
+  - dropID: 1
+    dropNum: 1
   shotSpeed: 10
   coolTime: 3
   flyTime: 1

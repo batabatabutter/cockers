@@ -7,6 +7,16 @@ using UnityEngine.InputSystem;
 /// 敵の継承元クラス///
 ///////////////////////
 
+[System.Serializable]
+public class EnemyDropItem
+{
+    [SerializeField, Label("アイテム種類")] ItemID dropID;
+    [SerializeField, Label("アイテム数")] int dropNum;
+
+    public ItemID GetDropItemID() { return dropID; }        //  アイテム種受渡
+    public int GetDropItemNum() { return dropNum; }         //  アイテム数受渡
+}
+
 public class Enemy : MonoBehaviour
 {
     //  ステータス格納用
@@ -28,14 +38,13 @@ public class Enemy : MonoBehaviour
     protected bool nowAttack;
 
     //  敵の種類を設定
-    [SerializeField, HeaderAttribute("敵種類")] EnemyID enemyID;
+    [SerializeField, Label("敵種類")] EnemyID enemyID;
 
     [SerializeField, HeaderAttribute("ステータス")] int hp;
     [SerializeField] int atk;
 
     //  ドロップアイテム
-    [SerializeField] List<ItemID> dropItem;
-    [SerializeField] List<int> dropItemNum;
+    [SerializeField, Label("ドロップアイテム")] List<EnemyDropItem> dropItem;
 
     ItemManager itemManager;
     EnemyManager enemyManager;
@@ -162,13 +171,13 @@ public class Enemy : MonoBehaviour
     {
         statas.death = true;
         Destroy(gameObject, 0.3f);
-        
+
         //  アイテム生成
-        for (int i = 0; i < dropItem.Count; i++)
+        foreach (EnemyDropItem item in dropItem)
         {
-            for (int j = 0; j < dropItemNum[i]; j++)
+            for (int i = 0; i < item.GetDropItemNum(); i++)
             {
-                Instantiate(itemManager.GetItemObject(dropItem[i]), gameObject.transform.position, Quaternion.identity);
+                Instantiate(itemManager.GetItemObject(item.GetDropItemID()), gameObject.transform.position, Quaternion.identity);
             }
         }
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    [SerializeField, HeaderAttribute("アイテム種類")] ItemID itemID;
+    [SerializeField, Label("アイテム種類")] ItemID itemID;
 
     ItemManager itemManager;
 
