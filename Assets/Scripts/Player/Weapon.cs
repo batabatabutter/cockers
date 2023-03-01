@@ -47,7 +47,7 @@ public class Weapon : MonoBehaviour
         if (now_cool_time > 0.0f) return;
         transform.GetComponent<BoxCollider>().enabled = true;
         now_atk_enable_time = atk_enable_time;
-        now_cool_time = 1.0f / (atk_per_sec * player.Get_atk_itr());
+        now_cool_time = 1.0f / (atk_per_sec);
     }
 
     private void OnTriggerEnter(Collider other)
