@@ -40,12 +40,12 @@ public class RockBreak : MonoBehaviour
     {
         var current = Keyboard.current;
 
-        if (RockFlag == true && player.Get_proteins() >= proteins && current.cKey.wasPressedThisFrame)
+        if (RockFlag == true && player.Get_atk() >= proteins && current.cKey.wasPressedThisFrame)
         {
             text.SetActive(true);
             Destroy();
         }
-        else if (RockFlag == true && player.Get_proteins() < proteins && current.cKey.wasPressedThisFrame)
+        else if (RockFlag == true && player.Get_atk() < proteins && current.cKey.wasPressedThisFrame)
         {
             text2.SetActive(true);
             DontDestroy();

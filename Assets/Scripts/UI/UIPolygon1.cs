@@ -77,11 +77,11 @@ namespace UnityEngine.UI.Extensions
         }
         void Update()
         {
-            carbohydrates = PlayerStatus.GetComponent<PlayerStatus>().Get_carbohydrates();
-            proteins = PlayerStatus.GetComponent<PlayerStatus>().Get_proteins();
+            carbohydrates = PlayerStatus.GetComponent<PlayerStatus>().Get_hp();
+            proteins = PlayerStatus.GetComponent<PlayerStatus>().Get_atk();
             lipid = PlayerStatus.GetComponent<PlayerStatus>().Get_lipid();
             vitamins = PlayerStatus.GetComponent<PlayerStatus>().Get_vitamins();
-            minerals = PlayerStatus.GetComponent<PlayerStatus>().Get_minerals();
+            minerals = PlayerStatus.GetComponent<PlayerStatus>().Get_spd();
 
             VerticesDistances[0] = (float)carbohydrates * division;
             VerticesDistances[1] = (float)proteins * division;

@@ -20,7 +20,7 @@ public class HPber : MonoBehaviour
     }
     private void Update()
     {
-        currentHp = PlayerStatus.GetComponent<PlayerStatus>().Get_hp();
+        currentHp = PlayerStatus.GetComponent<PlayerStatus>().Get_now_hp();
         slider.value = currentHp;
         //slider.value = HP;
 
