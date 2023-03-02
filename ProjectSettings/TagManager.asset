@@ -10,6 +10,8 @@ TagManager:
   - ItemSpawn
   - BossSpawn
   - Boss
+  - EnemyManager
+  - ItemManager
   layers:
   - Default
   - TransparentFX

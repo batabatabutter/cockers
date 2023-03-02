@@ -5,8 +5,8 @@ using UnityEngine;
 [System.Serializable]
 public class EnemySpawnStatas
 {
-    [SerializeField, Label("敵の種類")] EnemyID enemySpawnID;
-    [SerializeField, Label("敵の出現確立"), Range(0.0f, 1.0f)] float enemySpawnPer;
+    [SerializeField, Label("種類")] EnemyID enemySpawnID;
+    [SerializeField, Label("出現確立"), Range(0.0f, 1.0f)] float enemySpawnPer;
 
     public EnemyID GetEnemyID() { return enemySpawnID; }         //  出現種類受渡
     public float GetEnemySpaenPer() { return enemySpawnPer; }    //  出現確率受渡

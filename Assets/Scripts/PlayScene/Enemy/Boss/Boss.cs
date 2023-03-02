@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 ///////////////////////
-/// 敵の継承元クラス///
+/// ボスの継承元クラス///
 ///////////////////////
 
 public class Boss : MonoBehaviour
@@ -43,8 +43,8 @@ public class Boss : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        enemyManager = GameObject.Find("EnemyManager").GetComponent<EnemyManager>();
-        itemManager = GameObject.Find("ItemManager").GetComponent<ItemManager>();
+        enemyManager = GameObject.FindGameObjectWithTag("EnemyManager").GetComponent<EnemyManager>();
+        itemManager = GameObject.FindGameObjectWithTag("ItemManager").GetComponent<ItemManager>();
         player = enemyManager.GetPlayer();
         nowAttack = false;
         rb = gameObject.GetComponent<Rigidbody>();

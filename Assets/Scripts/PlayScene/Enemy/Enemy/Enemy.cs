@@ -52,8 +52,8 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        enemyManager = GameObject.Find("EnemyManager").GetComponent<EnemyManager>();
-        itemManager = GameObject.Find("ItemManager").GetComponent<ItemManager>();
+        enemyManager = GameObject.FindGameObjectWithTag("EnemyManager").GetComponent<EnemyManager>();
+        itemManager = GameObject.FindGameObjectWithTag("ItemManager").GetComponent<ItemManager>();
         player = enemyManager.GetPlayer();
         nowAttack = false;
         rb = gameObject.GetComponent<Rigidbody>();

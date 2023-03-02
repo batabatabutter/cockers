@@ -109,7 +109,7 @@ public class EnemyManager : MonoBehaviour
                     totalPer += statas.GetEnemySpaenPer();
                     if (rand <= totalPer)
                     {
-                        enemyObjects.Add(Instantiate(Enemys[(int)statas.GetEnemyID()], enemy.transform.position, Quaternion.identity));
+                        GenerateEnemy(statas.GetEnemyID(), enemy.transform.position);
                         break;
                     }
                     ID++;
@@ -136,7 +136,7 @@ public class EnemyManager : MonoBehaviour
                     totalPer += statas.GetBossSpaenPer();
                     if (rand <= totalPer)
                     {
-                        enemyObjects.Add(Instantiate(Enemys[(int)statas.GetBossID()], boss.transform.position, Quaternion.identity));
+                        GenerateBoss(statas.GetBossID(), boss.transform.position);
                         break;
                     }
                     ID++;
@@ -205,6 +205,14 @@ public class EnemyManager : MonoBehaviour
     //  “G¶¬
     public void GenerateEnemy(EnemyID ID, Vector3 pos)
     {
-        enemyObjects.Add(Instantiate(Enemys[(int)ID], pos, Quaternion.identity));
+        GameObject enemy = Instantiate(Enemys[(int)ID], pos, Quaternion.identity);
+        enemyObjects.Add(enemy);
+    }
+
+    //  ƒ{ƒX¶¬
+    public void GenerateBoss(BossID ID, Vector3 pos)
+    {
+        GameObject boss = Instantiate(Bosses[(int)ID], pos, Quaternion.identity);
+        enemyObjects.Add(boss);
     }
 }
