@@ -5,9 +5,12 @@ using UnityEngine;
 //  “G‚Ì–¼‘O
 public enum EnemyID
 {
-    [InspectorName("ƒLƒƒƒxƒc‘¾˜Y")]    CabbageTaro,
-    [InspectorName("ƒjƒ“ƒWƒ“‘„")]      CarrotSpear,
-    [InspectorName("“Ø•ºm")]          PigSoldier,
+    [InspectorName("ƒLƒƒƒxƒc‘¾˜Y")]       CabbageTaro,
+    [InspectorName("ƒjƒ“ƒWƒ“‘„")]         CarrotSpear,
+    [InspectorName("“Ø•ºm")]             PigSoldier,
+    [InspectorName("‹Êª")]               Onionnu,
+    [InspectorName("‚«‚ã‚¤‚èƒ~ƒTƒCƒ‹")]   CucumberMissile,
+    [InspectorName("ƒAƒbƒvƒ‹ƒcƒŠ[")] AppleTree,
 
     [InspectorName("")]                EnemyNum
 }
@@ -47,14 +50,14 @@ public class EnemyManager : MonoBehaviour
     //  ”z—ñ‚©‰¼Ši”[—p
     GameObject[] HolderArray;
     //  “G‚Ì¶¬‚ğŠi”[
-    public List<EnemySpawn> enemySpawns;
+    [HideInInspector] public List<EnemySpawn> enemySpawns;
     //  “G‚ğŠi”[
-    public List<GameObject> enemyObjects;
+    [HideInInspector] public List<GameObject> enemyObjects;
 
     //  “G‚Ì¶¬‚ğŠi”[
-    public List<BossSpawn> bossSpawns;
+    [HideInInspector] public List<BossSpawn> bossSpawns;
     //  “G‚ğŠi”[
-    public List<GameObject> bossObjects;
+    [HideInInspector] public List<GameObject> bossObjects;
 
     //  ƒvƒŒƒCƒ„[‚ğŠi”[‚µ‚Ä‚¨‚­
     GameObject player;
@@ -197,5 +200,11 @@ public class EnemyManager : MonoBehaviour
     public GameObject GetPlayer()
     {
         return player;
+    }
+
+    //  “G¶¬
+    public void GenerateEnemy(EnemyID ID, Vector3 pos)
+    {
+        enemyObjects.Add(Instantiate(Enemys[(int)ID], pos, Quaternion.identity));
     }
 }

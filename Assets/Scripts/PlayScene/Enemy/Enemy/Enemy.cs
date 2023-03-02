@@ -177,7 +177,7 @@ public class Enemy : MonoBehaviour
         {
             for (int i = 0; i < item.GetDropItemNum(); i++)
             {
-                Instantiate(itemManager.GetItemObject(item.GetDropItemID()), gameObject.transform.position, Quaternion.identity);
+                itemManager.GenerateItem(item.GetDropItemID(), gameObject.transform.position);
             }
         }
     }
