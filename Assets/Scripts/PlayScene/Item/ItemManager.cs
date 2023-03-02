@@ -7,7 +7,10 @@ public enum ItemID
 {
     [InspectorName("ƒLƒƒƒxƒc")] Cabbage,
     [InspectorName("ƒjƒ“ƒWƒ“")] Carrot,
-    [InspectorName("“Ø“÷")] Pork,
+    [InspectorName("“Ø“÷")]     Pork,
+    [InspectorName("‹Ê‚Ë‚¬")]   Onion,
+    [InspectorName("‚«‚ã‚¤‚è")] Cucumber,
+    [InspectorName("ƒŠƒ“ƒS")]   Apple,
 
     [InspectorName("")] ItemNum
 }
@@ -21,17 +24,18 @@ public class ItemManager : MonoBehaviour
     [SerializeField, Label("•`‰æ‹——£")] float distance;
 
     //  ƒ‚ƒfƒ‹•`‰æŠÖŒW
-    [SerializeField, HeaderAttribute("ƒ‚ƒfƒ‹•`‰æŠÖŒW"), Label("—h‚ê‘¬“x")] float modelSpeed;
+    [SerializeField, Header("ƒ‚ƒfƒ‹•`‰æŠÖŒW"), Label("—h‚ê‘¬“x")] float modelSpeed;
     [SerializeField, Label("—h‚ê•")] float modelRange;
+
+    //  ŠƒAƒCƒeƒ€”
+    [SerializeField, ReadOnly, Label("ƒAƒCƒeƒ€”")] List<int> itemNum;
 
     //  ”z—ñ‚©‰¼Ši”[—p
     GameObject[] HolderArray;
     //  “G‚Ì¶¬‚ğŠi”[
-    public List<ItemSpawn> itemSpawns;
+    [HideInInspector] public List<ItemSpawn> itemSpawns;
     //  “G‚ğŠi”[
-    public List<GameObject> itemObjects;
-    //  ŠƒAƒCƒeƒ€”
-    public List<int> itemNum;
+    [HideInInspector] public List<GameObject> itemObjects;
 
     //  ƒvƒŒƒCƒ„[‚ğŠi”[‚µ‚Ä‚¨‚­
     GameObject player;
@@ -147,5 +151,11 @@ public class ItemManager : MonoBehaviour
     public float GetModelRange()
     {
         return modelRange;
+    }
+
+    //  ƒAƒCƒeƒ€¶¬
+    public void GenerateItem(ItemID ID, Vector3 pos)
+    {
+        itemObjects.Add(Instantiate(Items[(int)ID], pos, Quaternion.identity));
     }
 }

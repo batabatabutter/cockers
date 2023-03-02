@@ -5,8 +5,8 @@ using UnityEngine;
 [System.Serializable]
 public class ItemSpaenStatas
 {
-    [SerializeField, Label("敵の種類")] ItemID itemSpawnID;
-    [SerializeField, Label("敵の出現確立"), Range(0.0f, 1.0f)] float itemSpawnPer;
+    [SerializeField, Label("アイテムの種類")] ItemID itemSpawnID;
+    [SerializeField, Label("アイテムの出現確立"), Range(0.0f, 1.0f)] float itemSpawnPer;
 
     public ItemID GetItemID() { return itemSpawnID; }         //  出現種類受渡
     public float GetItemSpaenPer() { return itemSpawnPer; }    //  出現確率受渡

@@ -48,6 +48,9 @@ MonoBehaviour:
   - {fileID: 8255535140438971876, guid: 06083c8d1d5fb1348936bbb08be8d29e, type: 3}
   - {fileID: 8255535140438971876, guid: b9098617f38bfdb40840137e8c1ceb0e, type: 3}
   - {fileID: 8255535140438971876, guid: 76a158fc1c6c88c45b5b506513fd3890, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   Bosses:
   - {fileID: 6887144634379589967, guid: 3a033af8cf16b544c9c38e3ebfe08df2, type: 3}
   distance: 30
