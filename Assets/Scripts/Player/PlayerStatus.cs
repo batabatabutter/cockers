@@ -136,9 +136,9 @@ public class PlayerStatus : MonoBehaviour
 
     public int Get_spd() { return nutrients.spd; }
 
-    //public int Get_now_hp() { return now_hp; }
-    //public int Get_now_atk() { return now_atk; }
-    //public int Get_now_spd() { return now_spd; }
+    public int Get_now_hp() { return now_hp; }
+    public int Get_now_atk() { return now_atk; }
+    public int Get_now_spd() { return now_spd; }
     public int Get_full_stomach() { return full_stomach; }
 
     //“G‚©‚çƒ_ƒ[ƒW‚ğ•‰‚Á‚½‚Æ‚«

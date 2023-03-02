@@ -53,7 +53,7 @@ public class Weapon : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         int atk_value = atk;
-        atk_value += player.Get_atk();
+        atk_value += player.Get_now_atk();
         //ƒ^ƒO‚ªenemy‚È‚ç
         if (other.CompareTag("Enemy"))
         {
