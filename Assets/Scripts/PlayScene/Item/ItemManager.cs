@@ -85,7 +85,7 @@ public class ItemManager : MonoBehaviour
                     if (rand <= totalPer)
                     {
                         //  ¶¬
-                        itemObjects.Add(Instantiate(Items[(int)statas.GetItemID()], item.transform.position, Quaternion.identity));
+                        GenerateItem(statas.GetItemID(), item.transform.position);
                         break;
                     }
                     ID++;
@@ -156,6 +156,8 @@ public class ItemManager : MonoBehaviour
     //  ƒAƒCƒeƒ€¶¬
     public void GenerateItem(ItemID ID, Vector3 pos)
     {
-        itemObjects.Add(Instantiate(Items[(int)ID], pos, Quaternion.identity));
+        GameObject item = Instantiate(Items[(int)ID], pos, Quaternion.identity);
+        item.GetComponent<Item>().Initialize(this);
+        itemObjects.Add(item);
     }
 }

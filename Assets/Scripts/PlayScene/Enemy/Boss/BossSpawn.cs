@@ -5,8 +5,8 @@ using UnityEngine;
 [System.Serializable]
 public class BossSpawnStatas
 {
-    [SerializeField, Label("ボスの種類")] BossID bossSpawnID;
-    [SerializeField, Label("ボスの出現確立"), Range(0.0f, 1.0f)] float bossSpawnPer;
+    [SerializeField, Label("種類")] BossID bossSpawnID;
+    [SerializeField, Label("出現確立"), Range(0.0f, 1.0f)] float bossSpawnPer;
 
     public BossID GetBossID() { return bossSpawnID; }           //  出現種類受渡
     public float GetBossSpaenPer() { return bossSpawnPer; }     //  出現確率受渡
@@ -15,7 +15,7 @@ public class BossSpawnStatas
 public class BossSpawn : MonoBehaviour
 {
     //  ボスの種類を設定
-    [SerializeField, Label("敵の生成データ")] List<BossSpawnStatas> spawnStatas;
+    [SerializeField, Label("ボスの生成データ")] List<BossSpawnStatas> spawnStatas;
 
     //  生成されたか確認
     bool isSpawn = false;
