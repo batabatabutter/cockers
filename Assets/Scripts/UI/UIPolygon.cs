@@ -15,7 +15,7 @@ namespace UnityEngine.UI.Extensions
         [Range(3, 360)]
         public int sides = 3;
         [Range(0, 360)]
-        public float rotation = 0;
+        public float rotation = 150;
         [Range(0, 1)]
         public float[] VerticesDistances = new float[3];
         private float size = 0;

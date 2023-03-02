@@ -13,20 +13,17 @@ namespace UnityEngine.UI.Extensions
         public bool fill = true;
         public float thickness = 5;
         [Range(3, 360)]
-        public int sides = 5;
+        public int sides = 3;
         [Range(0, 360)]
-        public float rotation = 126;
+        public float rotation = 150;
         [Range(0, 1)]
-        public float[] VerticesDistances = new float[5];
+        public float[] VerticesDistances = new float[3];
         private float size = 0;
 
         GameObject PlayerStatus;
-        int carbohydrates;  //炭水化物
-        int proteins;       //タンパク質
-        int lipid;          //脂質
-        int vitamins;       //ビタミン
-        int minerals;       //無機質
-
+        int Hp;                 //体力
+        int Atk;                //攻撃
+        int Spd;                //速さ
         float division = 0.01f; //割る数
 
         new void Start()
@@ -77,18 +74,13 @@ namespace UnityEngine.UI.Extensions
         }
         void Update()
         {
-            carbohydrates = PlayerStatus.GetComponent<PlayerStatus>().Get_hp();
-            proteins = PlayerStatus.GetComponent<PlayerStatus>().Get_atk();
-            lipid = PlayerStatus.GetComponent<PlayerStatus>().Get_lipid();
-            vitamins = PlayerStatus.GetComponent<PlayerStatus>().Get_vitamins();
-            minerals = PlayerStatus.GetComponent<PlayerStatus>().Get_spd();
+            Hp = PlayerStatus.GetComponent<PlayerStatus>().Get_hp();
+            Atk = PlayerStatus.GetComponent<PlayerStatus>().Get_atk();
+            Spd = PlayerStatus.GetComponent<PlayerStatus>().Get_spd();
 
-            VerticesDistances[0] = (float)carbohydrates * division;
-            VerticesDistances[1] = (float)proteins * division;
-            VerticesDistances[2] = (float)lipid * division;
-            VerticesDistances[3] = (float)vitamins * division;
-            VerticesDistances[4] = (float)minerals * division;
-            //VerticesDistances[5] = (float)carbohydrates * division;
+            VerticesDistances[0] = (float)Spd * division;
+            VerticesDistances[1] = (float)Hp * division;
+            VerticesDistances[2] = (float)Atk * division;
 
 
             size = rectTransform.rect.width;
