@@ -28,7 +28,7 @@ public class PlayerStatus : MonoBehaviour
         }
     }
 
-    public static Status nutrients;
+    public static Status status;
 
     private const int Min_nut = 0;
     private const int Max_nut = 100;
@@ -49,8 +49,8 @@ public class PlayerStatus : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        nutrients.Zero();
-        nutrients.Initialize(def_hp, def_atk, def_spd);
+        status.Zero();
+        status.Initialize(def_hp, def_atk, def_spd);
         now_hp = def_hp;
         now_atk = def_atk;
         now_spd = def_spd;
@@ -71,29 +71,29 @@ public class PlayerStatus : MonoBehaviour
     }
 
     //’l‚Ìİ’è
-    public void Set_carbohydrates(int val) { nutrients.hp = val; }
-    public void Set_proteins(int val) { nutrients.atk = val; }
-    public void Set_minerals(int val) { nutrients.spd = val; }
+    public void Set_carbohydrates(int val) { status.hp = val; }
+    public void Set_proteins(int val) { status.atk = val; }
+    public void Set_minerals(int val) { status.spd = val; }
 
     //’l‚Ì‰ÁZ
     public void Add_hp(int val)
     {
-        nutrients.hp += val;
-        now_hp = Mathf.CeilToInt(def_hp * (1 + (nutrients.hp * 0.01f)));
-        nutrients.hp = Mathf.Clamp(nutrients.hp, Min_nut, Max_nut);
+        status.hp += val;
+        now_hp = Mathf.CeilToInt(def_hp * (1 + (status.hp * 0.01f)));
+        status.hp = Mathf.Clamp(status.hp, Min_nut, Max_nut);
     }
     public void Add_atk(int val)
     {
-        nutrients.atk += val;
-        now_atk = Mathf.CeilToInt(def_atk * (1 + (nutrients.atk * 0.01f)));
-        nutrients.atk = Mathf.Clamp(nutrients.atk, Min_nut, Max_nut);
+        status.atk += val;
+        now_atk = Mathf.CeilToInt(def_atk * (1 + (status.atk * 0.01f)));
+        status.atk = Mathf.Clamp(status.atk, Min_nut, Max_nut);
     }
 
     public void Add_spd(int val)
     {
-        nutrients.spd += val;
-        now_spd = Mathf.CeilToInt(def_spd * (1 + (nutrients.spd * 0.01f)));
-        nutrients.spd = Mathf.Clamp(nutrients.spd, Min_nut, Max_nut);
+        status.spd += val;
+        now_spd = Mathf.CeilToInt(def_spd * (1 + (status.spd * 0.01f)));
+        status.spd = Mathf.Clamp(status.spd, Min_nut, Max_nut);
     }
 
     public void Add_full_stomach(int val)
@@ -105,22 +105,22 @@ public class PlayerStatus : MonoBehaviour
     //’l‚ÌŒ¸Z
     public void Sub_hp(int val)
     {
-        nutrients.hp -= val;
-        now_hp = Mathf.CeilToInt(def_hp * (1 + (nutrients.hp * 0.01f)));
-        nutrients.hp = Mathf.Clamp(nutrients.hp, Min_nut, Max_nut);
+        status.hp -= val;
+        now_hp = Mathf.CeilToInt(def_hp * (1 + (status.hp * 0.01f)));
+        status.hp = Mathf.Clamp(status.hp, Min_nut, Max_nut);
     }
     public void Sub_atk(int val)
     {
-        nutrients.atk -= val;
-        now_atk = Mathf.CeilToInt(def_atk * (1 + (nutrients.atk * 0.01f)));
-        nutrients.atk = Mathf.Clamp(nutrients.atk, Min_nut, Max_nut);
+        status.atk -= val;
+        now_atk = Mathf.CeilToInt(def_atk * (1 + (status.atk * 0.01f)));
+        status.atk = Mathf.Clamp(status.atk, Min_nut, Max_nut);
     }
 
     public void Sub_spd(int val)
     {
-        nutrients.spd -= val;
-        now_spd = Mathf.CeilToInt(def_spd * (1 + (nutrients.spd * 0.01f)));
-        nutrients.spd = Mathf.Clamp(nutrients.spd, Min_nut, Max_nut);
+        status.spd -= val;
+        now_spd = Mathf.CeilToInt(def_spd * (1 + (status.spd * 0.01f)));
+        status.spd = Mathf.Clamp(status.spd, Min_nut, Max_nut);
     }
 
     public void Sub_full_stomach(int val)
@@ -131,10 +131,10 @@ public class PlayerStatus : MonoBehaviour
 
 
     //’l‚Ìæ“¾
-    public int Get_hp() { return nutrients.hp; }
-    public int Get_atk() { return nutrients.atk; }
+    public int Get_hp() { return status.hp; }
+    public int Get_atk() { return status.atk; }
 
-    public int Get_spd() { return nutrients.spd; }
+    public int Get_spd() { return status.spd; }
 
     public int Get_now_hp() { return now_hp; }
     public int Get_now_atk() { return now_atk; }
