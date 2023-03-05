@@ -5,12 +5,21 @@ using UnityEngine;
 //  アイテムの名前
 public enum ItemID
 {
-    [InspectorName("キャベツ")] Cabbage,
-    [InspectorName("ニンジン")] Carrot,
-    [InspectorName("豚肉")]     Pork,
-    [InspectorName("玉ねぎ")]   Onion,
-    [InspectorName("きゅうり")] Cucumber,
-    [InspectorName("リンゴ")]   Apple,
+    [InspectorName("キャベツ")] 　Cabbage,
+    [InspectorName("ニンジン")] 　Carrot,
+    [InspectorName("豚肉")]     　Pork,
+    [InspectorName("鶏肉")] 　　　Chicken,
+    [InspectorName("牛肉")]       Beaf,
+    [InspectorName("玉ねぎ")]   　Onion,
+    [InspectorName("きゅうり")] 　Cucumber,
+    [InspectorName("大豆")]       Been,
+    [InspectorName("卵")] 　　　　Egg,
+    [InspectorName("牛乳")]       Milk,
+    [InspectorName("ジャガイモ")] Potato,
+    [InspectorName("リンゴ")] 　　Apple,
+    [InspectorName("イチゴ")] 　　Strawberry,
+
+
 
     [InspectorName("")] ItemNum
 }
