@@ -10,7 +10,13 @@ public enum EnemyID
     [InspectorName("豚兵士")]             PigSoldier,
     [InspectorName("玉根")]               Onionnu,
     [InspectorName("きゅうりミサイル")]   CucumberMissile,
-    [InspectorName("アップルツリー")] AppleTree,
+    [InspectorName("アップルツリー")]     AppleTree,
+    [InspectorName("サラディン")]         Saladhin,
+    [InspectorName("チキチキバー")]       ChikiChiki,
+    [InspectorName("ポテツ")]             Potetu,
+    [InspectorName("ストロールベリー")]   Strawberry,
+    [InspectorName("牛鬼")]               CowDemon,
+    [InspectorName("ビーン")]             Beans,
 
     [InspectorName("")]                EnemyNum
 }
