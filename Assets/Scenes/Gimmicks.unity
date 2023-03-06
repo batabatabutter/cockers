@@ -597,7 +597,7 @@ MonoBehaviour:
   rigid: {fileID: 0}
   have_dash: 0
   can_dash: 0
-  dash_force: 5
+  dash_force: 2.2
   dash_time: 0.4
 --- !u!1 &1100720943
 GameObject:
