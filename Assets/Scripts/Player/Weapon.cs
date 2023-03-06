@@ -13,6 +13,16 @@ public class Weapon : MonoBehaviour
     private float now_atk_enable_time;
     private float now_cool_time;
     // Start is called before the first frame update
+
+    //UŒ‚‚µ‚½‰ñ”(‚¨‚È‚©‚ª‹ó‚­‚Ü‚Å‚ÌUŒ‚‰ñ”‚Ì‚ ‚Ü‚è)
+    private int atk_cnt;
+
+    //UŒ‚‰ñ”‚Ì—]‚èZ‚Ég‚¤’è”
+    [SerializeField] private const int Atk_MOD = 3;
+
+    //UŒ‚‚ğˆê’è‰ñ”‚µ‚½‚Æ‚«‚É‚¨‚È‚©‚ª‹ó‚­—Ê
+    [SerializeField] private const int Sub_full_val = 1;
+
     void Start()
     {
         transform.GetComponent<BoxCollider>().enabled = false;
@@ -48,6 +58,8 @@ public class Weapon : MonoBehaviour
         transform.GetComponent<BoxCollider>().enabled = true;
         now_atk_enable_time = atk_enable_time;
         now_cool_time = 1.0f / (atk_per_sec);
+        atk_cnt++;
+        if (atk_cnt % Atk_MOD == 0) player.Sub_full_stomach(Sub_full_val);
     }
 
     private void OnTriggerEnter(Collider other)
