@@ -618,6 +618,7 @@ GameObject:
   - component: {fileID: 4044031700620459806}
   - component: {fileID: 4044031700620459805}
   - component: {fileID: 4044031700620459804}
+  - component: {fileID: 80272284986384602}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -753,14 +754,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 452fbe14c15b502439597b5c036de74b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  def_hp: 100
+  def_atk: 10
+  def_spd: 10
   invincible_time: 2
-  hp: 0
-  atk: 0
-  dfc: 0
-  atk_itv: 0
-  spd: 0
+  now_hp: 0
+  now_atk: 0
+  now_spd: 0
   full_stomach: 0
   now_invincible_time: 0
+--- !u!114 &80272284986384602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4044031700620459803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c006b2662886d947b2d0114f4b38818, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rigid: {fileID: 0}
+  have_dash: 0
+  can_dash: 0
+  dash_force: 2.2
+  dash_time: 0.4
 --- !u!1 &4044031700755753798
 GameObject:
   m_ObjectHideFlags: 0
