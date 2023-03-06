@@ -54,7 +54,8 @@ public class Enemy : MonoBehaviour
     {
         enemyManager = GameObject.FindGameObjectWithTag("EnemyManager").GetComponent<EnemyManager>();
         itemManager = GameObject.FindGameObjectWithTag("ItemManager").GetComponent<ItemManager>();
-        player = enemyManager.GetPlayer();
+        //player = enemyManager.GetPlayer();
+        player = GameObject.FindGameObjectWithTag("Player");
         nowAttack = false;
         rb = gameObject.GetComponent<Rigidbody>();
         //  ステータス格納
@@ -123,6 +124,7 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") && nowAttack)
         {
             collision.gameObject.GetComponent<PlayerStatus>().Damage(statas.ATK);
+            if (enemyID == EnemyID.CucumberMissile) Destroy(gameObject);
         }
         rb.velocity = Vector3.zero;
     }

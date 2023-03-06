@@ -48,9 +48,15 @@ MonoBehaviour:
   - {fileID: 8255535140438971876, guid: 06083c8d1d5fb1348936bbb08be8d29e, type: 3}
   - {fileID: 8255535140438971876, guid: b9098617f38bfdb40840137e8c1ceb0e, type: 3}
   - {fileID: 8255535140438971876, guid: 76a158fc1c6c88c45b5b506513fd3890, type: 3}
+  - {fileID: 6516491507876262513, guid: 76683e19e6b96754787b09c8ff302967, type: 3}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 6891211042064670187, guid: 326510f954eca7642b961ad45afe974d, type: 3}
+  - {fileID: 3265624501736326857, guid: 09fac1b3cc32d69428b00ced5b4ce5ec, type: 3}
+  - {fileID: 3901929956055765084, guid: c528563f80b497742b30239c9c299d91, type: 3}
+  - {fileID: 4978750254689593087, guid: 01fbc910df174e14c9feca5a7d5c2917, type: 3}
+  - {fileID: 357560438253825456, guid: 87a32a5a69dea07419954c59df914a12, type: 3}
+  - {fileID: 2774186010319465962, guid: aa51153454df4884ea39e5b9f8b0c6b8, type: 3}
   Bosses:
   - {fileID: 6887144634379589967, guid: 3a033af8cf16b544c9c38e3ebfe08df2, type: 3}
   distance: 30
