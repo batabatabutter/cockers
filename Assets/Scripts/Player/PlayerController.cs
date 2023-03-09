@@ -133,7 +133,6 @@ public class PlayerController : MonoBehaviour
         Vector3 now_y = new Vector3(0, now_velocity.y, 0);
 
         velocity.x = move_speed * horizontal_speed;
-        velocity.z = 0;
         rigid.AddForce(speed_force * (velocity - now_x));
 
         velocity = Vector3.zero;
@@ -143,7 +142,6 @@ public class PlayerController : MonoBehaviour
         {
             jump_time += Time.fixedDeltaTime;
         }
-        velocity.z = 0;
         rigid.AddForce(jump_force * (velocity - now_y));
     }
 
