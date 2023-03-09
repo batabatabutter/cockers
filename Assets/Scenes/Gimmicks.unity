@@ -348,6 +348,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4044031700620459805, guid: 7e7b2a70212a60a459832e66b380b746,
+        type: 3}
+      propertyPath: jump_force
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9047418279269233865, guid: 7e7b2a70212a60a459832e66b380b746,
+        type: 3}
+      propertyPath: cool_time
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 9047418279269233865, guid: 7e7b2a70212a60a459832e66b380b746,
+        type: 3}
+      propertyPath: jump_force
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9047418279269233865, guid: 7e7b2a70212a60a459832e66b380b746,
+        type: 3}
+      propertyPath: effect_time
+      value: 0.01
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e7b2a70212a60a459832e66b380b746, type: 3}
 --- !u!1 &623761499
@@ -586,30 +606,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 912026048}
   m_CullTransparentMesh: 1
---- !u!1 &984467057 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4044031700620459803, guid: 7e7b2a70212a60a459832e66b380b746,
-    type: 3}
-  m_PrefabInstance: {fileID: 418993468}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &984467058
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 984467057}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c006b2662886d947b2d0114f4b38818, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  have_action_skill: 0
-  can_action_skill: 0
-  cool_time: 1
-  effect_time: 1
-  rigid: {fileID: 0}
-  dash_force: 2.2
 --- !u!1 &1100720943
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,8 +21,9 @@ public class PlayerController : MonoBehaviour
     //プレイヤーの移動スピード、速度倍率
     [SerializeField,HeaderAttribute("移動ステータス")] private float move_speed = 1.0f;
     [SerializeField] private float speed_force = 4.0f;
-    [SerializeField] private float jump_speed = 1.0f;
     [SerializeField] private float jump_force = 4.0f;
+    [SerializeField] private float gravity = 9.8f;
+    [SerializeField] private float min_vertical_vel = -15.0f;
 
     [SerializeField, HeaderAttribute("所持武器")] private List<GameObject> weapons_list;
 
@@ -39,6 +40,9 @@ public class PlayerController : MonoBehaviour
     //ダッシュクラス
     Dash dash;
 
+    //ダブルジャンプクラス
+    DoubleJump doublejump;
+
     //プレイヤーがどっち向いてるか(true : 右,false : 左)
     private bool look_allow;
 
@@ -48,13 +52,11 @@ public class PlayerController : MonoBehaviour
     /// ジャンプ関連
     /// </summary> //////////////////////
 
-    //ジャンプの秒数
-    private float jump_time;
-    [SerializeField] private float max_jump_time = 0.5f;
+    //ジャンプの回数
+    private int jump_cnt;
 
-    //ジャンプしてるか
+    //上昇中か
     private bool isJumping;
-    private bool isJumpFinish;
 
     //着地してるか
     private bool isGround;
@@ -81,19 +83,23 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rigid = transform.GetComponent<Rigidbody>();
-        isJumping = true;
-        isJumpFinish = true;
+        jump_cnt = 0;
+        isJumping = false;
         isGround = false;
         now_use_weapon_no = 0;
         look_allow = true;
         dash = transform.GetComponent<Dash>();
+        doublejump = transform.GetComponent<DoubleJump>();
     }
 
     private void Update()
     {
         //移動速度の初期化
         horizontal_speed = 0;
-        vertical_speed = -jump_speed;
+        vertical_speed = -jump_force;
+
+        //落下し始めたら着地判定を行うようにする
+        if (isJumping && rigid.velocity.y <= 0.0f) isJumping = false;
 
         //着地判定
         CheckGround();
@@ -101,22 +107,14 @@ public class PlayerController : MonoBehaviour
         //着地してるとき、ジャンプ可能にする
         if (isGround)
         {
-            jump_time = 0.0f;
-            isJumpFinish = false;
+            doublejump.End_double_jump();
             vertical_speed = 0;
-        }
-
-        //ジャンプ後、落下する処理
-        if(isJumpFinish)
-        {
-            //vertical_speed = -jump_speed;
-            isJumping = false;
+            jump_cnt = 0;
         }
 
         //ダッシュ中なら浮いてても落ちないように
         if (dash.Get_is_dash())
         {
-            Debug.Log("A");
             vertical_speed = 0;
         }
 
@@ -130,19 +128,19 @@ public class PlayerController : MonoBehaviour
         Vector3 velocity = Vector3.zero;
         Vector3 now_velocity = rigid.velocity;
         Vector3 now_x = new Vector3(now_velocity.x, 0, 0);
-        Vector3 now_y = new Vector3(0, now_velocity.y, 0);
+
+        if (!isGround)
+        {
+            now_velocity.y -= gravity * Time.deltaTime;
+            now_velocity.y = Mathf.Clamp(now_velocity.y, min_vertical_vel, 1000000.0f);
+        }
+
+        rigid.velocity = now_velocity;
 
         velocity.x = move_speed * horizontal_speed;
         rigid.AddForce(speed_force * (velocity - now_x));
 
         velocity = Vector3.zero;
-
-        velocity.y = jump_speed * vertical_speed;
-        if (isJumping)
-        {
-            jump_time += Time.fixedDeltaTime;
-        }
-        rigid.AddForce(jump_force * (velocity - now_y));
     }
 
     //地面についてるかの確認
@@ -192,27 +190,36 @@ public class PlayerController : MonoBehaviour
             }
 
             //着地してるとき、ジャンプする
-            if (isGround && keyboard.upArrowKey.wasPressedThisFrame)
+            if (keyboard.upArrowKey.wasPressedThisFrame)
             {
-                isJumping = true;
-                jump_time = 0.0f;
-                vertical_speed = jump_speed;
+                if (isGround && jump_cnt == 0)
+                {
+                    jump_cnt = 1;
+                    rigid.AddForce(new Vector3(0, jump_force, 0), ForceMode.Impulse);
+                    isJumping = true;
+                }
+                else if (doublejump.Get_can_action_skill() && jump_cnt == 1)
+                {
+                    jump_cnt = 2;
+                    doublejump.Start_Jump(ref rigid);
+                    isJumping = true;
+                }
             }
 
-            //長押しでジャンプの高さが高くなる
-            if (isJumping &&
-                !isJumpFinish &&
-                keyboard.upArrowKey.isPressed &&
-                jump_time < max_jump_time)
-            {
-                vertical_speed = jump_speed;
-            }
+            ////長押しでジャンプの高さが高くなる
+            //if (isJumping &&
+            //    !isJumpFinish &&
+            //    keyboard.upArrowKey.isPressed &&
+            //    jump_time < max_jump_time)
+            //{
+            //    vertical_speed = jump_speed;
+            //}
 
-            //途中でキーを離すとその時点で落ちる
-            if (isJumping && !isJumpFinish && keyboard.upArrowKey.wasReleasedThisFrame)
-            {
-                isJumpFinish = true;
-            }
+            ////途中でキーを離すとその時点で落ちる
+            //if (isJumping && !isJumpFinish && keyboard.upArrowKey.wasReleasedThisFrame)
+            //{
+            //    isJumpFinish = true;
+            //}
 
             //攻撃処理
             if (keyboard.zKey.wasPressedThisFrame)
