@@ -278,6 +278,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 80272284986384602, guid: 7e7b2a70212a60a459832e66b380b746,
+        type: 3}
+      propertyPath: cool_time
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 80272284986384602, guid: 7e7b2a70212a60a459832e66b380b746,
+        type: 3}
+      propertyPath: effect_time
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 4044031700620459778, guid: 7e7b2a70212a60a459832e66b380b746,
         type: 3}
       propertyPath: m_RootOrder
@@ -594,11 +604,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c006b2662886d947b2d0114f4b38818, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  have_action_skill: 0
+  can_action_skill: 0
+  cool_time: 1
+  effect_time: 1
   rigid: {fileID: 0}
-  have_dash: 0
-  can_dash: 0
   dash_force: 2.2
-  dash_time: 0.4
 --- !u!1 &1100720943
 GameObject:
   m_ObjectHideFlags: 0

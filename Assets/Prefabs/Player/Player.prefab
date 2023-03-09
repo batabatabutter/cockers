@@ -775,11 +775,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c006b2662886d947b2d0114f4b38818, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  have_action_skill: 0
+  can_action_skill: 0
+  cool_time: 3
+  effect_time: 0.4
   rigid: {fileID: 0}
-  have_dash: 0
-  can_dash: 0
   dash_force: 2.2
-  dash_time: 0.4
 --- !u!1 &4044031700755753798
 GameObject:
   m_ObjectHideFlags: 0
