@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 abstract class ActionSkill : MonoBehaviour
 {
     [SerializeField, HeaderAttribute("ƒXƒLƒ‹‚ğ‚Á‚Ä‚é‚©")] protected bool have_action_skill;

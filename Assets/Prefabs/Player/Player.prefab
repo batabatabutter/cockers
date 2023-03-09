@@ -619,6 +619,7 @@ GameObject:
   - component: {fileID: 4044031700620459805}
   - component: {fileID: 4044031700620459804}
   - component: {fileID: 80272284986384602}
+  - component: {fileID: 9047418279269233865}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -736,11 +737,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   move_speed: 2
   speed_force: 5
-  jump_speed: 3
   jump_force: 4
+  gravity: 9.8
+  min_vertical_vel: -15
   weapons_list:
   - {fileID: 4044031700365780125}
-  max_jump_time: 0.5
   ray_dist: 0.6
 --- !u!114 &4044031700620459804
 MonoBehaviour:
@@ -781,6 +782,23 @@ MonoBehaviour:
   effect_time: 0.4
   rigid: {fileID: 0}
   dash_force: 2.2
+--- !u!114 &9047418279269233865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4044031700620459803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9342d6f84b76db4888b9789a6666dae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  have_action_skill: 0
+  can_action_skill: 0
+  cool_time: 0.01
+  effect_time: 0.01
+  jump_force: 6
 --- !u!1 &4044031700755753798
 GameObject:
   m_ObjectHideFlags: 0
