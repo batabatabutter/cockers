@@ -40,6 +40,7 @@ class DoubleJump : ActionSkill
     //ダッシュ終わり
     public void End_double_jump()
     {
+        if (!have_action_skill) return;
         End_action_skill();
     }
 

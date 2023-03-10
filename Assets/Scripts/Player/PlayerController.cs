@@ -197,6 +197,7 @@ public class PlayerController : MonoBehaviour
                     jump_cnt = 1;
                     rigid.AddForce(new Vector3(0, jump_force, 0), ForceMode.Impulse);
                     isJumping = true;
+                    doublejump.End_double_jump();
                 }
                 else if (doublejump.Get_can_action_skill() && jump_cnt == 1)
                 {
