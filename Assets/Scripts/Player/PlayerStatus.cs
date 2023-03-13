@@ -146,7 +146,13 @@ public class PlayerStatus : MonoBehaviour
     {
         //無敵時間中ならダメージを受けない
         if (now_invincible_time > 0.0f) return;
-        Mathf.Clamp(val, 1, 9999);
+
+        //シールドチェック
+        Shield shield = transform.GetComponent<Shield>();
+        //シールド展開中ならダメージを受けない
+        if (shield.Get_is_shield()) return;
+
+        Mathf.Clamp(val, 0, 9999);
         now_hp -= val;
         now_hp = Mathf.Clamp(now_hp, 0, 10000);
         now_invincible_time = invincible_time;
