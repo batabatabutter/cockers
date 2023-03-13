@@ -28,7 +28,7 @@ class DoubleJump : ActionSkill
     }
 
     //ƒ_ƒbƒVƒ…‚·‚é
-    public void Start_Jump(ref Rigidbody rigid)
+    public void Start_jump(ref Rigidbody rigid)
     {
         Start_action_skill();
         Vector3 vel = rigid.velocity;

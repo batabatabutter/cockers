@@ -43,6 +43,9 @@ public class PlayerController : MonoBehaviour
     //ダブルジャンプクラス
     DoubleJump doublejump;
 
+    //シールドクラス(バリア)
+    Shield shield;
+
     //プレイヤーがどっち向いてるか(true : 右,false : 左)
     private bool look_allow;
 
@@ -90,6 +93,7 @@ public class PlayerController : MonoBehaviour
         look_allow = true;
         dash = transform.GetComponent<Dash>();
         doublejump = transform.GetComponent<DoubleJump>();
+        shield = transform.GetComponent<Shield>();
     }
 
     private void Update()
@@ -202,7 +206,7 @@ public class PlayerController : MonoBehaviour
                 else if (doublejump.Get_can_action_skill() && jump_cnt == 1)
                 {
                     jump_cnt = 2;
-                    doublejump.Start_Jump(ref rigid);
+                    doublejump.Start_jump(ref rigid);
                     isJumping = true;
                 }
             }
@@ -240,6 +244,12 @@ public class PlayerController : MonoBehaviour
             {
                 dash.Start_Dash(look_allow);
                 horizontal_speed = 0;
+            }
+
+            //シールド展開
+            if(keyboard.sKey.wasPressedThisFrame && shield.Get_now_can_shield())
+            {
+                shield.Start_shield();
             }
         }
     }
