@@ -34,7 +34,7 @@ class Dash : ActionSkill
         if (is_action_skill)
         {
             rigid.AddForce(dash_force_vec, ForceMode.Impulse);
-            now_effect_time += Time.deltaTime;
+            now_effect_time += Time.fixedDeltaTime;
             Check_end_dash();
         }
     }
