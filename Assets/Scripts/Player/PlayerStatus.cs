@@ -10,8 +10,8 @@ public class PlayerStatus : MonoBehaviour
     public struct Status
     {
         public int hp;  //炭水化物
-        public int atk;       //タンパク質
-        public int spd;       //無機質
+        public int atk; //タンパク質
+        public int spd; //無機質
 
         public void Zero()
         {
@@ -50,7 +50,7 @@ public class PlayerStatus : MonoBehaviour
     void Start()
     {
         status.Zero();
-        status.Initialize(def_hp, def_atk, def_spd);
+        //status.Initialize(def_hp, def_atk, def_spd);
         now_hp = def_hp;
         now_atk = def_atk;
         now_spd = def_spd;
@@ -151,6 +151,10 @@ public class PlayerStatus : MonoBehaviour
         Shield shield = transform.GetComponent<Shield>();
         //シールド展開中ならダメージを受けない
         if (shield.Get_is_shield()) return;
+
+        //アーマーがついてたらダメージ軽減
+        Armor armor = transform.GetComponent<Armor>();
+        armor.damage_reduction(ref val);
 
         Mathf.Clamp(val, 0, 9999);
         now_hp -= val;

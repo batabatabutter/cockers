@@ -621,6 +621,7 @@ GameObject:
   - component: {fileID: 80272284986384602}
   - component: {fileID: 9047418279269233865}
   - component: {fileID: 7318589925578982279}
+  - component: {fileID: 2119692753729215135}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -816,6 +817,25 @@ MonoBehaviour:
   can_action_skill: 0
   cool_time: 20
   effect_time: 3
+--- !u!114 &2119692753729215135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4044031700620459803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e17e2eb32eaf4143ba7a07b3fb1f667, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  have_action_skill: 0
+  can_action_skill: 0
+  cool_time: 5
+  effect_time: 0.01
+  armor_val: 0
+  armor_add_per: 4
+  armor_max_per: 20
 --- !u!1 &4044031700755753798
 GameObject:
   m_ObjectHideFlags: 0
