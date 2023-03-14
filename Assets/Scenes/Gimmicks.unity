@@ -288,6 +288,21 @@ PrefabInstance:
       propertyPath: effect_time
       value: 0.4
       objectReference: {fileID: 0}
+    - target: {fileID: 2119692753729215135, guid: 7e7b2a70212a60a459832e66b380b746,
+        type: 3}
+      propertyPath: cool_time
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2119692753729215135, guid: 7e7b2a70212a60a459832e66b380b746,
+        type: 3}
+      propertyPath: effect_time
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2119692753729215135, guid: 7e7b2a70212a60a459832e66b380b746,
+        type: 3}
+      propertyPath: armor_add_per
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4044031700620459778, guid: 7e7b2a70212a60a459832e66b380b746,
         type: 3}
       propertyPath: m_RootOrder

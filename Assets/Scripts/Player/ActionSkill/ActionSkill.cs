@@ -51,10 +51,11 @@ abstract class ActionSkill : MonoBehaviour
         if (0.0f < now_cool_time)
         {
             now_cool_time -= Time.deltaTime;
-            if (now_cool_time <= 0.0f)
-            {
-                can_action_skill = true;
-            }
+            
+        }
+        if (now_cool_time <= 0.0f)
+        {
+            can_action_skill = true;
         }
     }
 
