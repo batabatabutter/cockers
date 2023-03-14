@@ -23,11 +23,17 @@ public class Weapon : MonoBehaviour
     //攻撃を一定回数したときにおなかが空く量
     [SerializeField] private const int Sub_full_val = 1;
 
+    //特殊攻撃かどうかのフラグ
+    private bool special_attack_flg;
+
+    [SerializeField] private const float Special_attack_buff = 2.0f;
+
     void Start()
     {
         transform.GetComponent<BoxCollider>().enabled = false;
         now_atk_enable_time = 0.0f;
         now_cool_time = 0.0f;
+        special_attack_flg = false;
     }
 
     // Update is called once per frame
@@ -62,10 +68,19 @@ public class Weapon : MonoBehaviour
         if (atk_cnt % Atk_MOD == 0) player.Sub_full_stomach(Sub_full_val);
     }
 
+    public void Special_Attack()
+    {
+        transform.GetComponent<BoxCollider>().enabled = true;
+        special_attack_flg = true;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         int atk_value = (int)(atk * (1 + player.Get_atk() * 0.01));
         atk_value += player.Get_now_atk();
+
+        if (special_attack_flg) atk_value = (int)(atk_value * Special_attack_buff);
+
         //タグがenemyなら
         if (other.CompareTag("Enemy"))
         {

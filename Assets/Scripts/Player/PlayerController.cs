@@ -232,6 +232,12 @@ public class PlayerController : MonoBehaviour
                 weapons_list[now_use_weapon_no].GetComponent<Weapon>().Attack();
             }
 
+            //“ÁêUŒ‚
+            if (keyboard.xKey.wasPressedThisFrame)
+            {
+                weapons_list[now_use_weapon_no].GetComponent<Weapon>().Special_Attack();
+            }
+
             //•ŠíØ‚è‘Ö‚¦
             if (keyboard.xKey.wasPressedThisFrame)
             {

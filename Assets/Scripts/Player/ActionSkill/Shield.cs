@@ -15,6 +15,11 @@ class Shield : ActionSkill
 
     public override void FixedUpdate()
     {
+        if (is_action_skill)
+        {
+            now_effect_time += Time.fixedDeltaTime;
+            Check_end_shield();
+        }
     }
 
     //シールドを展開する
@@ -28,6 +33,15 @@ class Shield : ActionSkill
     {
         if (!have_action_skill) return;
         End_action_skill();
+    }
+
+    //ダッシュが終わったかをチェックする
+    public void Check_end_shield()
+    {
+        if (Check_end_action_skill())
+        {
+            End_shield();
+        }
     }
 
     //シールド展開が可能かを返す
