@@ -88,6 +88,9 @@ public class PlayerController : MonoBehaviour
     //ƒ`ƒƒ[ƒWUŒ‚
     ChargeAttack charge_attack;
 
+    //“Š±UŒ‚
+    ThrowingAttack throwing_attack;
+
 
 
     /// <summary> ///////////////////////
@@ -108,6 +111,7 @@ public class PlayerController : MonoBehaviour
         shield = transform.GetComponent<Shield>();
         special_attack = transform.GetComponent<SpecialAttack>();
         charge_attack = transform.GetComponent<ChargeAttack>();
+        throwing_attack = transform.GetComponent<ThrowingAttack>();
     }
 
     private void Update()
@@ -285,6 +289,13 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("Start");
                 weapons_list[(int)now_use_weapon_no].GetComponent<Weapon>().Special_Attack();
                 
+            }
+
+            //“Š±UŒ‚
+            if(keyboard.aKey.wasPressedThisFrame && throwing_attack.Get_can_action_skill())
+            {
+                throwing_attack.Start_throwing_attack();
+                weapons_list[(int)now_use_weapon_no].GetComponent<Weapon>().Throwing_Attack(now_use_weapon_no, look_allow);
             }
 
             //•ŠíØ‚è‘Ö‚¦

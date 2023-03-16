@@ -35,8 +35,36 @@ public class Weapon : MonoBehaviour
     [SerializeField, HeaderAttribute("ƒ`ƒƒ[ƒWUŒ‚‚ÌUŒ‚”{—¦")] private float charge_attack_buff = 1.5f;
     [SerializeField, HeaderAttribute("ƒ`ƒƒ[ƒWUŒ‚‚ÌUŒ‚ŠÔ")] private float charge_attack_time = 0.5f;
 
+    [SerializeField, HeaderAttribute("“Š±UŒ‚‚ÌUŒ‚”{—¦")] private float throwing_attack_buff = 1.0f;
+    [SerializeField, HeaderAttribute("“Š±UŒ‚‚ÌUŒ‚ŠÔ")] private float throwing_attack_time = 0.5f;
+    [SerializeField, HeaderAttribute("“Š±UŒ‚‚Ì‹——£")] private float throwing_attack_dist = 5.0f;
+
     //©•ª‚Ìboxcollider‚ğ–‘O‚É‚Á‚Ä‚¨‚­‚±‚Æ‚Åˆ—ŠÔ‚Ì’Zk‚ğ}‚é
     BoxCollider box_collider;
+
+
+
+    /// <summary>
+    /// “Š±UŒ‚—p
+    /// </summary>
+
+    //“Š±UŒ‚ƒtƒ‰ƒO
+    private bool throwing_attack_flg;
+
+    //•Ší”Ô†•Û‘¶—p
+    Weapon_no weapon_no;
+
+    private Vector3 first_pos;
+    private Vector3 target_pos;
+
+    //Œü‚«•Û‘¶—p
+    private bool allow;
+
+    private float move_time = 0.5f;
+
+    private float elapsed_time;
+
+    private float rate;
 
     void Start()
     {
@@ -46,6 +74,7 @@ public class Weapon : MonoBehaviour
         now_cool_time = 0.0f;
         charge_attack_flg = false;
         special_attack_flg = false;
+        throwing_attack_flg = false;
     }
 
     // Update is called once per frame
@@ -54,12 +83,28 @@ public class Weapon : MonoBehaviour
         if (now_atk_enable_time > 0.0f)
         {
             now_atk_enable_time -= Time.deltaTime;
+            
+            if (throwing_attack_flg)
+            {
+                if (weapon_no == Weapon_no.knife)
+                {
+                    rate = Mathf.Clamp01((throwing_attack_time - now_atk_enable_time) / move_time);
+
+                    transform.position = Vector3.Lerp(transform.position, target_pos, rate);
+                }
+            }
+
             if (now_atk_enable_time <= 0.0f)
             {
                 now_atk_enable_time = 0.0f;
                 box_collider.enabled = false;
                 charge_attack_flg = false;
                 special_attack_flg = false;
+                if (throwing_attack_flg)
+                {
+                    transform.localPosition = first_pos;
+                }
+                throwing_attack_flg = false;
             }
         }
         if (now_cool_time > 0.0f)
@@ -103,6 +148,20 @@ public class Weapon : MonoBehaviour
         now_atk_enable_time = special_attack_time;
         now_cool_time = special_attack_time + 1.0f / (atk_per_sec);
         special_attack_flg = true;
+        atk_cnt++;
+        if (atk_cnt % Atk_MOD == 0) player.Sub_full_stomach(Sub_full_val);
+    }
+
+    public void Throwing_Attack(Weapon_no weapon_no,bool allow) {
+        this.weapon_no = weapon_no;
+        this.allow = allow;
+        first_pos = transform.localPosition;
+        target_pos = transform.position;
+        if (allow) target_pos.x += throwing_attack_dist;
+        else target_pos.x -= throwing_attack_dist;
+        now_atk_enable_time = throwing_attack_time;
+        now_cool_time = throwing_attack_time + 1.0f / (atk_per_sec);
+        throwing_attack_flg = true;
         atk_cnt++;
         if (atk_cnt % Atk_MOD == 0) player.Sub_full_stomach(Sub_full_val);
     }

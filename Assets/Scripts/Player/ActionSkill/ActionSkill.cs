@@ -72,7 +72,7 @@ abstract class ActionSkill : MonoBehaviour
     {
         is_action_skill = true;
         can_action_skill = false;
-        if (now_effect_time <= 0.01f)
+        if (effect_time <= 0.01f)
         {
             is_action_skill = false;
         }
