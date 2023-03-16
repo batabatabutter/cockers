@@ -509,6 +509,9 @@ MonoBehaviour:
   special_attack_time: 0.5
   charge_attack_buff: 1.5
   charge_attack_time: 0.5
+  throwing_attack_buff: 1
+  throwing_attack_time: 0.5
+  throwing_attack_dist: 5
 --- !u!1 &4044031700407166171
 GameObject:
   m_ObjectHideFlags: 0
@@ -628,6 +631,7 @@ GameObject:
   - component: {fileID: 2119692753729215135}
   - component: {fileID: 120662970981782852}
   - component: {fileID: 3202897734092255116}
+  - component: {fileID: 7774100841775240501}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -876,6 +880,22 @@ MonoBehaviour:
   cool_time: 0
   effect_time: 0
   charge_time: 1.5
+--- !u!114 &7774100841775240501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4044031700620459803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 243f51c8cdcf4a4498308a75763c47c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  have_action_skill: 0
+  can_action_skill: 0
+  cool_time: 1
+  effect_time: 0.5
 --- !u!1 &4044031700755753798
 GameObject:
   m_ObjectHideFlags: 0
