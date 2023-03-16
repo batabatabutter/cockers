@@ -23,16 +23,28 @@ public class Weapon : MonoBehaviour
     //UŒ‚‚ğˆê’è‰ñ”‚µ‚½‚Æ‚«‚É‚¨‚È‚©‚ª‹ó‚­—Ê
     [SerializeField] private const int Sub_full_val = 1;
 
+    //ƒ`ƒƒ[ƒWUŒ‚‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
+    private bool charge_attack_flg;
+
     //“ÁêUŒ‚‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
     private bool special_attack_flg;
 
-    [SerializeField] private const float Special_attack_buff = 2.0f;
+    [SerializeField,HeaderAttribute("“ÁêUŒ‚‚ÌUŒ‚”{—¦")] private float special_attack_buff = 2.0f;
+    [SerializeField, HeaderAttribute("“ÁêUŒ‚‚ÌUŒ‚ŠÔ")] private float special_attack_time = 0.5f;
+
+    [SerializeField, HeaderAttribute("ƒ`ƒƒ[ƒWUŒ‚‚ÌUŒ‚”{—¦")] private float charge_attack_buff = 1.5f;
+    [SerializeField, HeaderAttribute("ƒ`ƒƒ[ƒWUŒ‚‚ÌUŒ‚ŠÔ")] private float charge_attack_time = 0.5f;
+
+    //©•ª‚Ìboxcollider‚ğ–‘O‚É‚Á‚Ä‚¨‚­‚±‚Æ‚Åˆ—ŠÔ‚Ì’Zk‚ğ}‚é
+    BoxCollider box_collider;
 
     void Start()
     {
-        transform.GetComponent<BoxCollider>().enabled = false;
+        box_collider = transform.GetComponent<BoxCollider>();
+        box_collider.enabled = false;
         now_atk_enable_time = 0.0f;
         now_cool_time = 0.0f;
+        charge_attack_flg = false;
         special_attack_flg = false;
     }
 
@@ -45,7 +57,9 @@ public class Weapon : MonoBehaviour
             if (now_atk_enable_time <= 0.0f)
             {
                 now_atk_enable_time = 0.0f;
-                transform.GetComponent<BoxCollider>().enabled = false;
+                box_collider.enabled = false;
+                charge_attack_flg = false;
+                special_attack_flg = false;
             }
         }
         if (now_cool_time > 0.0f)
@@ -58,20 +72,39 @@ public class Weapon : MonoBehaviour
         }
     }
 
+    //’ÊíUŒ‚‚ÌUŒ‚ŠJnŠÖ”
     public void Attack()
     {
         if (now_cool_time > 0.0f) return;
-        transform.GetComponent<BoxCollider>().enabled = true;
+        box_collider.enabled = true;
         now_atk_enable_time = atk_enable_time;
         now_cool_time = 1.0f / (atk_per_sec);
         atk_cnt++;
         if (atk_cnt % Atk_MOD == 0) player.Sub_full_stomach(Sub_full_val);
     }
 
+    //ƒ`ƒƒ[ƒWUŒ‚‚ÌUŒ‚ŠJnŠÖ”
+    public void Charge_Attack()
+    {
+        if (now_cool_time > 0.0f) return;
+        box_collider.enabled = true;
+        now_atk_enable_time = charge_attack_time;
+        now_cool_time = charge_attack_time + 1.0f / (atk_per_sec);
+        charge_attack_flg = true;
+        atk_cnt++;
+        if (atk_cnt % Atk_MOD == 0) player.Sub_full_stomach(Sub_full_val);
+    }
+
+    //“ÁêUŒ‚—p‚ÌUŒ‚ŠJnŠÖ”
     public void Special_Attack()
     {
-        transform.GetComponent<BoxCollider>().enabled = true;
+        if (now_cool_time > 0.0f) return;
+        box_collider.enabled = true;
+        now_atk_enable_time = special_attack_time;
+        now_cool_time = special_attack_time + 1.0f / (atk_per_sec);
         special_attack_flg = true;
+        atk_cnt++;
+        if (atk_cnt % Atk_MOD == 0) player.Sub_full_stomach(Sub_full_val);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -79,7 +112,9 @@ public class Weapon : MonoBehaviour
         int atk_value = (int)(atk * (1 + player.Get_atk() * 0.01));
         atk_value += player.Get_now_atk();
 
-        if (special_attack_flg) atk_value = (int)(atk_value * Special_attack_buff);
+        //UŒ‚‚Ìí—Ş‚É‚æ‚Á‚ÄUŒ‚—Í‚Éƒoƒt‚ğŠ|‚¯‚é
+        if (charge_attack_flg) atk_value = (int)(atk_value * charge_attack_buff);
+        if (special_attack_flg) atk_value = (int)(atk_value * special_attack_buff);
 
         //ƒ^ƒO‚ªenemy‚È‚ç
         if (other.CompareTag("Enemy"))

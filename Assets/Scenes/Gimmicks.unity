@@ -288,6 +288,16 @@ PrefabInstance:
       propertyPath: effect_time
       value: 0.4
       objectReference: {fileID: 0}
+    - target: {fileID: 120662970981782852, guid: 7e7b2a70212a60a459832e66b380b746,
+        type: 3}
+      propertyPath: can_action_skill
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 120662970981782852, guid: 7e7b2a70212a60a459832e66b380b746,
+        type: 3}
+      propertyPath: have_action_skill
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2119692753729215135, guid: 7e7b2a70212a60a459832e66b380b746,
         type: 3}
       propertyPath: cool_time
@@ -371,7 +381,7 @@ PrefabInstance:
     - target: {fileID: 9047418279269233865, guid: 7e7b2a70212a60a459832e66b380b746,
         type: 3}
       propertyPath: cool_time
-      value: 0.01
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9047418279269233865, guid: 7e7b2a70212a60a459832e66b380b746,
         type: 3}
@@ -381,7 +391,12 @@ PrefabInstance:
     - target: {fileID: 9047418279269233865, guid: 7e7b2a70212a60a459832e66b380b746,
         type: 3}
       propertyPath: effect_time
-      value: 0.01
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9047418279269233865, guid: 7e7b2a70212a60a459832e66b380b746,
+        type: 3}
+      propertyPath: have_action_skill
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e7b2a70212a60a459832e66b380b746, type: 3}
