@@ -37,15 +37,6 @@ public class PlayerController : MonoBehaviour
     private float horizontal_speed;
     private float vertical_speed;
 
-    //ダッシュクラス
-    Dash dash;
-
-    //ダブルジャンプクラス
-    DoubleJump doublejump;
-
-    //シールドクラス(バリア)
-    Shield shield;
-
     //プレイヤーがどっち向いてるか(true : 右,false : 左)
     private bool look_allow;
 
@@ -74,7 +65,28 @@ public class PlayerController : MonoBehaviour
     /// </summary> ///////////////////////
     
     //現在の使用武器番号
-    private int now_use_weapon_no;
+    private Weapon_no now_use_weapon_no;
+
+
+
+    /// <summary> ///////////////////////
+    /// アクションスキル
+    /// </summary> ///////////////////////
+
+    //ダッシュクラス
+    Dash dash;
+
+    //ダブルジャンプクラス
+    DoubleJump doublejump;
+
+    //シールドクラス(バリア)
+    Shield shield;
+
+    //特殊攻撃クラス
+    SpecialAttack special_attack;
+
+    //チャージ攻撃
+    ChargeAttack charge_attack;
 
 
 
@@ -94,6 +106,8 @@ public class PlayerController : MonoBehaviour
         dash = transform.GetComponent<Dash>();
         doublejump = transform.GetComponent<DoubleJump>();
         shield = transform.GetComponent<Shield>();
+        special_attack = transform.GetComponent<SpecialAttack>();
+        charge_attack = transform.GetComponent<ChargeAttack>();
     }
 
     private void Update()
@@ -111,9 +125,20 @@ public class PlayerController : MonoBehaviour
         //着地してるとき、ジャンプ可能にする
         if (isGround)
         {
-            doublejump.End_double_jump();
             vertical_speed = 0;
             jump_cnt = 0;
+        }
+
+        //着地してなくて2段目ジャンプを使ってないとき、1段目ジャンプだけ使ったことにする
+        if(!isGround && jump_cnt == 0)
+        {
+            jump_cnt = 1;
+        }
+
+        //もし2段目ジャンプを使ってなかったら、使用可能とする
+        if (jump_cnt <= 1)
+        {
+            doublejump.End_double_jump();
         }
 
         //ダッシュ中なら浮いてても落ちないように
@@ -201,7 +226,6 @@ public class PlayerController : MonoBehaviour
                     jump_cnt = 1;
                     rigid.AddForce(new Vector3(0, jump_force, 0), ForceMode.Impulse);
                     isJumping = true;
-                    doublejump.End_double_jump();
                 }
                 else if (doublejump.Get_can_action_skill() && jump_cnt == 1)
                 {
@@ -229,21 +253,50 @@ public class PlayerController : MonoBehaviour
             //攻撃処理
             if (keyboard.zKey.wasPressedThisFrame)
             {
-                weapons_list[now_use_weapon_no].GetComponent<Weapon>().Attack();
+                weapons_list[(int)now_use_weapon_no].GetComponent<Weapon>().Attack();
+            }
+
+            //攻撃ボタンを長押ししたらチャージ時間がたまる
+            if (keyboard.zKey.isPressed && charge_attack.Get_can_action_skill())
+            {
+                charge_attack.Add_carge_time();
+            }
+
+            //離したときまでの長押し時間でチャージ攻撃をするかどうか変わる
+            if (keyboard.zKey.wasReleasedThisFrame)
+            {
+                //チャージした時間が規定以上ならチャージ攻撃ができるようになる(スキル所持時のみ)
+                if (charge_attack.Check_full_charge())
+                {
+                    charge_attack.Start_charge_attack();
+                    charge_attack.End__charge_attack();
+                    weapons_list[(int)now_use_weapon_no].GetComponent<Weapon>().Attack();
+                    Debug.Log("チャージアタック成功");
+                }
+
+                //チャージ時間の初期化
+                charge_attack.Reset_charge_time();
             }
 
             //特殊攻撃
-            if (keyboard.xKey.wasPressedThisFrame)
+            if (keyboard.xKey.wasPressedThisFrame && special_attack.Get_can_action_skill())
             {
-                weapons_list[now_use_weapon_no].GetComponent<Weapon>().Special_Attack();
+                special_attack.Start_special_attack();
+                Debug.Log("Start");
+                weapons_list[(int)now_use_weapon_no].GetComponent<Weapon>().Special_Attack();
+                
             }
 
             //武器切り替え
-            if (keyboard.xKey.wasPressedThisFrame)
-            {
-                now_use_weapon_no++;
-                now_use_weapon_no %= weapons_list.Count;
-            }
+            //if (keyboard.xKey.wasPressedThisFrame)
+            //{
+            //    now_use_weapon_no = (Weapon_no)((int)now_use_weapon_no + 1);
+            //    Debug.Log(now_use_weapon_no);
+            //    if (now_use_weapon_no == Weapon_no.over_id)
+            //    {
+            //        now_use_weapon_no = Weapon_no.knife;
+            //    }
+            //}
 
             //ダッシュ
             if (keyboard.leftShiftKey.wasPressedThisFrame && dash.Get_now_can_dash())

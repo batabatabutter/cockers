@@ -4,6 +4,14 @@ using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
 
+public enum Weapon_no
+{
+    knife,
+    flypan,
+
+    over_id
+}
+
 public class PlayerStatus : MonoBehaviour
 {
     //âhó{ëfÇÃç\ë¢ëÃ
