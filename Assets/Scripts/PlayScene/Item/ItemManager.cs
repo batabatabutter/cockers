@@ -49,30 +49,16 @@ public class ItemManager : MonoBehaviour
     //  プレイヤーを格納しておく
     GameObject player;
 
-    // Start is called before the first frame update
-    private void Start()
+    private void Awake()
     {
         //  アイテム数格納
         for (int i = 0; i < (int)ItemID.ItemNum; i++)
         {
             itemNum.Add(0);
         }
-
-        //  アイテムのスポーンを格納
-        HolderArray = GameObject.FindGameObjectsWithTag("ItemSpawn");
-        //  Listに再格納
-        foreach (GameObject obj in HolderArray)
-        {
-            if (obj.GetComponent<ItemSpawn>() == null) Debug.Log("Error : クラス ItemSpaen が見つかりませんでした。" + obj);
-            itemSpawns.Add(obj.GetComponent<ItemSpawn>());
-        }
-
-        //  プレイヤーを格納しておく
-        player = GameObject.FindWithTag("Player");
-        if (player == null) Debug.Log("Error : プレイヤーがみつかりません");
     }
 
-    // Update is called once per frame
+    //  更新
     private void Update()
     {
         //  敵の生成更新
@@ -121,6 +107,28 @@ public class ItemManager : MonoBehaviour
                 item.SetActive(true);
             }
         }
+    }
+
+    //  リセット
+    public void ItemReset()
+    {
+        //  変数リセット
+        HolderArray = null;
+        itemSpawns.Clear();
+        itemObjects.Clear();
+
+        //  アイテムのスポーンを格納
+        HolderArray = GameObject.FindGameObjectsWithTag("ItemSpawn");
+        //  Listに再格納
+        foreach (GameObject obj in HolderArray)
+        {
+            if (obj.GetComponent<ItemSpawn>() == null) Debug.Log("Error : クラス ItemSpaen が見つかりませんでした。" + obj);
+            itemSpawns.Add(obj.GetComponent<ItemSpawn>());
+        }
+
+        //  プレイヤーを格納しておく
+        player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null) Debug.Log("Error : プレイヤーがみつかりません");
     }
 
     //  アイテムオブジェクト受渡

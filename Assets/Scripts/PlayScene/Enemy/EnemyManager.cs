@@ -68,32 +68,6 @@ public class EnemyManager : MonoBehaviour
     //  プレイヤーを格納しておく
     GameObject player;
 
-    //  最初に実行される
-    private void Start()
-    {
-        //  敵のスポーンを格納
-        HolderArray = GameObject.FindGameObjectsWithTag("EnemySpawn");
-        //  Listに再格納
-        foreach (GameObject obj in HolderArray)
-        {
-            if (obj.GetComponent<EnemySpawn>() == null) Debug.Log("Error : クラス EnemySpaen が見つかりませんでした。" + obj);
-            enemySpawns.Add(obj.GetComponent<EnemySpawn>());
-        }
-
-        //  ボスのスポーンを格納
-        HolderArray = GameObject.FindGameObjectsWithTag("BossSpawn");
-        //  Listに再格納
-        foreach (GameObject obj in HolderArray)
-        {
-            if (obj.GetComponent<BossSpawn>() == null) Debug.Log("Error : クラス BossSpaen が見つかりませんでした。" + obj);
-            bossSpawns.Add(obj.GetComponent<BossSpawn>());
-        }
-
-        //  プレイヤーを格納しておく
-        player = GameObject.FindWithTag("Player");
-        if (player == null) Debug.Log("Error : プレイヤーがみつかりません");
-    }
-
     //  更新
     private void Update()
     {
@@ -189,6 +163,40 @@ public class EnemyManager : MonoBehaviour
             }
         }
     }
+
+    //  リセット
+    public void EnemyReset()
+    {
+        //  変数リセット
+        HolderArray = null;
+        enemySpawns.Clear();
+        enemyObjects.Clear();
+        bossSpawns.Clear();
+        bossObjects.Clear();
+
+        //  敵のスポーンを格納
+        HolderArray = GameObject.FindGameObjectsWithTag("EnemySpawn");
+        //  Listに再格納
+        foreach (GameObject obj in HolderArray)
+        {
+            if (obj.GetComponent<EnemySpawn>() == null) Debug.Log("Error : クラス EnemySpaen が見つかりませんでした。" + obj);
+            enemySpawns.Add(obj.GetComponent<EnemySpawn>());
+        }
+
+        //  ボスのスポーンを格納
+        HolderArray = GameObject.FindGameObjectsWithTag("BossSpawn");
+        //  Listに再格納
+        foreach (GameObject obj in HolderArray)
+        {
+            if (obj.GetComponent<BossSpawn>() == null) Debug.Log("Error : クラス BossSpaen が見つかりませんでした。" + obj);
+            bossSpawns.Add(obj.GetComponent<BossSpawn>());
+        }
+
+        //  プレイヤーを格納しておく
+        player = GameObject.FindWithTag("Player");
+        if (player == null) Debug.Log("Error : プレイヤーがみつかりません");
+    }
+
 
     //  無敵時間取得
     public float GetInvincibilityTime()

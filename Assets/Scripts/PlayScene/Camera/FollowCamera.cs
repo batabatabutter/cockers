@@ -15,14 +15,14 @@ public class FollowCameraStatas
 public class FollowCamera : MonoBehaviour
 {
     [SerializeField, Label("カメラ追従ステータス")] List<FollowCameraStatas> followStatas;
-    [SerializeField, Label("追従対象")] Transform followObject;
+    [SerializeField, Label("追従対象")] protected Transform followObject;
 
     [SerializeField, Label("追従位置差")] Vector3 followDifference;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        CameraStart();
     }
 
     // Update is called once per frame
@@ -40,5 +40,10 @@ public class FollowCamera : MonoBehaviour
                 break;
             }
         }
+    }
+
+    public virtual void CameraStart()
+    {
+
     }
 }
