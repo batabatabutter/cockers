@@ -14,11 +14,6 @@ class ThrowingAttack : ActionSkill
     // Update is called once per frame
     public override void FixedUpdate()
     {
-        if (is_action_skill)
-        {
-            now_effect_time += Time.fixedDeltaTime;
-            Check_end_throwing_attack();
-        }
     }
 
     //投擲攻撃をする
@@ -28,8 +23,11 @@ class ThrowingAttack : ActionSkill
     }
 
     //投擲攻撃終わり
-    public void End_throwing_attack()
+    public void End_throwing_attack(Weapon_no weapon_no)
     {
+        End_action_skill();
+        if (weapon_no == Weapon_no.knife) now_cool_time = 1.0f;
+        else if (weapon_no == Weapon_no.flypan) now_cool_time = 2.0f;
     }
 
     //投擲攻撃が終わったかをチェックする
