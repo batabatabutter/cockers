@@ -67,6 +67,9 @@ public class PlayerController : MonoBehaviour
     //現在の使用武器番号
     private Weapon_no now_use_weapon_no;
 
+    //所持武器のWeaponクラス
+    [SerializeField] private List<Weapon> weapon;
+
 
 
     /// <summary> ///////////////////////
@@ -104,7 +107,7 @@ public class PlayerController : MonoBehaviour
         jump_cnt = 0;
         isJumping = false;
         isGround = false;
-        now_use_weapon_no = 0;
+        now_use_weapon_no = Weapon_no.knife;
         look_allow = true;
         dash = transform.GetComponent<Dash>();
         doublejump = transform.GetComponent<DoubleJump>();
@@ -112,6 +115,11 @@ public class PlayerController : MonoBehaviour
         special_attack = transform.GetComponent<SpecialAttack>();
         charge_attack = transform.GetComponent<ChargeAttack>();
         throwing_attack = transform.GetComponent<ThrowingAttack>();
+        foreach(GameObject wp in weapons_list)
+        {
+            Weapon wpclass = wp.GetComponent<Weapon>();
+            weapon.Add(wpclass);
+        }
     }
 
     private void Update()
@@ -254,10 +262,31 @@ public class PlayerController : MonoBehaviour
             //    isJumpFinish = true;
             //}
 
+            //ダッシュ
+            if (keyboard.leftShiftKey.wasPressedThisFrame && dash.Get_now_can_dash())
+            {
+                dash.Start_Dash(look_allow);
+                horizontal_speed = 0;
+            }
+
+            //シールド展開
+            if (keyboard.sKey.wasPressedThisFrame && shield.Get_now_can_shield())
+            {
+                shield.Start_shield();
+            }
+
             //攻撃処理
             if (keyboard.zKey.wasPressedThisFrame)
             {
-                weapons_list[(int)now_use_weapon_no].GetComponent<Weapon>().Attack();
+                weapon[(int)now_use_weapon_no].Attack();
+            }
+
+            if (weapon[(int)now_use_weapon_no].Get_is_attack_now()) return;
+
+            if (weapon[(int)now_use_weapon_no].Get_finish_flg())
+            {
+                throwing_attack.End_throwing_attack(now_use_weapon_no);
+                weapon[(int)now_use_weapon_no].Reset_finish_flg();
             }
 
             //攻撃ボタンを長押ししたらチャージ時間がたまる
@@ -274,7 +303,7 @@ public class PlayerController : MonoBehaviour
                 {
                     charge_attack.Start_charge_attack();
                     charge_attack.End__charge_attack();
-                    weapons_list[(int)now_use_weapon_no].GetComponent<Weapon>().Attack();
+                    weapon[(int)now_use_weapon_no].Charge_Attack();
                     Debug.Log("チャージアタック成功");
                 }
 
@@ -287,7 +316,7 @@ public class PlayerController : MonoBehaviour
             {
                 special_attack.Start_special_attack();
                 Debug.Log("Start");
-                weapons_list[(int)now_use_weapon_no].GetComponent<Weapon>().Special_Attack();
+                weapon[(int)now_use_weapon_no].Special_Attack();
                 
             }
 
@@ -295,7 +324,7 @@ public class PlayerController : MonoBehaviour
             if(keyboard.aKey.wasPressedThisFrame && throwing_attack.Get_can_action_skill())
             {
                 throwing_attack.Start_throwing_attack();
-                weapons_list[(int)now_use_weapon_no].GetComponent<Weapon>().Throwing_Attack(now_use_weapon_no, look_allow);
+                weapon[(int)now_use_weapon_no].Throwing_Attack(now_use_weapon_no, look_allow);
             }
 
             //武器切り替え
@@ -308,19 +337,6 @@ public class PlayerController : MonoBehaviour
             //        now_use_weapon_no = Weapon_no.knife;
             //    }
             //}
-
-            //ダッシュ
-            if (keyboard.leftShiftKey.wasPressedThisFrame && dash.Get_now_can_dash())
-            {
-                dash.Start_Dash(look_allow);
-                horizontal_speed = 0;
-            }
-
-            //シールド展開
-            if(keyboard.sKey.wasPressedThisFrame && shield.Get_now_can_shield())
-            {
-                shield.Start_shield();
-            }
         }
     }
 }

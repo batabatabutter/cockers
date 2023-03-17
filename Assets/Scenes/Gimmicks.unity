@@ -378,6 +378,31 @@ PrefabInstance:
       propertyPath: jump_force
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 4044031700620459805, guid: 7e7b2a70212a60a459832e66b380b746,
+        type: 3}
+      propertyPath: weapons_list.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4044031700620459805, guid: 7e7b2a70212a60a459832e66b380b746,
+        type: 3}
+      propertyPath: weapons_list.Array.data[0]
+      value: 
+      objectReference: {fileID: 1958519307}
+    - target: {fileID: 4044031700620459805, guid: 7e7b2a70212a60a459832e66b380b746,
+        type: 3}
+      propertyPath: weapons_list.Array.data[1]
+      value: 
+      objectReference: {fileID: 1958519307}
+    - target: {fileID: 7774100841775240501, guid: 7e7b2a70212a60a459832e66b380b746,
+        type: 3}
+      propertyPath: cool_time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7774100841775240501, guid: 7e7b2a70212a60a459832e66b380b746,
+        type: 3}
+      propertyPath: effect_time
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 9047418279269233865, guid: 7e7b2a70212a60a459832e66b380b746,
         type: 3}
       propertyPath: cool_time
@@ -716,6 +741,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1100720943}
   m_CullTransparentMesh: 1
+--- !u!1 &1958519307 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4044031700365780125, guid: 7e7b2a70212a60a459832e66b380b746,
+    type: 3}
+  m_PrefabInstance: {fileID: 418993468}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2030673135
 GameObject:
   m_ObjectHideFlags: 0
