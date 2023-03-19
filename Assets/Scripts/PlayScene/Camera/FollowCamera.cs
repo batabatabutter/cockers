@@ -31,11 +31,11 @@ public class FollowCamera : MonoBehaviour
         foreach (FollowCameraStatas follow in followStatas)
         {
             //  ÉJÉÅÉâÇ∆í«è]ëŒè€ÇÃà íuä÷åWî‰är
-            Vector3 cameraPos = new Vector3(this.transform.position.x, this.transform.position.y, 0.0f);
+            Vector3 cameraPos = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
             if (Vector3.Distance(cameraPos, followObject.position + followDifference) <= follow.GetRange())
             {
                 //  ãﬂÇ©Ç¡ÇΩÇÁéwíËÇ≥ÇÍÇΩílÇ≈í«è]
-                Vector3 targetPos = new Vector3(followObject.position.x, followObject.position.y, this.transform.position.z) + followDifference;
+                Vector3 targetPos = new Vector3(followObject.position.x, followObject.position.y, followObject.position.z) + followDifference;
                 transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * follow.GetSpeed());
                 break;
             }
