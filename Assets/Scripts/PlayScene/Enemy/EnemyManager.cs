@@ -170,8 +170,16 @@ public class EnemyManager : MonoBehaviour
         //  変数リセット
         HolderArray = null;
         enemySpawns.Clear();
-        enemyObjects.Clear();
         bossSpawns.Clear();
+        foreach (GameObject enemy in enemyObjects)
+        {
+            Destroy(enemy);
+        }
+        foreach (GameObject boss in bossObjects)
+        {
+            Destroy(boss);
+        }
+        enemyObjects.Clear();
         bossObjects.Clear();
 
         //  敵のスポーンを格納

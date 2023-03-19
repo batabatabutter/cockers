@@ -100,7 +100,7 @@ MonoBehaviour:
   - range: 999
     speed: 30
   followObject: {fileID: 0}
-  followDifference: {x: 0, y: 1.3, z: 0}
+  followDifference: {x: 0, y: 1.3, z: -10}
 --- !u!81 &3371827554363898738
 AudioListener:
   m_ObjectHideFlags: 0

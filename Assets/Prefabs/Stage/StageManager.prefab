@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8610125652734742777}
   m_Layer: 0
   m_Name: StageManager
-  m_TagString: Untagged
+  m_TagString: StageManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -55,6 +55,7 @@ MonoBehaviour:
   stages:
   - loby: {fileID: 3692715060274595641, guid: 22a82475add1a9a4bab5f4c6139328a4, type: 3}
     Fields:
+    - {fileID: 3692715060274595641, guid: 22a82475add1a9a4bab5f4c6139328a4, type: 3}
     - {fileID: 7355102658739345359, guid: 5219955823c78d348b91d873d1234830, type: 3}
     - {fileID: 7355102658739345359, guid: f68e46640f44c1d4a9a30a75eb5f8651, type: 3}
     - {fileID: 7355102658739345359, guid: 477abe9257f675c4ead01e22f017096a, type: 3}

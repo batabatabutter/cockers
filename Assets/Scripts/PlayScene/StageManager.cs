@@ -20,6 +20,7 @@ public class StageData
     [SerializeField, Label("ロビー")] GameObject loby;
     [SerializeField, Label("フィールド")] List<GameObject> Fields;
 
+
     public GameObject GetLoby() { return loby; }         //  ロビー受渡
     public GameObject GetField(int fieldID) { if (Fields.Count <= fieldID) return null; return Fields[fieldID]; }    //  フィールド受渡
 }
@@ -31,7 +32,13 @@ public class StageManager : MonoBehaviour
 
     [SerializeField, Label("ステージ")] List<StageData> stages;
 
+    private StageID nowStageID;
     private GameObject nowField;
+
+    private void Start()
+    {
+        nowStageID = stageID;
+    }
 
     //  ステージ生成
     public void CreateStage(StageID stageID)
@@ -42,19 +49,13 @@ public class StageManager : MonoBehaviour
     }
 
     //  フィールド生成
-    public void CreateField(StageID stageID, int fieldID)
+    public void CreateField(int fieldID)
     {
         if (nowField != null) Destroy(nowField);
-        if (stages[(int)stageID].GetField(fieldID) == null)
+        if (stages[(int)nowStageID].GetField(fieldID) == null)
         {
-            Debug.Log("Error:" + stageID + fieldID + "対応のプレハブがありません");
+            Debug.Log("Error:" + nowStageID + fieldID + "対応のプレハブがありません");
         }
-        nowField = Instantiate(stages[(int)stageID].GetField(fieldID), Vector3.zero, Quaternion.identity);
-    }
-
-    //  デバッグ用生成
-    public void DebugCreateStage()
-    {
-        CreateStage(stageID);
+        nowField = Instantiate(stages[(int)nowStageID].GetField(fieldID), Vector3.zero, Quaternion.identity);
     }
 }
