@@ -10,15 +10,15 @@ using UnityEngine.UI;
 [System.Serializable]
 public class Menu
 {
-    public string name;  //料理名
-    public int calory;          //カロリー(体力回復量)
-    public int carbohydrates;   //炭水化物
-    public int proteins;        //タンパク質
-    public int lipid;           //脂質
-    public int vitamins;        //ビタミン
-    public int minerals;        //無機質
-    public int full_stomach;
+    public string name;             //料理名
+    public int calory;              //カロリー(体力回復量)
+    public int hp;                  //体力
+    public int atk;                 //攻撃力
+    public int spd;                 //スピード
+    public int full_stomach;        //満腹度
     public List<KeyValuePair<string, int>> need_material = new List<KeyValuePair<string, int>>();
+    public string get_skill_name;
+    public string unlodk_key;
 }
 
 [System.Serializable]
@@ -26,14 +26,14 @@ public class InputMenu
 {
     public string name;             //料理名
     public int calory;              //カロリー(体力回復量)
-    public int carbohydrates;       //炭水化物
-    public int proteins;            //タンパク質
-    public int lipid;               //脂質
-    public int vitamins;            //ビタミン
-    public int minerals;            //無機質
+    public int hp;                  //体力
+    public int atk;                 //攻撃力
+    public int spd;                 //スピード
     public int full_stomach;        //満腹度
     public string[] need_material;  //素材
     public string[] need_value;     //素材の必要数
+    public string get_skill_name;
+    public string unlodk_key;
 }
 
 public class MenuManager : MonoBehaviour
@@ -60,11 +60,9 @@ public class MenuManager : MonoBehaviour
             Menu new_menu = new Menu();
             new_menu.name = m.name;
             new_menu.calory = m.calory;
-            new_menu.carbohydrates=m.carbohydrates;
-            new_menu.proteins=m.proteins;
-            new_menu.lipid=m.lipid;
-            new_menu.vitamins=m.vitamins;
-            new_menu.minerals=m.minerals;
+            new_menu.hp=m.hp;
+            new_menu.atk=m.atk;
+            new_menu.spd=m.spd;
             new_menu.full_stomach= m.full_stomach;
             for(int i = 0; i < m.need_material.Length; ++i)
             {
@@ -74,6 +72,8 @@ public class MenuManager : MonoBehaviour
                 value=value.Replace(erase_str.ToString(), "");
                 new_menu.need_material.Add(new KeyValuePair<string,int>(material,int.Parse(value)));
             }
+            new_menu.get_skill_name = m.get_skill_name;
+            new_menu.unlodk_key = m.unlodk_key;
             menu.Add(new_menu);
             menutext[cnt].text = new_menu.name;
             menu_cookable.Add(false);
