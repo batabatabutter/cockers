@@ -126,10 +126,11 @@ public class Cook : MonoBehaviour
         {
             item_manager.SpendItem(dic[material.Key], material.Value);
         }
-        player_status.Add_hp(menu.carbohydrates);
-        player_status.Add_spd(menu.minerals);
-        player_status.Add_atk(menu.proteins);
+        player_status.Add_hp(menu.hp);
+        player_status.Add_atk(menu.atk);
+        player_status.Add_spd(menu.spd);
         player_status.Add_full_stomach(menu.full_stomach);
+        player_status.Heal(menu.calory);
         All_Item_Val_Check();
         Item_List_Create();
     }

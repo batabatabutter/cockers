@@ -87,7 +87,7 @@ public class PlayerStatus : MonoBehaviour
     public void Add_hp(int val)
     {
         status.hp += val;
-        now_hp = Mathf.CeilToInt(def_hp * (1 + (status.hp * 0.01f)));
+        //now_hp = Mathf.CeilToInt(def_hp * (1 + (status.hp * 0.01f)));
         status.hp = Mathf.Clamp(status.hp, Min_nut, Max_nut);
     }
     public void Add_atk(int val)
@@ -114,7 +114,7 @@ public class PlayerStatus : MonoBehaviour
     public void Sub_hp(int val)
     {
         status.hp -= val;
-        now_hp = Mathf.CeilToInt(def_hp * (1 + (status.hp * 0.01f)));
+        now_hp = Mathf.Clamp(now_hp, Min_nut, Mathf.CeilToInt(def_hp * (1 + (status.hp * 0.01f))));
         status.hp = Mathf.Clamp(status.hp, Min_nut, Max_nut);
     }
     public void Sub_atk(int val)
@@ -168,5 +168,12 @@ public class PlayerStatus : MonoBehaviour
         now_hp -= val;
         now_hp = Mathf.Clamp(now_hp, 0, 10000);
         now_invincible_time = invincible_time;
+    }
+
+    //åªç›ëÃóÕÇÃâÒïú
+    public void Heal(int val)
+    {
+        now_hp += val;
+        now_hp= Mathf.Clamp(now_hp, Min_nut, Mathf.CeilToInt(def_hp * (1 + (status.hp * 0.01f))));
     }
 }
