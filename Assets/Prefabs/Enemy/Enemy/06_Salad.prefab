@@ -135,7 +135,13 @@ MonoBehaviour:
   enemyID: 6
   hp: 70
   atk: 30
-  dropItem: []
+  dropItem:
+  - dropID: 0
+    dropNum: 1
+  - dropID: 1
+    dropNum: 1
+  - dropID: 6
+    dropNum: 1
   bulletSpeed: 250
   bulletPrefab: {fileID: 7341099064353893792, guid: 30b38a75d803c01499bcc3f92f4aa4fd,
     type: 3}
