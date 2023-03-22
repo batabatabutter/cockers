@@ -29,6 +29,7 @@ public class KitchenManager : MonoBehaviour
             {
                 Time.timeScale = 0f;
                 first_button_select.First_Select();
+                //cook.Menu_Visible_Check();
                 //cook.Item_List_Create();
             }
             else

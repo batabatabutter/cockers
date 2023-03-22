@@ -18,7 +18,7 @@ public class Menu
     public int full_stomach;        //–• “x
     public List<KeyValuePair<string, int>> need_material = new List<KeyValuePair<string, int>>();
     public string get_skill_name;
-    public string unlodk_key;
+    public bool is_unlock_key;
 }
 
 [System.Serializable]
@@ -33,7 +33,7 @@ public class InputMenu
     public string[] need_material;  //‘fŞ
     public string[] need_value;     //‘fŞ‚Ì•K—v”
     public string get_skill_name;
-    public string unlodk_key;
+    public bool is_unlock_key;
 }
 
 public class MenuManager : MonoBehaviour
@@ -73,7 +73,7 @@ public class MenuManager : MonoBehaviour
                 new_menu.need_material.Add(new KeyValuePair<string,int>(material,int.Parse(value)));
             }
             new_menu.get_skill_name = m.get_skill_name;
-            new_menu.unlodk_key = m.unlodk_key;
+            new_menu.is_unlock_key = m.is_unlock_key;
             menu.Add(new_menu);
             menutext[cnt].text = new_menu.name;
             menu_cookable.Add(false);
@@ -119,5 +119,24 @@ public class MenuManager : MonoBehaviour
     public bool Get_menu_cookable(int button_id)
     {
         return menu_cookable[button_id];
+    }
+
+    public void New_Menu_unlock(string menu_name)
+    {
+        for (int i = 0; i < menu.Count; ++i)
+        {
+            Debug.Log(menu[i].name);
+            if (menu[i].name == menu_name)
+            {
+                menu[i].is_unlock_key = true;
+                menutext[i].enabled = true;
+                Debug.Log(i);
+            }
+        }
+    }
+
+    public bool Get_Menu_unlock(int button_id)
+    {
+        return menu[button_id].is_unlock_key;
     }
 }

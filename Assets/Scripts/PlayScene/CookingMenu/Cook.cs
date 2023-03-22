@@ -42,6 +42,16 @@ public class Cook : MonoBehaviour
         dic.Add("キャベツ", ItemID.Cabbage);
         dic.Add("ニンジン", ItemID.Carrot);
         dic.Add("豚肉", ItemID.Pork);
+        dic.Add("鶏肉", ItemID.Chicken);
+        dic.Add("牛肉", ItemID.Beaf);
+        dic.Add("玉ねぎ", ItemID.Onion);
+        dic.Add("きゅうり", ItemID.Cucumber);
+        dic.Add("大豆", ItemID.Been);
+        dic.Add("卵", ItemID.Egg);
+        dic.Add("牛乳", ItemID.Milk);
+        dic.Add("ジャガイモ", ItemID.Potato);
+        dic.Add("リンゴ", ItemID.Apple);
+        dic.Add("イチゴ", ItemID.Strawberry);
         item_val = new List<KeyValuePair<ItemID, int>>();
         foreach (var item in dic)
         {
@@ -59,6 +69,7 @@ public class Cook : MonoBehaviour
     {
         All_Item_Val_Check();
         All_Menu_Cookable_Check();
+        Menu_Visible_Check();
         if (first_flg)
         {
             Item_List_Create();
@@ -139,6 +150,13 @@ public class Cook : MonoBehaviour
     {
         selected_obj = eventSystem.currentSelectedGameObject.gameObject;
         selected_obj.GetComponent<Button>().onClick.Invoke();
+    }
+
+    public void Menu_Visible_Check()
+    {
+        for (int i = 0; i < menu_manager.Get_Menu_Num(); ++i) {
+            menu_button[i].SetActive(menu_manager.Get_Menu_unlock(i));
+        }
     }
 
     public void Item_List_Create()
