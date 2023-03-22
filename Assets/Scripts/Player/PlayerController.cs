@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField, HeaderAttribute("Š•Ší")] private List<GameObject> weapons_list;
 
+    [SerializeField] private MenuManager menu_manag;
+
 
 
     /// <summary> ///////////////////////
@@ -337,6 +339,11 @@ public class PlayerController : MonoBehaviour
             //        now_use_weapon_no = Weapon_no.knife;
             //    }
             //}
+
+            if (keyboard.jKey.wasPressedThisFrame)
+            {
+                menu_manag.New_Menu_unlock("ƒJƒbƒgƒŠƒ“ƒS");
+            }
         }
     }
 }
