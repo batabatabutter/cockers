@@ -221,7 +221,7 @@ MonoBehaviour:
   hp: 30
   atk: 45
   dropItem:
-  - dropID: 3
+  - dropID: 5
     dropNum: 2
   bulletSpeed: 75
   bulletPrefab: {fileID: 7973961292059650412, guid: 677c2b855b313a5488cf10b8e48cc76f,
