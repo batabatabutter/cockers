@@ -11,8 +11,8 @@ public class PlayManager : MonoBehaviour
     [SerializeField, Label("プレイヤー")] GameObject p;
     [SerializeField, Label("カメラ")] GameObject c;
 
-    GameObject player;
-    GameObject cam;
+    GameObject player;  public GameObject GetPlayer() { return player; }
+    GameObject cam;     public GameObject GetPlayerCam() { return cam; }
 
     // Start is called before the first frame update
     void Awake()
