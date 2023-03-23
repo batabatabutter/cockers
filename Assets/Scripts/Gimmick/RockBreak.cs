@@ -14,6 +14,8 @@ public class RockBreak : MonoBehaviour
     //  プレイヤー格納用
     private PlayerStatus player;
 
+    GameObject PObject;
+
     //  各ステータス要求量
     [SerializeField] int atk;          //  攻撃力
 
@@ -22,13 +24,19 @@ public class RockBreak : MonoBehaviour
     void Start()
     {
         Object_Rock = GameObject.Find("Rock");
-        player = GameObject.Find("Player").GetComponent<PlayerStatus>();
+        PObject = GameObject.Find("PlayManager");
     }
 
     // Update is called once per frame
     void Update()
     {
         var current = Keyboard.current;
+
+        if (player == null)
+        {
+            player = PObject.GetComponent<PlayerStatus>();
+        }
+
 
         if (RockFlag == true && player.Get_atk() >= atk && current.cKey.wasPressedThisFrame)
         {
