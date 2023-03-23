@@ -25,6 +25,10 @@ public enum EnemyID
 public enum BossID
 {
     [InspectorName("Šâ‰–ƒ}ƒ“")] SaltRockMan,
+    [InspectorName("İ–û“a‰º")] SoySaucePrince,
+    [InspectorName("ƒ}ƒˆƒ‰[")] Mayonnaiser,
+    [InspectorName("–¡‘Xƒm‰±")] MisoBucket,
+    [InspectorName("Šp»“œƒ}ƒ“")] SugerCubesMan,
 
     [InspectorName("")] BossNum
 }
