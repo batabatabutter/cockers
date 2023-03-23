@@ -12,7 +12,7 @@ public class RockBreak : MonoBehaviour
     float time = 0.0f;
 
     //  ÉvÉåÉCÉÑÅ[äiî[óp
-    private PlayerStatus player;
+    private PlayerStatus player = null;
 
     GameObject PObject;
 
@@ -34,7 +34,9 @@ public class RockBreak : MonoBehaviour
 
         if (player == null)
         {
-            player = PObject.GetComponent<PlayerStatus>();
+            Debug.Log(PObject);
+
+            player = PObject.GetComponent<PlayManager>().GetPlayer().GetComponent<PlayerStatus>();
         }
 
 
@@ -79,7 +81,7 @@ public class RockBreak : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "Player")
+        if (other.gameObject.CompareTag("Player"))
         {
             RockFlag = true;
         }
@@ -87,7 +89,7 @@ public class RockBreak : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.name == "Player")
+        if (other.gameObject.CompareTag("Player"))
         {
             RockFlag = false;
         }
