@@ -15,17 +15,7 @@ public class RockBreak : MonoBehaviour
     private PlayerStatus player;
 
     //  各ステータス要求量
-    //[SerializeField] int carbohydrates;     //  炭水化物
-    [SerializeField] int proteins;          //  タンパク質
-    //[SerializeField] int lipid;             //  脂質
-    //[SerializeField] int vitamins;          //  ビタミン
-    //[SerializeField] int minerals;          //  無機質
-
-    //public int carbohydrates;  //炭水化物
-    //public int proteins;       //タンパク質
-    //public int lipid;          //脂質
-    //public int vitamins;       //ビタミン
-    //public int minerals;       //無機質
+    [SerializeField] int atk;          //  攻撃力
 
 
     // Start is called before the first frame update
@@ -40,12 +30,12 @@ public class RockBreak : MonoBehaviour
     {
         var current = Keyboard.current;
 
-        if (RockFlag == true && player.Get_atk() >= proteins && current.cKey.wasPressedThisFrame)
+        if (RockFlag == true && player.Get_atk() >= atk && current.cKey.wasPressedThisFrame)
         {
             text.SetActive(true);
             Destroy();
         }
-        else if (RockFlag == true && player.Get_atk() < proteins && current.cKey.wasPressedThisFrame)
+        else if (RockFlag == true && player.Get_atk() < atk && current.cKey.wasPressedThisFrame)
         {
             text2.SetActive(true);
             DontDestroy();
