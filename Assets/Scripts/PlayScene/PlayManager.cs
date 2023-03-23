@@ -15,7 +15,7 @@ public class PlayManager : MonoBehaviour
     GameObject cam;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         player = Instantiate(p);
         cam = Instantiate(c);

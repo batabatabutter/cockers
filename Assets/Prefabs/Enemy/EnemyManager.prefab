@@ -59,6 +59,10 @@ MonoBehaviour:
   - {fileID: 2774186010319465962, guid: aa51153454df4884ea39e5b9f8b0c6b8, type: 3}
   Bosses:
   - {fileID: 6887144634379589967, guid: 3a033af8cf16b544c9c38e3ebfe08df2, type: 3}
+  - {fileID: 5387662589748905208, guid: 7b2cf011a721e974b9739f3cf1d9e542, type: 3}
+  - {fileID: 4641191116173148443, guid: 76fe5d744e6c5ac4784d6909883bc590, type: 3}
+  - {fileID: 6887144634379589967, guid: 3a033af8cf16b544c9c38e3ebfe08df2, type: 3}
+  - {fileID: 6887144634379589967, guid: 3a033af8cf16b544c9c38e3ebfe08df2, type: 3}
   distance: 30
   invincibilityTime: 0.2
   gravity: 3

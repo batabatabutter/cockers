@@ -28,8 +28,6 @@ public class StageData
 public class StageManager : MonoBehaviour
 {
     [SerializeField, Label("デバッグ用ステージ番号")] StageID stageID;
-    [SerializeField, Label("ステージ")] List<GameObject> stageObjects;
-
     [SerializeField, Label("ステージ")] List<StageData> stages;
 
     private StageID nowStageID;
@@ -44,8 +42,8 @@ public class StageManager : MonoBehaviour
     public void CreateStage(StageID stageID)
     {
         if (nowField != null) Destroy(nowField);
-        if (stageObjects[(int)stageID] == null) Debug.Log("Error:" + stageID + "対応のプレハブがありません");
-        nowField = Instantiate(stageObjects[(int)stageID], Vector3.zero, Quaternion.identity);
+        if (stages[(int)stageID] == null) Debug.Log("Error:" + stageID + "対応のプレハブがありません");
+        nowField = Instantiate(stages[(int)stageID].GetField(0), Vector3.zero, Quaternion.identity);
     }
 
     //  フィールド生成
