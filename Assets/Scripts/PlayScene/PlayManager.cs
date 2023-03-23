@@ -11,6 +11,8 @@ public class PlayManager : MonoBehaviour
     [SerializeField, Label("プレイヤー")] GameObject p;
     [SerializeField, Label("カメラ")] GameObject c;
 
+    [SerializeField, Label("デバッグ用ステージ番号")] StageID stageID;
+
     GameObject player;  public GameObject GetPlayer() { return player; }
     GameObject cam;     public GameObject GetPlayerCam() { return cam; }
 
@@ -19,6 +21,7 @@ public class PlayManager : MonoBehaviour
     {
         player = Instantiate(p);
         cam = Instantiate(c);
+        stageManager.SetStageID(stageID);
         ChangeField(0);
     }
 
