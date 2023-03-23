@@ -260,7 +260,9 @@ MonoBehaviour:
   enemyID: 9
   hp: 65
   atk: 40
-  dropItem: []
+  dropItem:
+  - dropID: 12
+    dropNum: 1
   moveSpeed: 0.001
   rotTime: 3
   coolTime: 3

@@ -45,7 +45,7 @@ public class Boss : MonoBehaviour
     {
         enemyManager = GameObject.FindGameObjectWithTag("EnemyManager").GetComponent<EnemyManager>();
         itemManager = GameObject.FindGameObjectWithTag("ItemManager").GetComponent<ItemManager>();
-        player = enemyManager.GetPlayer();
+        player = GameObject.FindGameObjectWithTag("Player");
         nowAttack = false;
         rb = gameObject.GetComponent<Rigidbody>();
         //  ステータス格納

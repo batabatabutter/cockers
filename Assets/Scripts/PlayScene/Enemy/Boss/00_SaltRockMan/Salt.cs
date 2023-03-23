@@ -13,10 +13,15 @@ public class Salt : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<PlayerStatus>().Damage(dmg);
+
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
+        else if (!collision.gameObject.CompareTag("Boss"))
+        {
+            Destroy(gameObject);
+        }
     }
 }

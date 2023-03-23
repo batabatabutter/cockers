@@ -13,6 +13,8 @@ TagManager:
   - EnemyManager
   - ItemManager
   - Bullet
+  - StageManager
+  - PlayManager
   layers:
   - Default
   - TransparentFX

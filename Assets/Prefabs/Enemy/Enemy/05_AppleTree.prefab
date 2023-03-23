@@ -290,9 +290,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyID: 5
-  hp: 0
+  hp: 60
   atk: 0
-  dropItem: []
+  dropItem:
+  - dropID: 11
+    dropNum: 2
 --- !u!1 &1273925608852641199
 GameObject:
   m_ObjectHideFlags: 0

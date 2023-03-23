@@ -132,7 +132,9 @@ MonoBehaviour:
   enemyID: 4
   hp: 20
   atk: 35
-  dropItem: []
+  dropItem:
+  - dropID: 6
+    dropNum: 1
 --- !u!136 &3676890705988641414
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -814,17 +814,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossID: 0
-  hp: 120
-  atk: 30
+  hp: 200
+  atk: 28
   dropItem: 
   dropItemNum: 
   coolTime: 3
   distance: 10
   rushTime: 2
   rushSpeed: 7
+  throwSaltTime: 0
+  throwSaltForwordTime: 0
+  throwSaltDmgRate: 0
+  throwSaltSpeed: 0
+  throwSaltObject: {fileID: 0}
   armTime: 0.5
   armForwordTime: 1
   arm: {fileID: 200716112478765866}
+  hand: {fileID: 6817918023478584216}
 --- !u!65 &7851003033840174553
 BoxCollider:
   m_ObjectHideFlags: 0
