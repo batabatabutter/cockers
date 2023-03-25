@@ -15,6 +15,7 @@ TagManager:
   - Bullet
   - StageManager
   - PlayManager
+  - Floor
   layers:
   - Default
   - TransparentFX
