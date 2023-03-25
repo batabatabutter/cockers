@@ -17,7 +17,7 @@ public class RockBreak : MonoBehaviour
     GameObject PObject;
 
     //  各ステータス要求量
-    [SerializeField] int atk;          //  攻撃力
+    int atk;          //  攻撃力
 
 
     // Start is called before the first frame update
@@ -34,8 +34,6 @@ public class RockBreak : MonoBehaviour
 
         if (player == null)
         {
-            Debug.Log(PObject);
-
             player = PObject.GetComponent<PlayManager>().GetPlayer().GetComponent<PlayerStatus>();
         }
 
@@ -93,7 +91,6 @@ public class RockBreak : MonoBehaviour
         {
             RockFlag = false;
         }
-
     }
 
 
