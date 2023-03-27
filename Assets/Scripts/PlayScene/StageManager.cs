@@ -11,8 +11,8 @@ public enum StageID
     [InspectorName("ステージ5初期")] Stage5,
     [InspectorName("ステージ6初期")] Stage6,
 
-    [InspectorName("デバッグ用ステージ")] Debug,
-    [InspectorName("")] StageNum
+    [InspectorName("")] StageNum,
+    [InspectorName("デバッグ用ステージ")] Debug
 }
 
 [System.Serializable]

@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class MisoBulletCreateFloor : MonoBehaviour
 {
-    private float speed;
     [SerializeField, Label("落下速度")] float dropSpeed;
-    [SerializeField, Label("ダメージ")] int dmg;
     [SerializeField, Label("オブジェクト")] GameObject obj;
 
+    private Vector3 targetVec;
+    private int dmg;
     private Vector3 vec;
 
     private float destroyTimeCount;
-    private const float DESTROY_TIME = 5.0f;
+    private const float DESTROY_TIME = 10.0f;
 
     private void Start()
     {
@@ -21,11 +21,11 @@ public class MisoBulletCreateFloor : MonoBehaviour
 
     void Update()
     {
-        //  移動
-        transform.position += dropSpeed * -transform.right * Time.deltaTime;
-
         //  落下
-        transform.position += dropSpeed * Vector3.down * Time.deltaTime;
+        vec += dropSpeed * Vector3.down * Time.deltaTime;
+
+        //  移動
+        transform.position += vec * Time.deltaTime;
 
         //  消滅時間
         destroyTimeCount -= Time.deltaTime;
@@ -48,10 +48,14 @@ public class MisoBulletCreateFloor : MonoBehaviour
     }
 
     //  ステータス設定
-    public void SetBulletStatas(int dmg, float speed, Vector3 targetDis)
+    public void SetBulletStatas(int dmg, float speed, float upSpeed, Vector3 targetPos)
     {
         this.dmg = dmg;
-        this.speed = speed;
-        this.vec = targetDis;
+        if (targetPos.x > transform.position.x) targetVec = Vector3.right;
+        else targetVec = Vector3.left;
+
+        //float xSec = Vector3.Distance(new Vector3(targetPos.x, 0.0f, 0.0f), new Vector3(transform.position.x, 0.0f, 0.0f)) / speed;
+        vec = speed * targetVec;
+        vec += upSpeed * Vector3.up;
     }
 }

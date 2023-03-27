@@ -70,15 +70,23 @@ public class MisonoOke : Boss
     private float atkRate;
     private float spdRate;
 
+    private int bulletCount = 0;
+    private float bulletRate = 0.0f;
+
     //  íe1
     [SerializeField, Header("ñ°ëXíe"), Label("ÉIÉuÉWÉFÉNÉg")] GameObject bullet1Obj;
     [SerializeField, Label("É_ÉÅÅ[ÉW")] int bullet1Dmg;
     [SerializeField, Label("ë¨ìx")] float bullet1Speed;
+    [SerializeField, Label("î≠éÀå¬êî")] int bullet1Num;
+    [SerializeField, Label("î≠éÀë¨ìx")] float bullet1Rate;
 
     //  íe2
     [SerializeField, Header("ñ°ëXíe(ñ°ëXè∞)"), Label("ÉIÉuÉWÉFÉNÉg")] GameObject bullet2Obj;
     [SerializeField, Label("É_ÉÅÅ[ÉW")] int bullet2Dmg;
     [SerializeField, Label("ë¨ìx")] float bullet2Speed;
+    [SerializeField, Label("ìäéÀë¨ìx")] float bullet2UpSpeed;
+    [SerializeField, Label("î≠éÀå¬êî")] int bullet2Num;
+    [SerializeField, Label("î≠éÀë¨ìx")] float bullet2Rate;
 
     //  èâä˙èàóù
     public override void BossStart()
@@ -116,7 +124,7 @@ public class MisonoOke : Boss
         }
 
         //  ÉNÅ[ÉãÉ^ÉCÉÄÇ™ë∂ç›ÇµÇƒÇ¢ÇÈ
-        if (coolTimer > 0f)
+        if (coolTimer > 0f && attackType == AttackType.OverID)
         {
             //  ÉNÅ[Éãéûä‘å∏ÇÁÇ∑
             coolTimer -= Time.deltaTime * spdRate;
@@ -167,7 +175,15 @@ public class MisonoOke : Boss
     {
         Debug.Log(misoStatas);
         //  ñ°ëXêÿÇËë÷Ç¶
-        misoStatas = (MisoStatas)Random.Range(0, (int)MisoStatas.MisoNum);
+        while (true)
+        {
+            MisoStatas afterMiso = (MisoStatas)Random.Range(0, (int)MisoStatas.MisoNum);
+            if (misoStatas != afterMiso)
+            {
+                misoStatas = afterMiso;
+                break;
+            }
+        }
 
         //  çUåÇèIóπ
         return true;
@@ -175,29 +191,45 @@ public class MisonoOke : Boss
     //  çUåÇÇQ(ñ°ëXíe1î≠éÀ)
     private bool Attack02()
     {
-        Debug.Log(misoStatas + "2");
-        ////  çUåÇñ¢èIóπ
-        //return false;
+        bulletRate -= Time.deltaTime;
+        bulletRate = Mathf.Clamp(bulletRate, 0.0f, float.MaxValue);
 
         //  íeê∂ê¨
-        GameObject obj = Instantiate(bullet1Obj, transform.position, Quaternion.identity);
-        obj.GetComponent<MisoBullet>().SetBulletStatas((int)(bullet1Dmg * atkRate), bullet1Speed, -Vector3.Normalize(obj.transform.position - player.transform.position));
+        if (bulletRate <= 0.0f)
+        {
+            GameObject obj = Instantiate(bullet1Obj, transform.position, Quaternion.identity);
+            obj.GetComponent<MisoBullet>().SetBulletStatas((int)(bullet1Dmg * atkRate), bullet1Speed, -Vector3.Normalize(obj.transform.position - player.transform.position));
+            bulletCount++;
+            bulletRate = bullet1Rate;
+        }
 
+        //  çUåÇñ¢èIóπ
+        if (bulletCount < bullet1Num) return false;
         //  çUåÇèIóπ
+        bulletCount = 0;
+        bulletRate = 0.0f;
         return true;
     }
     //  çUåÇÇR(ñ°ëXíe2î≠éÀ)
     private bool Attack03()
     {
-        Debug.Log(misoStatas + "3");
-        ////  çUåÇñ¢èIóπ
-        //return false;
+        bulletRate -= Time.deltaTime;
+        bulletRate = Mathf.Clamp(bulletRate, 0.0f, float.MaxValue);
 
         //  íeê∂ê¨
-        GameObject obj = Instantiate(bullet2Obj, transform.position, Quaternion.identity);
-        obj.GetComponent<MisoBulletCreateFloor>().SetBulletStatas((int)(bullet2Dmg * atkRate), bullet2Speed, (obj.transform.position - player.transform.position));
+        if (bulletRate <= 0.0f)
+        {
+            GameObject obj = Instantiate(bullet2Obj, transform.position, Quaternion.identity);
+            obj.GetComponent<MisoBulletCreateFloor>().SetBulletStatas((int)(bullet2Dmg * atkRate), bullet2Speed, bullet2UpSpeed * (bulletCount + 1) / 3, player.transform.position);
+            bulletCount++;
+            bulletRate = bullet2Rate;
+        }
 
+        //  çUåÇñ¢èIóπ
+        if (bulletCount < bullet2Num) return false;
         //  çUåÇèIóπ
+        bulletCount = 0;
+        bulletRate = 0.0f;
         return true;
     }
     //  çUåÇèIóπèàóù
