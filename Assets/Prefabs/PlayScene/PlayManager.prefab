@@ -52,7 +52,7 @@ MonoBehaviour:
   enemyManager: {fileID: 4249233265730434469}
   p: {fileID: 4044031700620459803, guid: 7e7b2a70212a60a459832e66b380b746, type: 3}
   c: {fileID: 3371827554363898739, guid: e2270dd9d97251a45a6ba554ff4eacd7, type: 3}
-  stageID: 6
+  stageID: 7
 --- !u!1001 &2806209454373827292
 PrefabInstance:
   m_ObjectHideFlags: 0

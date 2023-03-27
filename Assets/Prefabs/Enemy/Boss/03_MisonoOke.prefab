@@ -130,10 +130,15 @@ MonoBehaviour:
     type: 3}
   bullet1Dmg: 40
   bullet1Speed: 2
+  bullet1Num: 3
+  bullet1Rate: 0.35
   bullet2Obj: {fileID: 4232527832051154408, guid: c580f713a6db7624e8875584391a756a,
     type: 3}
   bullet2Dmg: 30
   bullet2Speed: 2
+  bullet2UpSpeed: 5
+  bullet2Num: 3
+  bullet2Rate: 0.5
 --- !u!54 &2165244003030766978
 Rigidbody:
   m_ObjectHideFlags: 0

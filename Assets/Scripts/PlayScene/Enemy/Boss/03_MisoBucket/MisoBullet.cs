@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class MisoBullet : MonoBehaviour
 {
-    [SerializeField, Label("速度")] float speed;
-    [SerializeField, Label("ダメージ")] int dmg;
+    private float speed;
+    private int dmg;
 
     private Vector3 targetVec;
 
     private float destroyTimeCount;
-    private const float DESTROY_TIME = 5.0f;
+    private const float DESTROY_TIME = 10.0f;
 
     private void Start()
     {
