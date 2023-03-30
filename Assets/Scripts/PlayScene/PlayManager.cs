@@ -23,9 +23,9 @@ public class PlayManager : MonoBehaviour
         player = Instantiate(p);
         cam = Instantiate(c);
         StageID s = StageSelectManager.stageID;
-        if (debug) s = stageID;
+        if (debug) s = this.stageID;
 
-        stageManager.SetStageID(stageID);
+        stageManager.SetStageID(s);
         ChangeField(0);
     }
 

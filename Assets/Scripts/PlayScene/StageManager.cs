@@ -43,6 +43,7 @@ public class StageManager : MonoBehaviour
     public void CreateField(int fieldID)
     {
         if (nowField != null) Destroy(nowField);
+        if (nowStageID == StageID.Debug) nowStageID--;
         if (stages[(int)nowStageID].GetField(fieldID) == null)
         {
             Debug.Log("Error:" + nowStageID + fieldID + "‘Î‰ž‚ÌƒvƒŒƒnƒu‚ª‚ ‚è‚Ü‚¹‚ñ");
