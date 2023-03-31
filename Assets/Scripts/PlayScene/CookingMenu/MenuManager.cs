@@ -125,12 +125,10 @@ public class MenuManager : MonoBehaviour
     {
         for (int i = 0; i < menu.Count; ++i)
         {
-            Debug.Log(menu[i].name);
             if (menu[i].name == menu_name)
             {
                 menu[i].is_unlock_key = true;
                 menutext[i].enabled = true;
-                Debug.Log(i);
             }
         }
     }
