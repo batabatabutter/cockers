@@ -37,7 +37,7 @@ public class ItemManager : MonoBehaviour
     [SerializeField, Label("揺れ幅")] float modelRange;
 
     //  所持アイテム数
-    [SerializeField, ReadOnly, Label("アイテム数")] List<int> itemNum;
+    [SerializeField, /*ReadOnly,*/ Label("アイテム数")] List<int> itemNum;
 
     //  配列か仮格納用
     GameObject[] HolderArray;

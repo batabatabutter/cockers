@@ -6,17 +6,15 @@ using UnityEngine.UI;
 
 public class FirstButtonSelect : MonoBehaviour
 {
-    Button button;
+    [SerializeField] Button button;
 
     void Start()
     {
-        button = GameObject.Find("Menu1").GetComponent<Button>();
         //ボタンが選択された状態になる
         button.Select();
     }
 
     public void First_Select() {
-        button = GameObject.Find("Menu1").GetComponent<Button>();
         //ボタンが選択された状態になる
         button.Select();
     }

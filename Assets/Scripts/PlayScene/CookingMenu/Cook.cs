@@ -11,11 +11,15 @@ using System.Linq;
 public class Cook : MonoBehaviour
 {
     [SerializeField] public EventSystem eventSystem;
-    [SerializeField] public ItemManager item_manager;
+    [SerializeField] public GameObject item_manager_obj;
     [SerializeField] public MenuManager menu_manager;
     [SerializeField] public GameObject content;
     [SerializeField] public PlayerStatus player_status;
     [SerializeField] public GameObject item_text_def;
+
+    public ItemManager item_manager;
+    private CookManager cook_manager;
+
     public Text cooking_text;
     private int now_select;
     private GameObject selected_obj;
@@ -29,12 +33,18 @@ public class Cook : MonoBehaviour
 
     private const int Full = 100;
 
+    //確認画面用
+    [SerializeField, HeaderAttribute("確認画面")] private GameObject check_panel;
+    [SerializeField] private GameObject no_button;
+    private bool eat_check;
+
 
     //[SerializeField,ReadOnly, HeaderAttribute("今持ってる素材の種類と数を")]
     // Start is called before the first frame update
     void Start()
     {
-        item_manager = GameObject.Find("ItemManager").GetComponent<ItemManager>();
+        item_manager = item_manager_obj.GetComponent<ItemManager>();
+        cook_manager = item_manager_obj.GetComponent<CookManager>();
         menu_manager = transform.GetComponent<MenuManager>();
         Add_Menu_button();
         now_select = 0;
@@ -62,6 +72,8 @@ public class Cook : MonoBehaviour
         first_flg = true;
         item_text = new List<GameObject>();
         cooking_text = GameObject.Find("MenuText").GetComponent<Text>();
+
+        Transform children = check_panel.GetComponentInChildren<Transform>();
     }
 
     // Update is called once per frame
@@ -92,13 +104,13 @@ public class Cook : MonoBehaviour
     //どの料理のボタンで止まったかを調べる
     private void Check_Now_SelectButton()
     {
+        if (eat_check) return;
         selected_obj = eventSystem.currentSelectedGameObject.gameObject;
         now_select = 0;
         foreach (GameObject obj in menu_button)
         {
             if (selected_obj.name == obj.name) break;
             now_select++;
-
         }
     }
 
@@ -132,18 +144,13 @@ public class Cook : MonoBehaviour
     {
         if (!menu_manager.Get_menu_cookable(now_select)) return;
         Menu menu = menu_manager.Get_Menu(now_select);
-        if (player_status.Get_full_stomach() + menu.full_stomach > Full) return;
         foreach (var material in menu.need_material)
         {
             item_manager.SpendItem(dic[material.Key], material.Value);
         }
-        player_status.Add_hp(menu.hp);
-        player_status.Add_atk(menu.atk);
-        player_status.Add_spd(menu.spd);
-        player_status.Add_full_stomach(menu.full_stomach);
-        player_status.Heal(menu.calory);
         All_Item_Val_Check();
         Item_List_Create();
+        Check_Visible();
     }
 
     private void OnButtonPress()
@@ -182,5 +189,43 @@ public class Cook : MonoBehaviour
             obj.GetComponent<Text>().text = new_txt.text;
             item_text.Add(obj);
         }
+    }
+
+    //食べるかどうかの確認画面を出す
+    public void Check_Visible()
+    {
+        eat_check = true;
+        check_panel.SetActive(true);
+        no_button.GetComponent<Button>().Select();
+    }
+    public void Check_Unvisible()
+    {
+        eat_check = false;
+        check_panel.SetActive(false);
+        menu_button[0].GetComponent<Button>().Select();
+    }
+
+    //Yesボタンを押したとき(Yesのとき)
+    public void Eat()
+    {
+        Menu menu = menu_manager.Get_Menu(now_select);
+        if (player_status.Get_full_stomach() + menu.full_stomach > Full)
+        {
+            Check_Unvisible();
+            return;
+        }
+        player_status.Add_hp(menu.hp);
+        player_status.Add_atk(menu.atk);
+        player_status.Add_spd(menu.spd);
+        player_status.Add_full_stomach(menu.full_stomach);
+        player_status.Heal(menu.calory);
+        Check_Unvisible();
+    }
+
+    ///Noボタンを押したとき(Noのとき)
+    public void Cook_Stack()
+    {
+        cook_manager.AddCook((CookID)now_select);
+        Check_Unvisible();
     }
 }
