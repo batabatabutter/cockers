@@ -190,6 +190,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySpawn (0)
       objectReference: {fileID: 0}
+    - target: {fileID: 7615681711008721213, guid: 5ff198a545928f64087e38ac10e5ed4b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8781126838018793106, guid: 5ff198a545928f64087e38ac10e5ed4b,
         type: 3}
       propertyPath: spawnStatas.Array.size
@@ -333,6 +338,11 @@ PrefabInstance:
         type: 3}
       propertyPath: debug
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 152736825178440902, guid: a2b467666ff86f146be62148819227a4,
+        type: 3}
+      propertyPath: stageID
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6858051896635849718, guid: a2b467666ff86f146be62148819227a4,
         type: 3}
@@ -478,6 +488,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BossSpawn (0)
       objectReference: {fileID: 0}
+    - target: {fileID: 5891173687760258537, guid: 8d0cc98976121af4cbbef949d8e41c32,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d0cc98976121af4cbbef949d8e41c32, type: 3}
 --- !u!1 &1774357444
@@ -500,7 +515,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &1774357446
 MeshRenderer:
   m_ObjectHideFlags: 0
