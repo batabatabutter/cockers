@@ -107,8 +107,8 @@ MonoBehaviour:
     dropNum: 1
   shotSpeed: 10
   coolTime: 3
-  flyTime: 1
-  distance: 10
+  flyTime: 0.7
+  distance: 6
 --- !u!54 &-4732964138819660442
 Rigidbody:
   m_ObjectHideFlags: 0

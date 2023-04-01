@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d36a8583c5007fa428e15c6926b2aff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageID: 6
   stages:
   - loby: {fileID: 3692715060274595641, guid: 22a82475add1a9a4bab5f4c6139328a4, type: 3}
     Fields:
@@ -52,36 +51,36 @@ MonoBehaviour:
     - {fileID: 7355102658739345359, guid: 5219955823c78d348b91d873d1234830, type: 3}
     - {fileID: 7355102658739345359, guid: f68e46640f44c1d4a9a30a75eb5f8651, type: 3}
     - {fileID: 7355102658739345359, guid: 477abe9257f675c4ead01e22f017096a, type: 3}
-  - loby: {fileID: 3692715060274595641, guid: 22a82475add1a9a4bab5f4c6139328a4, type: 3}
+  - loby: {fileID: 3692715060274595641, guid: 7cfa8b0e0aaa3744bbb32b2709b375ef, type: 3}
     Fields:
-    - {fileID: 3692715060274595641, guid: 22a82475add1a9a4bab5f4c6139328a4, type: 3}
-    - {fileID: 7355102658739345359, guid: 5219955823c78d348b91d873d1234830, type: 3}
-    - {fileID: 7355102658739345359, guid: f68e46640f44c1d4a9a30a75eb5f8651, type: 3}
-    - {fileID: 7355102658739345359, guid: 477abe9257f675c4ead01e22f017096a, type: 3}
-  - loby: {fileID: 3692715060274595641, guid: 22a82475add1a9a4bab5f4c6139328a4, type: 3}
+    - {fileID: 3692715060274595641, guid: 7cfa8b0e0aaa3744bbb32b2709b375ef, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - loby: {fileID: 3692715060274595641, guid: 9d17548011963a14bbd616e0702a00cd, type: 3}
     Fields:
-    - {fileID: 3692715060274595641, guid: 22a82475add1a9a4bab5f4c6139328a4, type: 3}
-    - {fileID: 7355102658739345359, guid: 5219955823c78d348b91d873d1234830, type: 3}
-    - {fileID: 7355102658739345359, guid: f68e46640f44c1d4a9a30a75eb5f8651, type: 3}
-    - {fileID: 7355102658739345359, guid: 477abe9257f675c4ead01e22f017096a, type: 3}
-  - loby: {fileID: 3692715060274595641, guid: 22a82475add1a9a4bab5f4c6139328a4, type: 3}
+    - {fileID: 3692715060274595641, guid: 9d17548011963a14bbd616e0702a00cd, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - loby: {fileID: 3692715060274595641, guid: e1d512925af01124e9b5bf3febbbd489, type: 3}
     Fields:
-    - {fileID: 3692715060274595641, guid: 22a82475add1a9a4bab5f4c6139328a4, type: 3}
-    - {fileID: 7355102658739345359, guid: 5219955823c78d348b91d873d1234830, type: 3}
-    - {fileID: 7355102658739345359, guid: f68e46640f44c1d4a9a30a75eb5f8651, type: 3}
-    - {fileID: 7355102658739345359, guid: 477abe9257f675c4ead01e22f017096a, type: 3}
-  - loby: {fileID: 3692715060274595641, guid: 22a82475add1a9a4bab5f4c6139328a4, type: 3}
+    - {fileID: 3692715060274595641, guid: e1d512925af01124e9b5bf3febbbd489, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - loby: {fileID: 3692715060274595641, guid: a82db32636016f141b3f741d47e3b00d, type: 3}
     Fields:
-    - {fileID: 3692715060274595641, guid: 22a82475add1a9a4bab5f4c6139328a4, type: 3}
-    - {fileID: 7355102658739345359, guid: 5219955823c78d348b91d873d1234830, type: 3}
-    - {fileID: 7355102658739345359, guid: f68e46640f44c1d4a9a30a75eb5f8651, type: 3}
-    - {fileID: 7355102658739345359, guid: 477abe9257f675c4ead01e22f017096a, type: 3}
-  - loby: {fileID: 3692715060274595641, guid: 22a82475add1a9a4bab5f4c6139328a4, type: 3}
+    - {fileID: 3692715060274595641, guid: a82db32636016f141b3f741d47e3b00d, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - loby: {fileID: 3692715060274595641, guid: a8c0d222d720c8247a057791b1a1333a, type: 3}
     Fields:
-    - {fileID: 3692715060274595641, guid: 22a82475add1a9a4bab5f4c6139328a4, type: 3}
-    - {fileID: 7355102658739345359, guid: 5219955823c78d348b91d873d1234830, type: 3}
-    - {fileID: 7355102658739345359, guid: f68e46640f44c1d4a9a30a75eb5f8651, type: 3}
-    - {fileID: 7355102658739345359, guid: 477abe9257f675c4ead01e22f017096a, type: 3}
+    - {fileID: 3692715060274595641, guid: a8c0d222d720c8247a057791b1a1333a, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
   - loby: {fileID: 3110408209117837028, guid: 050b7edc9bbe5d04992e1a5dff8939b4, type: 3}
     Fields:
     - {fileID: 3110408209117837028, guid: 050b7edc9bbe5d04992e1a5dff8939b4, type: 3}
