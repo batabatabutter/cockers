@@ -137,7 +137,9 @@ public class MisonoOke : Boss
             attackType == AttackType.OverID)
         {
             //  プレイヤーに向かって移動する
-
+            Vector3 pToB = player.transform.position - gameObject.transform.position;
+            //  向き
+            rb.velocity = pToB.normalized;
             //  処理終了
             return;
         }
@@ -148,6 +150,7 @@ public class MisonoOke : Boss
             attackType = (AttackType)Random.Range(0, (int)AttackType.OverID);
             //  攻撃手順を１へ
             attack = Attack.Move01;
+            rb.velocity = Vector3.zero;
             //  処理終了
             return;
         }

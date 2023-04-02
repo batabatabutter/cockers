@@ -7,6 +7,10 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private Rigidbody rb;
+
+    //  ’e‚ÌŽõ–½
+    [SerializeField] private float bulletTime = 3.0f;
+    private float timer = 0f;
     //  ”­ŽË‚µ‚½“G‚ÌUŒ‚—Í
     private int attack;
 
@@ -21,6 +25,15 @@ public class Bullet : MonoBehaviour
         rb.AddTorque(dir);
 
         attack = enemyAttack;
+
+        timer = bulletTime;
+    }
+
+    private void Update()
+    {
+        //  ŽžŠÔ‚ðÁ”ï
+        if (timer > 0f) timer -= Time.deltaTime;
+        else Destroy(gameObject);
     }
 
     private void OnCollisionEnter(Collision collision)
