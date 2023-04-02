@@ -78,6 +78,8 @@ public class Enemy : MonoBehaviour
             Death();
         }
 
+        Vector3 d = player.transform.position - gameObject.transform.position;
+        gameObject.transform.forward = new Vector3(d.x, gameObject.transform.forward.y, gameObject.transform.forward.z);
         //  ñ≥ìGéûä‘çXêV
         invincibilityTime -= Time.deltaTime;
         if (invincibilityTime < 0.0f) invincibilityTime = 0.0f;

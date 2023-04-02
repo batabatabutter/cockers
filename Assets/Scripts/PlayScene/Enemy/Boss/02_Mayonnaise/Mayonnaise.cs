@@ -73,6 +73,8 @@ public class Mayonnaise : Boss
     private bool size01;
     private bool size02;
 
+    [SerializeField] private float speed;
+
     //  初期処理
     public override void BossStart()
     {
@@ -116,7 +118,9 @@ public class Mayonnaise : Boss
             attackType == AttackType.OverID)
         {
             //  プレイヤーに向かって移動する
-
+            Vector3 pToB = player.transform.position - gameObject.transform.position;
+            //  向き
+            rb.velocity = pToB.normalized * speed;
             //  処理終了
             return;
         }
@@ -127,6 +131,7 @@ public class Mayonnaise : Boss
             attackType = (AttackType)Random.Range(0, (int)AttackType.OverID);
             //  攻撃手順を１へ
             attack = Attack.Move01;
+            rb.velocity = Vector3.zero;
             //  処理終了
             return;
         }
