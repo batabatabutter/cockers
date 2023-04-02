@@ -33,9 +33,9 @@ public class Cannon : MonoBehaviour
         coolTimer = coolTime;
 
         //  ¶¬ˆÊ’u‚ğZo
-        Vector3 createPos = head.transform.position + gameObject.transform.forward;
+        Vector3 createPos = head.transform.position - gameObject.transform.right;
         //  ”­Ë•ûŒü‚ğZo
-        Vector3 bulletDir = gameObject.transform.forward * bulletSpeed;
+        Vector3 bulletDir = -gameObject.transform.right * bulletSpeed;
 
         //  ’e‚ğ¶¬
         GameObject bullet = Instantiate(missilePrefab, createPos, Quaternion.Euler(new Vector3(0.0f, 0.0f, 90.0f)));
