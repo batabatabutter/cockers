@@ -331,4 +331,9 @@ public class PauseManager : MonoBehaviour
         Cook_List_Visible();
         Check_Unvisible();
     }
+
+    public bool Get_is_pause_active()
+    {
+        return pause_menu.activeSelf;
+    }
 }

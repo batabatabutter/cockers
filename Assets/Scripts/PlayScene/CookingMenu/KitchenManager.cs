@@ -11,10 +11,13 @@ public class KitchenManager : MonoBehaviour
     [SerializeField] private FirstButtonSelect first_button_select;
     [SerializeField] private Cook cook;
 
+    private PauseManager pause_manager;
+
     // Start is called before the first frame update
     void Start()
     {
         IsPlayerIn = false;
+        pause_manager = GameObject.Find("PauseManager").GetComponent<PauseManager>();
         //KitchenPanel = GameObject.Find("CookingCamvas");
     }
 
@@ -22,6 +25,7 @@ public class KitchenManager : MonoBehaviour
     void Update()
     {
         var keyboard = Keyboard.current;
+        if (pause_manager.Get_is_pause_active()) return;
         if(IsPlayerIn && keyboard.cKey.wasPressedThisFrame)
         {
             KitchenPanel.SetActive(!KitchenPanel.activeSelf);
