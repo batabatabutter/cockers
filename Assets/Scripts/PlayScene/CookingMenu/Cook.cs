@@ -12,15 +12,15 @@ public class Cook : MonoBehaviour
 {
     [SerializeField] public EventSystem eventSystem;
     [SerializeField] public GameObject item_manager_obj;
-    [SerializeField] public MenuManager menu_manager;
+    private MenuManager menu_manager;
     [SerializeField] public GameObject content;
-    [SerializeField] public PlayerStatus player_status;
+    private PlayerStatus player_status;
     [SerializeField] public GameObject item_text_def;
 
     public ItemManager item_manager;
     private CookManager cook_manager;
 
-    public Text cooking_text;
+    private Text cooking_text;
     private int now_select;
     private GameObject selected_obj;
     [SerializeField] private List<GameObject> menu_button;
