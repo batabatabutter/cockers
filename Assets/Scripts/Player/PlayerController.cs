@@ -203,6 +203,8 @@ public class PlayerController : MonoBehaviour
     //キーボード操作
     private void Key_Controll() {
         var keyboard = Keyboard.current;
+
+        if (Time.timeScale == 0f) return;
         
         //もしダッシュしてたら、操作を切る
         if (dash.Get_is_dash()) return;

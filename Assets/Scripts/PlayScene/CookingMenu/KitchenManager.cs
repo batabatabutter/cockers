@@ -29,7 +29,7 @@ public class KitchenManager : MonoBehaviour
     {
         var keyboard = Keyboard.current;
         if (pause_manager.Get_is_pause_active()) return;
-        if(IsPlayerIn && keyboard.cKey.wasPressedThisFrame)
+        if (IsPlayerIn && keyboard.cKey.wasPressedThisFrame)
         {
             KitchenPanel.SetActive(!KitchenPanel.activeSelf);
             if (KitchenPanel.activeSelf)
@@ -43,6 +43,10 @@ public class KitchenManager : MonoBehaviour
             {
                 Time.timeScale = 1f;
             }
+        }
+        if (KitchenPanel.activeSelf)
+        {
+            Time.timeScale = 0f;
         }
     }
 
