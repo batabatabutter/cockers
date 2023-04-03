@@ -56,6 +56,11 @@ public class PauseManager : MonoBehaviour
     private CookID eat_set_id;
     private const int Full = 100;
 
+    private void Start()
+    {
+        PauseReset();
+    }
+
     // Start is called before the first frame update
     public void PauseReset()
     {
