@@ -69,8 +69,8 @@ MonoBehaviour:
   m_Texture: {fileID: 0}
   fill: 1
   thickness: 5
-  sides: 5
-  rotation: 126
+  sides: 3
+  rotation: 150
   VerticesDistances:
   - 0
   - 0

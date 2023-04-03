@@ -6,7 +6,9 @@ public class PlayManager : MonoBehaviour
 {
     [SerializeField, Label("ステージ管理")] StageManager stageManager;
     [SerializeField, Label("アイテム管理")] ItemManager itemManager;
+    [SerializeField, Label("料理管理")] CookManager cookManager;
     [SerializeField, Label("敵管理")] EnemyManager enemyManager;
+    [SerializeField, Label("ポーズ管理")] PauseManager pauseManager;
 
     [SerializeField, Label("プレイヤー")] GameObject p;
     [SerializeField, Label("カメラ")] GameObject c;
@@ -25,6 +27,9 @@ public class PlayManager : MonoBehaviour
         StageID s = StageSelectManager.stageID;
         if (debug) s = this.stageID;
 
+        itemManager.ItemStart();
+        cookManager.CookManager_Reset();
+        pauseManager.PauseReset();
         stageManager.SetStageID(s);
         ChangeField(0);
     }

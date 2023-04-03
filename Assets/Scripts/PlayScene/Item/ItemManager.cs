@@ -49,15 +49,6 @@ public class ItemManager : MonoBehaviour
     //  プレイヤーを格納しておく
     GameObject player;
 
-    private void Awake()
-    {
-        //  アイテム数格納
-        for (int i = 0; i < (int)ItemID.ItemNum; i++)
-        {
-            itemNum.Add(0);
-        }
-    }
-
     //  更新
     private void Update()
     {
@@ -106,6 +97,16 @@ public class ItemManager : MonoBehaviour
                 //  近づいたら実行
                 item.SetActive(true);
             }
+        }
+    }
+
+    //  初期実行
+    public void ItemStart()
+    {
+        //  アイテム数格納
+        for (int i = 0; i < (int)ItemID.ItemNum; i++)
+        {
+            itemNum.Add(0);
         }
     }
 

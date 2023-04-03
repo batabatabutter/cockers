@@ -7,8 +7,9 @@ public class RockBreak : MonoBehaviour
 {
     bool RockFlag = false;
     GameObject Object_Rock;
-    [SerializeField] GameObject text;
-    [SerializeField] GameObject text2;
+    UIManager UIManager;
+    GameObject text;
+    GameObject text2;
     float time = 0.0f;
 
     //  プレイヤー格納用
@@ -24,7 +25,10 @@ public class RockBreak : MonoBehaviour
     void Start()
     {
         Object_Rock = GameObject.Find("Rock");
-        PObject = GameObject.Find("PlayManager");
+        PObject = GameObject.FindGameObjectWithTag("PlayManager");
+        UIManager = GameObject.Find("UICanvas").GetComponent<UIManager>();
+        text = UIManager.GetBreakUI();
+        text2 = UIManager.GetNoBreakUI();
     }
 
     // Update is called once per frame
