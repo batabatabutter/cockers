@@ -25,6 +25,11 @@ public class CookManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //menu_manager = GameObject.Find("CookingMenu").GetComponent<MenuManager>();
+        //for (int i = 0; i < (int)CookID.ItemNum; ++i) cookNum.Add(0);
+    }
+
+    public void CookManager_Reset() {
         menu_manager = GameObject.Find("CookingMenu").GetComponent<MenuManager>();
         for (int i = 0; i < (int)CookID.ItemNum; ++i) cookNum.Add(0);
     }
