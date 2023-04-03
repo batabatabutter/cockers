@@ -225,8 +225,6 @@ public class Cook : MonoBehaviour
         player_status.Add_full_stomach(menu.full_stomach);
         player_status.Heal(menu.calory);
 
-        Debug.Log(menu.get_skill_name);
-
         //アクションスキル解放
         switch (menu.get_skill_name)
         {
