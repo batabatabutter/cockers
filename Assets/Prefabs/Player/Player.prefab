@@ -749,12 +749,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   move_speed: 2
   speed_force: 5
-  jump_force: 4
+  jump_force: 7.6
   gravity: 9.8
   min_vertical_vel: -15
   weapons_list:
   - {fileID: 4044031700365780125}
+  menu_manag: {fileID: 0}
   ray_dist: 0.6
+  weapon: []
 --- !u!114 &4044031700620459804
 MonoBehaviour:
   m_ObjectHideFlags: 0
