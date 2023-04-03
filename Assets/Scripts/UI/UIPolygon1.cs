@@ -28,7 +28,7 @@ namespace UnityEngine.UI.Extensions
 
         new void Start()
         {
-            PlayerStatus = GameObject.Find("Player");
+            PlayerStatus = GameObject.Find("PlayManager").GetComponent<PlayManager>().GetPlayer();
         }
 
 

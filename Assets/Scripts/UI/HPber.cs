@@ -16,7 +16,7 @@ public class HPber : MonoBehaviour
     void Start()
     {
         slider.value = currentHp;   // Slider‚Ì‰Šúó‘Ô‚ğİ’èiHP–ƒ^ƒ“j
-        PlayerStatus = GameObject.Find("Player");
+        PlayerStatus = GameObject.Find("PlayManager").GetComponent<PlayManager>().GetPlayer();
     }
     private void Update()
     {
