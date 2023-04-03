@@ -15,6 +15,7 @@ public class Cook : MonoBehaviour
     private GameObject cook_manager_obj;
     private MenuManager menu_manager;
     [SerializeField] public GameObject content;
+    private GameObject player;
     private PlayerStatus player_status;
     [SerializeField] public GameObject item_text_def;
 
@@ -70,7 +71,8 @@ public class Cook : MonoBehaviour
         {
             item_val.Add(new KeyValuePair<ItemID, int>(item.Value, 0));
         }
-        player_status = GameObject.Find("PlayManager").GetComponent<PlayManager>().GetPlayer().GetComponent<PlayerStatus>();
+        player = GameObject.Find("PlayManager").GetComponent<PlayManager>().GetPlayer();
+        player_status = player.GetComponent<PlayerStatus>();
         item_content = GameObject.Find("ItemContent");
         first_flg = true;
         item_text = new List<GameObject>();
@@ -222,6 +224,41 @@ public class Cook : MonoBehaviour
         player_status.Add_spd(menu.spd);
         player_status.Add_full_stomach(menu.full_stomach);
         player_status.Heal(menu.calory);
+
+        Debug.Log(menu.get_skill_name);
+
+        //アクションスキル解放
+        switch (menu.get_skill_name)
+        {
+            case "armor":
+                player.GetComponent<Armor>().Allow_action_skill_to_player();
+                break;
+
+            case "charge_attack":
+                player.GetComponent<ChargeAttack>().Allow_action_skill_to_player();
+                break;
+
+            case "dash":
+                player.GetComponent<Dash>().Allow_action_skill_to_player();
+                break;
+
+            case "double_jump":
+                player.GetComponent<DoubleJump>().Allow_action_skill_to_player();
+                break;
+
+            case "shield":
+                player.GetComponent<Shield>().Allow_action_skill_to_player();
+                break;
+
+            case "special_attack":
+                player.GetComponent<SpecialAttack>().Allow_action_skill_to_player();
+                break;
+
+            case "through_attack":
+                player.GetComponent<ThrowingAttack>().Allow_action_skill_to_player();
+                break;
+        }
+
         Check_Unvisible();
     }
 
