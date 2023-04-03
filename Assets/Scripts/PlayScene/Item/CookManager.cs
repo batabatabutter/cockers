@@ -31,7 +31,7 @@ public class CookManager : MonoBehaviour
 
     public void CookManager_Reset() {
         menu_manager = GameObject.Find("CookingMenu").GetComponent<MenuManager>();
-        for (int i = 0; i < (int)CookID.ItemNum - 1; ++i) cookNum.Add(0);
+        for (int i = 0; i < (int)CookID.ItemNum; ++i) cookNum.Add(0);
     }
 
     // Update is called once per frame

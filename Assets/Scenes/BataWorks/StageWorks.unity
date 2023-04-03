@@ -1817,6 +1817,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1414169344 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6909209242484964452, guid: a2b467666ff86f146be62148819227a4,
+    type: 3}
+  m_PrefabInstance: {fileID: 437206230}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e97a070606ddc2b4281feb5a1acb8f3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1435701538 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8773222328092766255, guid: 9d15efe43faade54fabc5cae56ed7363,
@@ -1955,6 +1967,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8773222328297797043, guid: 9d15efe43faade54fabc5cae56ed7363,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1414169344}
+    - target: {fileID: 8773222328297797043, guid: 9d15efe43faade54fabc5cae56ed7363,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Check_Unvisible
+      objectReference: {fileID: 0}
     - target: {fileID: 8773222328420253091, guid: 9d15efe43faade54fabc5cae56ed7363,
         type: 3}
       propertyPath: m_Name
@@ -2064,6 +2086,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8773222328619860133, guid: 9d15efe43faade54fabc5cae56ed7363,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1414169344}
+    - target: {fileID: 8773222328619860133, guid: 9d15efe43faade54fabc5cae56ed7363,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Item_List_Visible
+      objectReference: {fileID: 0}
+    - target: {fileID: 8773222328813746514, guid: 9d15efe43faade54fabc5cae56ed7363,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1414169344}
+    - target: {fileID: 8773222328813746514, guid: 9d15efe43faade54fabc5cae56ed7363,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Eat
+      objectReference: {fileID: 0}
+    - target: {fileID: 8773222329045489402, guid: 9d15efe43faade54fabc5cae56ed7363,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1414169344}
+    - target: {fileID: 8773222329045489402, guid: 9d15efe43faade54fabc5cae56ed7363,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Cook_List_Visible
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d15efe43faade54fabc5cae56ed7363, type: 3}

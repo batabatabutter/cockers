@@ -21,7 +21,8 @@ public class PauseManager : MonoBehaviour
     [SerializeField, HeaderAttribute("pause画面")] private GameObject pause_menu;
 
     [SerializeField, HeaderAttribute("アイテムリストの表示場所")] private GameObject item_list_content;
-    [SerializeField, HeaderAttribute("アイテムの数の管理オブジェクト")] private GameObject item_manager_obj;
+    [SerializeField,ReadOnly, HeaderAttribute("アイテムの数の管理オブジェクト")] private GameObject item_manager_obj;
+    [SerializeField, ReadOnly, HeaderAttribute("料理の数の管理オブジェクト")] private GameObject cook_manager_obj;
     [SerializeField] private List<Button> select_list;
     //[SerializeField,HeaderAttribute("メニュー内容")] private MenuManager;
     private ItemManager item_manager;
@@ -88,6 +89,7 @@ public class PauseManager : MonoBehaviour
         cook_dic.Add("豚とキャベツの冷しゃぶ", CookID.PorkAndCabeggeSyabu);
         cook_dic.Add("豚肉とキャベツの甘辛みそ炒め", CookID.PorkCabeggeAndMiso);
         cook_dic.Add("カットリンゴ", CookID.CutApple);
+        Debug.Log(cook_dic.Count);
         cook_val = new List<KeyValuePair<CookID, int>>();
         foreach (var cook in cook_dic)
         {
@@ -96,8 +98,10 @@ public class PauseManager : MonoBehaviour
 
         select_list[0].Select();
 
+        item_manager_obj = GameObject.Find("ItemManager");
+        cook_manager_obj = GameObject.Find("CookManager");
         item_manager = item_manager_obj.GetComponent<ItemManager>();
-        cook_manager = item_manager_obj.GetComponent<CookManager>();
+        cook_manager = cook_manager_obj.GetComponent<CookManager>();
 
         All_Item_Val_Check();
 
@@ -158,6 +162,7 @@ public class PauseManager : MonoBehaviour
     {
         foreach (var cook in cook_dic)
         {
+            Debug.Log(cook_val[(int)cook.Value]);
             cook_val[(int)cook.Value] = new KeyValuePair<CookID, int>(cook.Value, cook_manager.GetCook(cook.Value));
         }
     }
@@ -324,6 +329,7 @@ public class PauseManager : MonoBehaviour
     public void Check_Unvisible()
     {
         eat_check = false;
+        Cook_List_Visible();
         check_panel.SetActive(false);
     }
 
