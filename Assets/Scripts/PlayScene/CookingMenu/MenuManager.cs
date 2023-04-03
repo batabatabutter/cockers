@@ -39,9 +39,9 @@ public class InputMenu
 public class MenuManager : MonoBehaviour
 {
 
-    [SerializeField] public List<Menu> menu=new List<Menu>();
-    [SerializeField] private InputMenu[] inputmenu;
-    [SerializeField] private List<Text> menutext;
+    public List<Menu> menu=new List<Menu>();
+    private InputMenu[] inputmenu;
+    private List<Text> menutext;
     private List<bool> menu_cookable;
 
     private static char erase_str = '"';
