@@ -432,6 +432,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 72854922}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &140333204 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6237155747552402581, guid: a2b467666ff86f146be62148819227a4,
+    type: 3}
+  m_PrefabInstance: {fileID: 437206230}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &211542791 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5372862638793694511, guid: f2dc6c1e36be0b7459da42c71bda7ef3,
@@ -765,6 +771,11 @@ PrefabInstance:
       objectReference: {fileID: 2010155055}
     - target: {fileID: 6909209242484964452, guid: a2b467666ff86f146be62148819227a4,
         type: 3}
+      propertyPath: cook_manager_obj
+      value: 
+      objectReference: {fileID: 140333204}
+    - target: {fileID: 6909209242484964452, guid: a2b467666ff86f146be62148819227a4,
+        type: 3}
       propertyPath: item_manager_obj
       value: 
       objectReference: {fileID: 1326550802}
@@ -790,6 +801,18 @@ PrefabInstance:
       objectReference: {fileID: 909058159}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2b467666ff86f146be62148819227a4, type: 3}
+--- !u!114 &437206231 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6909209242484964452, guid: a2b467666ff86f146be62148819227a4,
+    type: 3}
+  m_PrefabInstance: {fileID: 437206230}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e97a070606ddc2b4281feb5a1acb8f3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &491851868
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1955,6 +1978,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8773222328297797043, guid: 9d15efe43faade54fabc5cae56ed7363,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 437206231}
+    - target: {fileID: 8773222328297797043, guid: 9d15efe43faade54fabc5cae56ed7363,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Check_Unvisible
+      objectReference: {fileID: 0}
     - target: {fileID: 8773222328420253091, guid: 9d15efe43faade54fabc5cae56ed7363,
         type: 3}
       propertyPath: m_Name
@@ -2064,6 +2097,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8773222328619860133, guid: 9d15efe43faade54fabc5cae56ed7363,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 437206231}
+    - target: {fileID: 8773222328619860133, guid: 9d15efe43faade54fabc5cae56ed7363,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Item_List_Visible
+      objectReference: {fileID: 0}
+    - target: {fileID: 8773222328813746514, guid: 9d15efe43faade54fabc5cae56ed7363,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 437206231}
+    - target: {fileID: 8773222328813746514, guid: 9d15efe43faade54fabc5cae56ed7363,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Eat
+      objectReference: {fileID: 0}
+    - target: {fileID: 8773222329045489402, guid: 9d15efe43faade54fabc5cae56ed7363,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 437206231}
+    - target: {fileID: 8773222329045489402, guid: 9d15efe43faade54fabc5cae56ed7363,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Cook_List_Visible
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d15efe43faade54fabc5cae56ed7363, type: 3}
