@@ -11,7 +11,8 @@ using System.Linq;
 public class Cook : MonoBehaviour
 {
     [SerializeField] public EventSystem eventSystem;
-    [SerializeField] public GameObject item_manager_obj;
+    private GameObject item_manager_obj;
+    private GameObject cook_manager_obj;
     private MenuManager menu_manager;
     [SerializeField] public GameObject content;
     private PlayerStatus player_status;
@@ -43,8 +44,10 @@ public class Cook : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        item_manager_obj = GameObject.Find("ItemManager").gameObject;
+        cook_manager_obj = GameObject.Find("CookManager").gameObject;
         item_manager = item_manager_obj.GetComponent<ItemManager>();
-        cook_manager = item_manager_obj.GetComponent<CookManager>();
+        cook_manager = cook_manager_obj.GetComponent<CookManager>();
         menu_manager = transform.GetComponent<MenuManager>();
         Add_Menu_button();
         now_select = 0;
