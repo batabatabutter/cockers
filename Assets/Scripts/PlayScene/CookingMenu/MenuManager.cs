@@ -50,6 +50,23 @@ public class MenuManager : MonoBehaviour
     void Start()
     {
         menu_cookable = new List<bool>();
+        menutext = new List<Text>();
+        if (menutext.Count > 0)
+        {
+            for (int i = 0; i < menutext.Count; ++i)
+            {
+                Destroy(menutext[i]);
+            }
+            menutext = new List<Text>();
+        }
+        GameObject search_content = gameObject.transform.Find("Menu List Scroll View").Find("Viewport").Find("Content").gameObject;
+        for (int i = 0; i < search_content.transform.childCount; ++i)
+        {
+            int search_val = i + 1;
+            string search_menu = "Menu" + search_val.ToString();
+            string search_text = "Menu" + search_val.ToString() + "Text";
+            menutext.Add(search_content.transform.Find(search_menu).Find(search_text).gameObject.GetComponent<Text>());
+        }
         //料理を外部ファイルから読み込む
         TextAsset csv_file = new TextAsset();
         csv_file = Resources.Load("CookData",typeof(TextAsset)) as TextAsset;
