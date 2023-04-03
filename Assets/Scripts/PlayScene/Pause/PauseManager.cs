@@ -22,6 +22,7 @@ public class PauseManager : MonoBehaviour
 
     [SerializeField, HeaderAttribute("アイテムリストの表示場所")] private GameObject item_list_content;
     [SerializeField, HeaderAttribute("アイテムの数の管理オブジェクト")] private GameObject item_manager_obj;
+    [SerializeField, HeaderAttribute("アイテムの数の管理オブジェクト")] private GameObject cook_manager_obj;
     [SerializeField] private List<Button> select_list;
     //[SerializeField,HeaderAttribute("メニュー内容")] private MenuManager;
     private ItemManager item_manager;
@@ -97,7 +98,7 @@ public class PauseManager : MonoBehaviour
         select_list[0].Select();
 
         item_manager = item_manager_obj.GetComponent<ItemManager>();
-        cook_manager = item_manager_obj.GetComponent<CookManager>();
+        cook_manager = cook_manager_obj.GetComponent<CookManager>();
 
         All_Item_Val_Check();
 
@@ -324,6 +325,7 @@ public class PauseManager : MonoBehaviour
     public void Check_Unvisible()
     {
         eat_check = false;
+        Cook_List_Visible();
         check_panel.SetActive(false);
     }
 
