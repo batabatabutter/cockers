@@ -20,11 +20,12 @@ public class CookManager : MonoBehaviour
     //  Š—¿—”
     [SerializeField, ReadOnly, Label("ƒAƒCƒeƒ€”")] List<int> cookNum;
 
-    [SerializeField] MenuManager menu_manager;
+    private MenuManager menu_manager;
 
     // Start is called before the first frame update
     void Start()
     {
+        menu_manager = GameObject.Find("CookingMenu").GetComponent<MenuManager>();
         for (int i = 0; i < (int)CookID.ItemNum; ++i) cookNum.Add(0);
     }
 
