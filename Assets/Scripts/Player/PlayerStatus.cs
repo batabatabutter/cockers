@@ -15,7 +15,8 @@ public enum Weapon_no
 public class PlayerStatus : MonoBehaviour
 {
     //‰h—{‘f‚Ì\‘¢‘Ì
-    public struct Status
+    [System.Serializable]
+    public class Status
     {
         public int hp;  //’Y…‰»•¨
         public int atk; //ƒ^ƒ“ƒpƒN¿
@@ -57,6 +58,7 @@ public class PlayerStatus : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        status = new Status();
         status.Zero();
         //status.Initialize(def_hp, def_atk, def_spd);
         now_hp = def_hp;

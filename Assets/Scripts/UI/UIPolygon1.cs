@@ -21,14 +21,14 @@ namespace UnityEngine.UI.Extensions
         private float size = 0;
 
         GameObject PlayerStatus;
-        int Hp;                 //ëÃóÕ
-        int Atk;                //çUåÇ
-        int Spd;                //ë¨Ç≥
+        [SerializeField, ReadOnly, Range(0, 1)] List<float> length; 
         float division = 0.01f; //äÑÇÈêî
 
         new void Start()
         {
             PlayerStatus = GameObject.Find("PlayManager").GetComponent<PlayManager>().GetPlayer();
+            length = new List<float>();
+            for(int i = 0; i < sides; i++) length.Add(0.0f); ;
         }
 
 
@@ -74,14 +74,13 @@ namespace UnityEngine.UI.Extensions
         }
         void Update()
         {
-            Hp = PlayerStatus.GetComponent<PlayerStatus>().Get_hp();
-            Atk = PlayerStatus.GetComponent<PlayerStatus>().Get_atk();
-            Spd = PlayerStatus.GetComponent<PlayerStatus>().Get_spd();
-
-            VerticesDistances[0] = (float)Spd * division;
-            VerticesDistances[1] = (float)Hp * division;
-            VerticesDistances[2] = (float)Atk * division;
-
+            if (PlayerStatus != null)
+            {
+                List<float> oldLength = length;
+                length[0] = (float)PlayerStatus.GetComponent<PlayerStatus>().Get_hp() * division;
+                length[1] = (float)PlayerStatus.GetComponent<PlayerStatus>().Get_atk() * division;
+                length[2] = (float)PlayerStatus.GetComponent<PlayerStatus>().Get_spd() * division;
+            }
 
             size = rectTransform.rect.width;
             if (rectTransform.rect.width > rectTransform.rect.height)
@@ -89,6 +88,7 @@ namespace UnityEngine.UI.Extensions
             else
                 size = rectTransform.rect.width;
             thickness = (float)Mathf.Clamp(thickness, 0, size / 2);
+            SetVerticesDirty();
         }
         protected UIVertex[] SetVbo(Vector2[] vertices, Vector2[] uvs)
         {
@@ -123,6 +123,7 @@ namespace UnityEngine.UI.Extensions
                 VerticesDistances = new float[vertices];
                 for (int i = 0; i < vertices - 1; i++) VerticesDistances[i] = 1;
             }
+            for (int i = 0; i < sides; i++) VerticesDistances[i] = length[i]; ;
             // last vertex is also the first!
             VerticesDistances[vertices - 1] = VerticesDistances[0];
             for (int i = 0; i < vertices; i++)

@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class PlayManager : MonoBehaviour
 {
-    [SerializeField, Label("ステージ管理")] StageManager stageManager;
-    [SerializeField, Label("アイテム管理")] ItemManager itemManager;
-    [SerializeField, Label("料理管理")] CookManager cookManager;
-    [SerializeField, Label("敵管理")] EnemyManager enemyManager;
-    [SerializeField, Label("ポーズ管理")] PauseManager pauseManager;
+    [SerializeField, Label("ステージ管理")] StageManager stageManager;    public StageManager GetStageManager() { return stageManager; }
+    [SerializeField, Label("アイテム管理")] ItemManager itemManager;      public ItemManager GetItemManager() { return itemManager; }
+    [SerializeField, Label("料理管理")] CookManager cookManager;          public CookManager GetCookManager() { return cookManager; }
+    [SerializeField, Label("敵管理")] EnemyManager enemyManager;          public EnemyManager GetEnemyManager() { return enemyManager; }
+    [SerializeField, Label("ポーズ管理")] PauseManager pauseManager;      public PauseManager GetPauseManager() { return pauseManager; }
+
+
 
     [SerializeField, Label("プレイヤー")] GameObject p;
     [SerializeField, Label("カメラ")] GameObject c;
