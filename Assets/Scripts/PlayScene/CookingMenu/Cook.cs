@@ -67,7 +67,7 @@ public class Cook : MonoBehaviour
         {
             item_val.Add(new KeyValuePair<ItemID, int>(item.Value, 0));
         }
-        player_status = GameObject.Find("Player").GetComponent<PlayerStatus>();
+        player_status = GameObject.Find("PlayManager").GetComponent<PlayManager>().GetPlayer().GetComponent<PlayerStatus>();
         item_content = GameObject.Find("ItemContent");
         first_flg = true;
         item_text = new List<GameObject>();
