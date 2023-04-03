@@ -1,5 +1,5 @@
-name,calory,hp,atk,spd,full_stomach,need_material,need_value,get_skill,is_unlock_key
+name,calory,hp,atk,spd,full_stomach,need_material,need_value,get_skill_name,is_unlock_key
 やみつきキャベツ,8,5,3,4,12,"""キャベツ""","""2""",dash,TRUE
 豚とキャベツの冷しゃぶ,20,5,22,30,30,"""キャベツ,豚肉""","""1,1""",double_jump,TRUE
 豚肉とキャベツの甘辛炒め,30,6,25,34,40,"""キャベツ,豚肉,ニンジン""","""1,1,1""",through_attack,TRUE
-カットリンゴ,10,3,3,10,10,"""リンゴ""","""1""",dash,FALSE
+カチE��リンゴ,10,3,3,10,10,"""リンゴ""","""1""",dash,FALSE
