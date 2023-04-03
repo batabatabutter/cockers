@@ -70,7 +70,7 @@ MonoBehaviour:
   fill: 1
   thickness: 5
   sides: 3
-  rotation: 150
+  rotation: 270
   VerticesDistances:
   - 1
   - 1

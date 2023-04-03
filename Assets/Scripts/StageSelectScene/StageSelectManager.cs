@@ -13,6 +13,7 @@ public class StageSelectManager : MonoBehaviour
     void Update()
     {
         var keyboad = Keyboard.current;
+        Debug.Log(stageID);
 
         if (keyboad != null)
         {
