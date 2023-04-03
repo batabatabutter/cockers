@@ -7,9 +7,9 @@ public class KitchenManager : MonoBehaviour
 {
 
     private bool IsPlayerIn;
-    [SerializeField] GameObject KitchenPanel;
-    [SerializeField] private FirstButtonSelect first_button_select;
-    [SerializeField] private Cook cook;
+    GameObject KitchenPanel;
+    private FirstButtonSelect first_button_select;
+    private Cook cook;
 
     private PauseManager pause_manager;
 
@@ -18,7 +18,10 @@ public class KitchenManager : MonoBehaviour
     {
         IsPlayerIn = false;
         pause_manager = GameObject.Find("PauseManager").GetComponent<PauseManager>();
-        //KitchenPanel = GameObject.Find("CookingCamvas");
+        KitchenPanel = GameObject.Find("CookingCamvas");
+        first_button_select = KitchenPanel.GetComponent<FirstButtonSelect>();
+        cook = KitchenPanel.GetComponentInChildren<Cook>();
+        KitchenPanel.SetActive(false);
     }
 
     // Update is called once per frame

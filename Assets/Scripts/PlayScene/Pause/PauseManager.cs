@@ -40,7 +40,7 @@ public class PauseManager : MonoBehaviour
     [SerializeField] private GameObject item_content;
     private List<GameObject> item_contents;
 
-    [SerializeField, HeaderAttribute("プレイヤーのステータス")] PlayerStatus player_status;
+    public PlayerStatus player_status;
 
     private Select_ID select_id;
 
@@ -57,7 +57,7 @@ public class PauseManager : MonoBehaviour
     private const int Full = 100;
 
     // Start is called before the first frame update
-    void Start()
+    public void PauseReset()
     {
         item_dic = new Dictionary<string, ItemID>();
         item_dic.Add("キャベツ", ItemID.Cabbage);
@@ -116,6 +116,8 @@ public class PauseManager : MonoBehaviour
         }
 
         select_id = Select_ID.OverID;
+
+        player_status = GameObject.Find("PlayManager").GetComponent<PlayManager>().GetPlayer().GetComponent<PlayerStatus>();
     }
 
     // Update is called once per frame
