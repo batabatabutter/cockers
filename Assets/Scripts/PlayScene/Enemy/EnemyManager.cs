@@ -235,6 +235,14 @@ public class EnemyManager : MonoBehaviour
         enemyObjects.Add(enemy);
     }
 
+    //  敵生成返り値付き
+    public GameObject GenerateEnemyReturn(EnemyID ID, Vector3 pos)
+    {
+        GameObject enemy = Instantiate(Enemys[(int)ID], pos, Quaternion.identity);
+        enemyObjects.Add(enemy);
+        return enemy;
+    }
+
     //  ボス生成
     public void GenerateBoss(BossID ID, Vector3 pos)
     {
