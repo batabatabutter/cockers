@@ -2,12 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FieldChanger : MonoBehaviour
+public class ClearObject : MonoBehaviour
 {
-    [SerializeField, Label("フィールド番号")] int num;
-
     PlayManager playManager;
-
     private void Start()
     {
         playManager = GameObject.FindWithTag("PlayManager").GetComponent<PlayManager>();
@@ -15,9 +12,9 @@ public class FieldChanger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
-            playManager.ChangeField(num);
+            playManager.StageClear();
         }
     }
 }

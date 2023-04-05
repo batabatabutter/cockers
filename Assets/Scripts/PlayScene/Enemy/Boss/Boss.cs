@@ -37,6 +37,8 @@ public class Boss : MonoBehaviour
     [SerializeField] List<ItemID> dropItem;
     [SerializeField] List<int> dropItemNum;
 
+    [SerializeField, Label("クリアドロップ")] GameObject clearObj;
+
     ItemManager itemManager;
     EnemyManager enemyManager;
 
@@ -100,11 +102,7 @@ public class Boss : MonoBehaviour
         // Aキーが押された瞬間かどうか
         if (aKey.wasPressedThisFrame)
         {
-            Damage(5);
-        }
-        if(bKey.wasPressedThisFrame)
-        {
-            rb.velocity = Vector3.zero;
+            Damage(9999);
         }
     }
 
@@ -171,5 +169,6 @@ public class Boss : MonoBehaviour
                 Instantiate(itemManager.GetItemObject(dropItem[i]), gameObject.transform.position, Quaternion.identity);
             }
         }
+        Instantiate(clearObj, gameObject.transform.position, Quaternion.identity);
     }
 }

@@ -249,8 +249,8 @@ public class Mayonnaise : Boss
     //  UŒ‚‚Q
     private bool Attack02()
     {
-        //  UŒ‚–¢I—¹
-        return false;
+        ////  UŒ‚–¢I—¹
+        //return false;
 
         //  UŒ‚I—¹
         return true;

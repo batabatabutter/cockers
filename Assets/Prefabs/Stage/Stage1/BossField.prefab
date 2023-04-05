@@ -431,7 +431,7 @@ PrefabInstance:
     - target: {fileID: -4061509362201813733, guid: 8d0cc98976121af4cbbef949d8e41c32,
         type: 3}
       propertyPath: spawnStatas.Array.data[0].bossSpawnID
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -4061509362201813733, guid: 8d0cc98976121af4cbbef949d8e41c32,
         type: 3}

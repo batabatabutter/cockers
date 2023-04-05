@@ -12,12 +12,25 @@ public class FollowCameraStatas
     public float GetSpeed() { return speed; }    //  í«è]ë¨ìxéÛìn
 }
 
+[System.Serializable]
+public class Vector3Bool
+{
+    //[SerializeField] bool x; public bool GetX() { return x; }
+    //[SerializeField] bool y; public bool GetY() { return y; }
+    //[SerializeField] bool z; public bool GetZ() { return z; }
+
+    public bool x;
+    public bool y;
+    public bool z;
+}
+
 public class FollowCamera : MonoBehaviour
 {
     [SerializeField, Label("ÉJÉÅÉâí«è]ÉXÉeÅ[É^ÉX")] List<FollowCameraStatas> followStatas;
     [SerializeField, Label("í«è]ëŒè€")] protected Transform followObject;
 
     [SerializeField, Label("í«è]à íuç∑")] Vector3 followDifference;
+    [SerializeField, Label("ñ≥í«è]ç¿ïW")] Vector3Bool dontFollowVec;
 
     // Start is called before the first frame update
     void Start()
@@ -35,7 +48,14 @@ public class FollowCamera : MonoBehaviour
             if (Vector3.Distance(cameraPos, followObject.position + followDifference) <= follow.GetRange())
             {
                 //  ãﬂÇ©Ç¡ÇΩÇÁéwíËÇ≥ÇÍÇΩílÇ≈í«è]
-                Vector3 targetPos = new Vector3(followObject.position.x, followObject.position.y, followObject.position.z) + followDifference;
+                Vector3 followPos = new Vector3();
+                //if (!dontFollowVec.GetX()) followPos.x = followObject.position.x;
+                //if (!dontFollowVec.GetY()) followPos.y = followObject.position.y;
+                //if (!dontFollowVec.GetZ()) followPos.z = followObject.position.z;
+                if (!dontFollowVec.x) followPos.x = followObject.position.x;
+                if (!dontFollowVec.y) followPos.y = followObject.position.y;
+                if (!dontFollowVec.z) followPos.z = followObject.position.z;
+                Vector3 targetPos = new Vector3(followPos.x, followPos.y, followPos.z) + followDifference;
                 transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * follow.GetSpeed());
                 break;
             }

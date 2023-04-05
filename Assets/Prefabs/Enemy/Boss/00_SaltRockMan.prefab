@@ -818,6 +818,8 @@ MonoBehaviour:
   atk: 28
   dropItem: 
   dropItemNum: 
+  clearObj: {fileID: 2411928225817392182, guid: d6d3ebc6166234d41989f27a5bd3cbb3,
+    type: 3}
   coolTime: 3
   distance: 10
   rushTime: 2

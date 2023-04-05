@@ -183,6 +183,8 @@ MonoBehaviour:
   atk: 34
   dropItem: 
   dropItemNum: 
+  clearObj: {fileID: 2411928225817392182, guid: d6d3ebc6166234d41989f27a5bd3cbb3,
+    type: 3}
   syouyuPrefabs:
   - {fileID: 4904460562175615531, guid: 1f2f6b479c7052949ab3a9b059dfc4d3, type: 3}
   - {fileID: 4904460562175615531, guid: 609db1e18db2b2f4ca7f58ebfdeead65, type: 3}
