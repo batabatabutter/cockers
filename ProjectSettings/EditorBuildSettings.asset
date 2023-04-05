@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/PentagonUI.unity
     guid: 7937eff6f173994438d42e6b5a3ca55d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/BataWorks/StageSelectScene.unity
     guid: b3f874ba161f2f34cac601e92a83923e
   - enabled: 1

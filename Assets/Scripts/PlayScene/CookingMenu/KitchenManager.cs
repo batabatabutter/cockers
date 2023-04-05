@@ -18,8 +18,9 @@ public class KitchenManager : MonoBehaviour
     {
         IsPlayerIn = false;
         pause_manager = GameObject.Find("PauseManager").GetComponent<PauseManager>();
-        KitchenPanel = GameObject.Find("CookingCamvas");
+        KitchenPanel = GameObject.FindGameObjectWithTag("PlayManager").GetComponent<PlayManager>().GetCookingCamvas();
         first_button_select = KitchenPanel.GetComponent<FirstButtonSelect>();
+        Debug.Log(first_button_select);
         cook = KitchenPanel.GetComponentInChildren<Cook>();
         KitchenPanel.SetActive(false);
     }

@@ -565,6 +565,12 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
+--- !u!1 &321304185 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5372862638811525206, guid: f2dc6c1e36be0b7459da42c71bda7ef3,
+    type: 3}
+  m_PrefabInstance: {fileID: 788573432}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &348614068
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -694,6 +700,11 @@ PrefabInstance:
       propertyPath: stageID
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 152736825178440902, guid: a2b467666ff86f146be62148819227a4,
+        type: 3}
+      propertyPath: cookingCamvas
+      value: 
+      objectReference: {fileID: 321304185}
     - target: {fileID: 6858051896635849718, guid: a2b467666ff86f146be62148819227a4,
         type: 3}
       propertyPath: m_Name
