@@ -18,7 +18,7 @@ public class RockBreak : MonoBehaviour
     GameObject PObject;
 
     //  各ステータス要求量
-    int atk;          //  攻撃力
+    [SerializeField ]int atk;          //  攻撃力
 
 
     // Start is called before the first frame update
