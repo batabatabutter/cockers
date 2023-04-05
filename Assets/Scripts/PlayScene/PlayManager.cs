@@ -31,8 +31,8 @@ public class PlayManager : MonoBehaviour
         if (debug) s = this.stageID;
 
         itemManager.ItemStart();
-        cookManager.CookManager_Reset();
-        pauseManager.PauseReset();
+        if (cookManager != null) cookManager.CookManager_Reset();
+        if (pauseManager != null) pauseManager.PauseReset();
         stageManager.SetStageID(s);
         ChangeField(0);
     }
