@@ -31,7 +31,7 @@ public class PauseManager : MonoBehaviour
     [SerializeField, HeaderAttribute("追加するもののprefab")] public GameObject button_def;
 
     private Dictionary<string, ItemID> item_dic;
-    private Dictionary<string, CookID> cook_dic;
+    Cook_Dictionary cook_dic;
 
     //それぞれのアイテムの数を保持するリスト
     [SerializeField] private List<KeyValuePair<ItemID, int>> item_val;
@@ -52,6 +52,7 @@ public class PauseManager : MonoBehaviour
     private GameObject check_text;
     private GameObject yes_button;
     private GameObject no_button;
+    private Text check_text_message;
 
     private Menu eat_set_menu;
     private CookID eat_set_id;
@@ -84,21 +85,18 @@ public class PauseManager : MonoBehaviour
         {
             item_val.Add(new KeyValuePair<ItemID, int>(item.Value, 0));
         }
-        cook_dic = new Dictionary<string, CookID>();
-        cook_dic.Add("やみつきキャベツ", CookID.GoodCabegge);
-        cook_dic.Add("豚とキャベツの冷しゃぶ", CookID.PorkAndCabeggeSyabu);
-        cook_dic.Add("豚肉とキャベツの甘辛みそ炒め", CookID.PorkCabeggeAndMiso);
-        cook_dic.Add("カットリンゴ", CookID.CutApple);
-        cook_val = new List<KeyValuePair<CookID, int>>();
-        foreach (var cook in cook_dic)
-        {
-            cook_val.Add(new KeyValuePair<CookID, int>(cook.Value, 0));
-        }
-
-        select_list[0].Select();
 
         item_manager = item_manager_obj.GetComponent<ItemManager>();
         cook_manager = cook_manager_obj.GetComponent<CookManager>();
+
+        cook_dic = cook_manager.Get_Cook_Dictionary();
+        cook_val = new List<KeyValuePair<CookID, int>>();
+        for (int i = 0; i < (int)CookID.ItemNum; ++i)
+        {
+            cook_val.Add(new KeyValuePair<CookID, int>((CookID)i, 0));
+        }
+
+        select_list[0].Select();
 
         All_Item_Val_Check();
 
@@ -118,6 +116,7 @@ public class PauseManager : MonoBehaviour
             else if (ob.name == "CheckText")
             {
                 check_text = ob.gameObject;
+                check_text_message = check_text.GetComponent<Text>();
             }
         }
 
@@ -157,9 +156,9 @@ public class PauseManager : MonoBehaviour
 
     private void All_Cook_Val_Check()
     {
-        foreach (var cook in cook_dic)
+        for (int i = 0; i < (int)CookID.ItemNum; ++i)
         {
-            cook_val[(int)cook.Value] = new KeyValuePair<CookID, int>(cook.Value, cook_manager.GetCook(cook.Value));
+            cook_val[i] = new KeyValuePair<CookID, int>((CookID)i, cook_manager.GetCook((CookID)i));
         }
     }
 
@@ -201,17 +200,18 @@ public class PauseManager : MonoBehaviour
             item_contents = new List<GameObject>();
         }
         All_Cook_Val_Check();
-        foreach (var cook in cook_dic)
+        for (int i = 0; i < (int)CookID.ItemNum; ++i)
         {
-            int val = cook_val[(int)cook.Value].Value;
+            int val = cook_val[i].Value;
             if (val <= 0) continue;
             GameObject obj = Instantiate<GameObject>(button_def, item_content.transform);
             Text new_txt = obj.GetComponentInChildren<Text>();
-            new_txt.text = cook.Key + " : " + val.ToString();
+            new_txt.text = cook_dic.Search_Name((CookID)i) + " : " + val.ToString();
             obj.transform.localPosition = Vector3.zero;
             obj.transform.localScale = Vector3.one;
             obj.GetComponentInChildren<Text>().text = new_txt.text;
-            obj.GetComponentInChildren<Button>().onClick.AddListener(() => Check_Visible(cook.Value));
+            CookID click_id = (CookID)i;
+            obj.GetComponentInChildren<Button>().onClick.AddListener(() => Check_Visible(click_id));
             item_contents.Add(obj);
         }
     }
@@ -220,7 +220,7 @@ public class PauseManager : MonoBehaviour
     private void Make_Button_Relation()
     {
         List<Button> button_list = new List<Button>();
-        foreach(var button_content in item_contents)
+        foreach (var button_content in item_contents)
         {
             button_list.Add(button_content.GetComponent<Button>());
         }
@@ -257,7 +257,7 @@ public class PauseManager : MonoBehaviour
             nv.selectOnUp = button_list[(cnt + i - 1) % cnt];
             nv.selectOnDown = button_list[(cnt + i + 1) % cnt];
             button_list[i].navigation = nv;
-            
+
             item_contents[i].GetComponent<Button>().navigation = button_list[i].navigation;
             Debug.Log(item_contents[i].GetComponent<Button>().onClick);
 
@@ -316,9 +316,10 @@ public class PauseManager : MonoBehaviour
     //食べるかどうかの確認画面を出す
     public void Check_Visible(CookID id)
     {
-        eat_set_menu = cook_manager.GetMenu(id);
+        eat_set_menu = cook_manager.Get_Menu(id);
         eat_set_id = id;
         eat_check = true;
+        check_text_message.text = eat_set_menu.name + "を食べますか？";
         check_panel.SetActive(true);
         no_button.GetComponent<Button>().Select();
     }
@@ -329,7 +330,8 @@ public class PauseManager : MonoBehaviour
         check_panel.SetActive(false);
     }
 
-    public void Eat() {
+    public void Eat()
+    {
         if (player_status.Get_full_stomach() + eat_set_menu.full_stomach > Full) return;
         player_status.Add_hp(eat_set_menu.hp);
         player_status.Add_atk(eat_set_menu.atk);

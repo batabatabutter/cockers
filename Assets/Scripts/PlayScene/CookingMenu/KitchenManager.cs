@@ -8,7 +8,6 @@ public class KitchenManager : MonoBehaviour
 
     private bool IsPlayerIn;
     GameObject KitchenPanel;
-    private FirstButtonSelect first_button_select;
     private Cook cook;
 
     private PauseManager pause_manager;
@@ -19,8 +18,6 @@ public class KitchenManager : MonoBehaviour
         IsPlayerIn = false;
         pause_manager = GameObject.Find("PauseManager").GetComponent<PauseManager>();
         KitchenPanel = GameObject.FindGameObjectWithTag("PlayManager").GetComponent<PlayManager>().GetCookingCamvas();
-        first_button_select = KitchenPanel.GetComponent<FirstButtonSelect>();
-        Debug.Log(first_button_select);
         cook = KitchenPanel.GetComponentInChildren<Cook>();
         KitchenPanel.SetActive(false);
     }
@@ -36,7 +33,6 @@ public class KitchenManager : MonoBehaviour
             if (KitchenPanel.activeSelf)
             {
                 Time.timeScale = 0f;
-                first_button_select.First_Select();
                 //cook.Menu_Visible_Check();
                 //cook.Item_List_Create();
             }
@@ -50,6 +46,12 @@ public class KitchenManager : MonoBehaviour
             Time.timeScale = 0f;
         }
     }
+
+
+
+    /// <summary>
+    /// キッチンの画面表示、非表示
+    /// </summary>
 
     private void OnTriggerEnter(Collider other)
     {

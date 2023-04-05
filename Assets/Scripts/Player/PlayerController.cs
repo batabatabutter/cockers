@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     /// <summary> ///////////////////////
     /// 変数、定数宣言
     /// </summary> ///////////////////////
-    
+
     //rigidbody
     Rigidbody rigid;
 
@@ -19,16 +19,13 @@ public class PlayerController : MonoBehaviour
     /// </summary> ///////////////////////
 
     //プレイヤーの移動スピード、速度倍率
-    [SerializeField,HeaderAttribute("移動ステータス")] private float move_speed = 1.0f;
+    [SerializeField, HeaderAttribute("移動ステータス")] private float move_speed = 1.0f;
     [SerializeField] private float speed_force = 4.0f;
     [SerializeField] private float jump_force = 4.0f;
     [SerializeField] private float gravity = 9.8f;
     [SerializeField] private float min_vertical_vel = -15.0f;
 
     [SerializeField, HeaderAttribute("所持武器")] private List<GameObject> weapons_list;
-
-    [SerializeField] private MenuManager menu_manag;
-
 
 
 
@@ -66,7 +63,7 @@ public class PlayerController : MonoBehaviour
     /// <summary> ///////////////////////
     /// 攻撃関連
     /// </summary> ///////////////////////
-    
+
     //現在の使用武器番号
     private Weapon_no now_use_weapon_no;
 
@@ -118,7 +115,7 @@ public class PlayerController : MonoBehaviour
         special_attack = transform.GetComponent<SpecialAttack>();
         charge_attack = transform.GetComponent<ChargeAttack>();
         throwing_attack = transform.GetComponent<ThrowingAttack>();
-        foreach(GameObject wp in weapons_list)
+        foreach (GameObject wp in weapons_list)
         {
             Weapon wpclass = wp.GetComponent<Weapon>();
             weapon.Add(wpclass);
@@ -145,7 +142,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //着地してなくて2段目ジャンプを使ってないとき、1段目ジャンプだけ使ったことにする
-        if(!isGround && jump_cnt == 0)
+        if (!isGround && jump_cnt == 0)
         {
             jump_cnt = 1;
         }
@@ -201,11 +198,12 @@ public class PlayerController : MonoBehaviour
     }
 
     //キーボード操作
-    private void Key_Controll() {
+    private void Key_Controll()
+    {
         var keyboard = Keyboard.current;
 
         if (Time.timeScale == 0f) return;
-        
+
         //もしダッシュしてたら、操作を切る
         if (dash.Get_is_dash()) return;
 
@@ -322,11 +320,11 @@ public class PlayerController : MonoBehaviour
                 special_attack.Start_special_attack();
                 Debug.Log("Start");
                 weapon[(int)now_use_weapon_no].Special_Attack();
-                
+
             }
 
             //投擲攻撃
-            if(keyboard.aKey.wasPressedThisFrame && throwing_attack.Get_can_action_skill())
+            if (keyboard.aKey.wasPressedThisFrame && throwing_attack.Get_can_action_skill())
             {
                 throwing_attack.Start_throwing_attack();
                 weapon[(int)now_use_weapon_no].Throwing_Attack(now_use_weapon_no, look_allow);
@@ -342,11 +340,6 @@ public class PlayerController : MonoBehaviour
             //        now_use_weapon_no = Weapon_no.knife;
             //    }
             //}
-
-            if (keyboard.jKey.wasPressedThisFrame)
-            {
-                menu_manag.New_Menu_unlock("カットリンゴ");
-            }
         }
     }
 }
