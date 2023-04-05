@@ -656,6 +656,8 @@ MonoBehaviour:
   atk: 44
   dropItem: 
   dropItemNum: 
+  clearObj: {fileID: 2411928225817392182, guid: d6d3ebc6166234d41989f27a5bd3cbb3,
+    type: 3}
   mayoPrefab: {fileID: 2071990653708470940, guid: 8ab09873a6b1beb449b5ca2c5e434344,
     type: 3}
   shoulders:
@@ -669,6 +671,7 @@ MonoBehaviour:
   attackDistance: 10
   jumpForce: 500
   mayoSpeed: 300
+  speed: 0
 --- !u!1 &4641191116392169991
 GameObject:
   m_ObjectHideFlags: 0

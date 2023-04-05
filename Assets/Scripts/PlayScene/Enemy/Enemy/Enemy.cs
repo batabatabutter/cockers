@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 ///////////////////////
 /// 敵の継承元クラス///
@@ -89,35 +88,6 @@ public class Enemy : MonoBehaviour
 
         //  敵更新
         EnemyUpdate();
-
-        ///////////////////////////////////////////////////////////////////////////
-
-        //  デバッグ用
-        // 現在のキーボード情報
-        var current = Keyboard.current;
-
-        // キーボード接続チェック
-        if (current == null)
-        {
-            // キーボードが接続されていないと
-            // Keyboard.currentがnullになる
-            Debug.Log("キーボードなし");
-            return;
-        }
-
-        // Aキーの入力状態取得
-        var aKey = current.aKey;
-        var bKey = current.bKey;
-
-        // Aキーが押された瞬間かどうか
-        if (aKey.wasPressedThisFrame)
-        {
-            Damage(5);
-        }
-        if(bKey.wasPressedThisFrame)
-        {
-            rb.velocity = Vector3.zero;
-        }
     }
 
     //  当たり判定

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayManager : MonoBehaviour
 {
@@ -27,7 +28,7 @@ public class PlayManager : MonoBehaviour
     {
         player = Instantiate(p);
         cam = Instantiate(c);
-        StageID s = StageSelectManager.stageID;
+        StageID s = StageSelectManager.GetStageID();
         if (debug) s = this.stageID;
 
         itemManager.ItemStart();
@@ -37,6 +38,7 @@ public class PlayManager : MonoBehaviour
         ChangeField(0);
     }
 
+    //  フィールド切り替え
     public void ChangeField(int fieldNum)
     {
         stageManager.CreateField(fieldNum);
@@ -44,5 +46,12 @@ public class PlayManager : MonoBehaviour
         enemyManager.EnemyReset();
         player.transform.position = new Vector3(0.0f, 1.0f, 0.0f);
         cam.transform.position = Vector3.zero;
+    }
+
+    //  ステージクリア関数
+    public void StageClear()
+    {
+        StageSelectManager.ClearStage(StageSelectManager.GetStageID());
+        SceneManager.LoadScene("StageSelectScene");
     }
 }
