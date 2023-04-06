@@ -5,16 +5,17 @@ using UnityEngine.InputSystem;
 
 public class RockBreak : MonoBehaviour
 {
-    bool RockFlag = false;
-    GameObject Object_Rock;
-    UIManager UIManager;
-    GameObject text;
-    GameObject text2;
-    float time = 0.0f;
+    bool RockFlag = false;  //岩に触れたかどうか
+    GameObject Object_Rock; //岩格納用
+    UIManager UIManager;    //UI格納用
+    GameObject text;        //破壊
+    GameObject text2;       //非破壊
+    float time = 0.0f;      //タイマー
 
-    //  プレイヤー格納用
+    //  プレイヤーステータス格納用
     private PlayerStatus player = null;
 
+    //プレイヤー格納用
     GameObject PObject;
 
     //  各ステータス要求量
@@ -34,26 +35,27 @@ public class RockBreak : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //キー入力
         var current = Keyboard.current;
-
         if (player == null)
         {
             player = PObject.GetComponent<PlayManager>().GetPlayer().GetComponent<PlayerStatus>();
         }
 
-
+        //岩破壊
         if (RockFlag == true && player.Get_atk() >= atk && current.cKey.wasPressedThisFrame)
         {
             text.SetActive(true);
             Destroy();
         }
+        //岩破壊できない
         else if (RockFlag == true && player.Get_atk() < atk && current.cKey.wasPressedThisFrame)
         {
             text2.SetActive(true);
             DontDestroy();
         }
 
-        //2秒後に消える
+        //2秒後にテキストが消える
         if (text.gameObject.activeSelf == true) time += Time.deltaTime;
         if (time >= 2.0f)
         {
@@ -81,20 +83,16 @@ public class RockBreak : MonoBehaviour
         Object_Rock.SetActive(true);
     }
 
+    //プレイヤーが岩に触れている
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            RockFlag = true;
-        }
+        if (other.gameObject.CompareTag("Player")) RockFlag = true;
     }
 
+    //プレイヤーが岩に触れていない
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            RockFlag = false;
-        }
+        if (other.gameObject.CompareTag("Player")) RockFlag = false;
     }
 
 
