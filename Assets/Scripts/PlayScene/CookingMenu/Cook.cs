@@ -29,7 +29,11 @@ public class Cook : MonoBehaviour
     [SerializeField] private List<KeyValuePair<ItemID, int>> item_val;
 
     private GameObject item_content;
-    private List<GameObject> item_text;
+    private List<GameObject> item_text_obj;
+    private List<Text> item_text;
+    private List<string> item_text_str;
+    private List<string> item_text_no_val;
+    private CookID now_select_id;
     private bool first_flg;
     Cook_Dictionary cook_dic;
 
@@ -80,16 +84,18 @@ public class Cook : MonoBehaviour
         player_status = player.GetComponent<PlayerStatus>();
         item_content = GameObject.Find("ItemContent");
         first_flg = true;
-        item_text = new List<GameObject>();
+        item_text_obj = new List<GameObject>();
+        item_text = new List<Text>();
+        item_text_str = new List<string>();
+        item_text_no_val = new List<string>();
         cooking_text = GameObject.Find("MenuText").GetComponent<Text>();
 
         Transform children = check_panel.GetComponentInChildren<Transform>();
         menu_contents = new List<GameObject>();
 
         Menu_List_Create();
-        Make_Button_Relation();
-        All_Menu_Cookable_Check();
-        if (menu_button.Count > 0) menu_button[0].GetComponent<Button>().Select();
+
+        now_select_id = CookID.ItemNum;
     }
 
     // Update is called once per frame
@@ -101,9 +107,11 @@ public class Cook : MonoBehaviour
         if (first_flg)
         {
             Item_List_Create();
+            Menu_List_Create();
             first_flg = false;
         }
         var keyboard = Keyboard.current;
+        if (keyboard.upArrowKey.isPressed || keyboard.downArrowKey.isPressed) All_Item_Spend_Check();
         if (keyboard.upArrowKey.wasReleasedThisFrame) Check_Now_SelectButton();
         if (keyboard.downArrowKey.wasReleasedThisFrame) Check_Now_SelectButton();
         if (keyboard.zKey.wasPressedThisFrame) OnButtonPress();
@@ -148,9 +156,39 @@ public class Cook : MonoBehaviour
         }
     }
 
+    private void All_Item_Spend_Check(GameObject select_obj = null)
+    {
+        string now_select = "";
+        if (selected_obj == null) now_select = eventSystem.currentSelectedGameObject.gameObject.GetComponentInChildren<Text>().text;
+        else now_select = selected_obj.GetComponentInChildren<Text>().text;
+        CookID id = cook_dic.Search_CookID(now_select);
+        if (id == now_select_id) return;
+        now_select_id = id;
+        Debug.Log(id);
+        if (!cook_manager.Get_menu_cookable(id)) return;
+        Menu menu = cook_manager.Get_Menu(id);
+        for(int i=0;i<item_text.Count;++i)
+        {
+            string str = item_text_no_val[i];
+            item_text_obj[i].GetComponent<Text>().text = item_text_str[i];
+            item_text[i].text = item_text_str[i];
+            foreach (var material in menu.need_material)
+            {
+            
+                if (str == material.Key)
+                {
+                    str = item_text_str[i];
+                    int remining_items = item_manager.GetItemNum(item_dic[material.Key]) - material.Value;
+                    str += "  Å®  " + remining_items.ToString();
+                    item_text_obj[i].GetComponent<Text>().text = str;
+                    item_text[i].text = str;
+                }
+            }
+        }
+    }
+
     public void Cooking(CookID id)
     {
-        Debug.Log(id);
         if (!cook_manager.Get_menu_cookable(id)) return;
         Menu menu = cook_manager.Get_Menu(id);
         foreach (var material in menu.need_material)
@@ -185,13 +223,13 @@ public class Cook : MonoBehaviour
 
     public void Item_List_Create()
     {
-        if (item_text.Count() > 0)
+        if (item_text_obj.Count() > 0)
         {
-            for (int i = 0; i < item_text.Count; ++i)
+            for (int i = 0; i < item_text_obj.Count; ++i)
             {
-                Destroy(item_text[i]);
+                Destroy(item_text_obj[i]);
             }
-            item_text = new List<GameObject>();
+            item_text_obj = new List<GameObject>();
         }
         All_Item_Val_Check();
         foreach (var item in item_dic)
@@ -199,12 +237,17 @@ public class Cook : MonoBehaviour
             int val = item_val[(int)item.Value].Value;
             if (val <= 0) continue;
             GameObject obj = Instantiate<GameObject>(item_text_def, item_content.transform);
-            Text new_txt = obj.GetComponent<Text>();
-            new_txt.text = item.Key + " : " + val.ToString();
+            Text new_text = obj.GetComponent<Text>();
+            string str = item.Key;
+            item_text_no_val.Add(str);
+            str += " : " + val.ToString();
             obj.transform.localPosition = Vector3.zero;
             obj.transform.localScale = Vector3.one;
-            obj.GetComponent<Text>().text = new_txt.text;
-            item_text.Add(obj);
+            new_text.text = str;
+            obj.GetComponent<Text>().text = new_text.text;
+            item_text_obj.Add(obj);
+            item_text.Add(new_text);
+            item_text_str.Add(str);
         }
     }
 
@@ -253,6 +296,13 @@ public class Cook : MonoBehaviour
             menu_button.Add(obj.GetComponentInChildren<Button>().gameObject);
             menu_contents.Add(obj);
             menutext.Add(new_txt);
+        }
+        Make_Button_Relation();
+        All_Menu_Cookable_Check();
+        if (menu_button.Count > 0)
+        {
+            menu_button[0].GetComponent<Button>().Select();
+            All_Item_Spend_Check(menu_button[0]);
         }
     }
 
@@ -353,5 +403,12 @@ public class Cook : MonoBehaviour
     {
         cook_manager.AddCook((CookID)now_select);
         Check_Unvisible();
+    }
+
+    public bool Flg_Reset()
+    {
+        bool ret_flg = first_flg;
+        first_flg = true;
+        return ret_flg;
     }
 }
