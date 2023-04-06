@@ -105,4 +105,9 @@ class Armor : ActionSkill
         Start_action_skill();
         End_action_skill();
     }
+
+    public int Get_Value()
+    {
+        return armor_val;
+    }
 }

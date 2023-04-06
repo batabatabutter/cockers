@@ -19,6 +19,7 @@ public class KitchenManager : MonoBehaviour
         pause_manager = GameObject.Find("PauseManager").GetComponent<PauseManager>();
         KitchenPanel = GameObject.FindGameObjectWithTag("PlayManager").GetComponent<PlayManager>().GetCookingCamvas();
         cook = KitchenPanel.GetComponentInChildren<Cook>();
+        Debug.Log(cook);
         KitchenPanel.SetActive(false);
     }
 
@@ -35,6 +36,7 @@ public class KitchenManager : MonoBehaviour
                 Time.timeScale = 0f;
                 //cook.Menu_Visible_Check();
                 //cook.Item_List_Create();
+                if (cook.Flg_Reset()) cook.Menu_List_Create(); ;
             }
             else
             {

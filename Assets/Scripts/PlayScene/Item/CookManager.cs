@@ -65,7 +65,7 @@ public class Cook_Dictionary
 
     public void Add_cook_dic(Menu menu)
     {
-        CookID id = Search_CookID(menu.name);Debug.Log(id);
+        CookID id = Search_CookID(menu.name);
         cook_dic.Add(id, menu);
     }
 
