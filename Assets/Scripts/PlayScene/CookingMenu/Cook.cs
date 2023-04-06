@@ -111,7 +111,11 @@ public class Cook : MonoBehaviour
             first_flg = false;
         }
         var keyboard = Keyboard.current;
-        if (keyboard.upArrowKey.isPressed || keyboard.downArrowKey.isPressed) All_Item_Spend_Check();
+        if (keyboard.upArrowKey.isPressed || keyboard.downArrowKey.isPressed)
+        {
+            Check_Now_SelectButton();
+            All_Item_Spend_Check();
+        }
         if (keyboard.upArrowKey.wasReleasedThisFrame) Check_Now_SelectButton();
         if (keyboard.downArrowKey.wasReleasedThisFrame) Check_Now_SelectButton();
         if (keyboard.zKey.wasPressedThisFrame) OnButtonPress();
@@ -164,7 +168,6 @@ public class Cook : MonoBehaviour
         CookID id = cook_dic.Search_CookID(now_select);
         if (id == now_select_id) return;
         now_select_id = id;
-        Debug.Log(id);
         if (!cook_manager.Get_menu_cookable(id)) return;
         Menu menu = cook_manager.Get_Menu(id);
         for(int i=0;i<item_text.Count;++i)
@@ -231,6 +234,25 @@ public class Cook : MonoBehaviour
             }
             item_text_obj = new List<GameObject>();
         }
+        if (item_text.Count() > 0)
+        {
+            for (int i = 0; i < item_text.Count; ++i)
+            {
+                Destroy(item_text[i]);
+            }
+            item_text = new List<Text>();
+        }
+        if (item_text_str.Count() > 0)
+        {
+            item_text_str.Clear();
+            item_text_str = new List<string>();
+        }
+        if (item_text_no_val.Count() > 0)
+        {
+            item_text_no_val.Clear();
+            item_text_no_val = new List<string>();
+        }
+
         All_Item_Val_Check();
         foreach (var item in item_dic)
         {
@@ -302,6 +324,7 @@ public class Cook : MonoBehaviour
         if (menu_button.Count > 0)
         {
             menu_button[0].GetComponent<Button>().Select();
+            Reset_now_select_id();
             All_Item_Spend_Check(menu_button[0]);
         }
     }
@@ -346,6 +369,8 @@ public class Cook : MonoBehaviour
         eat_check = false;
         check_panel.SetActive(false);
         menu_button[0].GetComponent<Button>().Select();
+        Reset_now_select_id();
+        All_Item_Spend_Check(menu_button[0]);
     }
 
     //Yesƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«(Yes‚Ì‚Æ‚«)
@@ -410,5 +435,10 @@ public class Cook : MonoBehaviour
         bool ret_flg = first_flg;
         first_flg = true;
         return ret_flg;
+    }
+
+    private void Reset_now_select_id()
+    {
+        now_select_id = CookID.ItemNum;
     }
 }
