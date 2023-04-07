@@ -16,6 +16,8 @@ TagManager:
   - StageManager
   - PlayManager
   - Floor
+  - FieldChanger
+  - PopUpUIAdd
   layers:
   - Default
   - TransparentFX

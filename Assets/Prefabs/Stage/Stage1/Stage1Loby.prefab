@@ -452,10 +452,40 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 16a9ed87440038849971e2436eb6d988, type: 2}
+    - target: {fileID: 3576354934991060510, guid: d4b68376d39ed5d4fa19b384f377fac5,
+        type: 3}
+      propertyPath: text
+      value: "\u68EE\u6797\u3078"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3853956942410213538, guid: d4b68376d39ed5d4fa19b384f377fac5,
+        type: 3}
+      propertyPath: popUpText
+      value: "\u68EE\u6797\u3078"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3853956942410213538, guid: d4b68376d39ed5d4fa19b384f377fac5,
+        type: 3}
+      propertyPath: popUpColor.b
+      value: 0.23184405
+      objectReference: {fileID: 0}
+    - target: {fileID: 3853956942410213538, guid: d4b68376d39ed5d4fa19b384f377fac5,
+        type: 3}
+      propertyPath: popUpColor.g
+      value: 0.4716981
+      objectReference: {fileID: 0}
+    - target: {fileID: 3853956942410213538, guid: d4b68376d39ed5d4fa19b384f377fac5,
+        type: 3}
+      propertyPath: popUpColor.r
+      value: 0.19757919
+      objectReference: {fileID: 0}
     - target: {fileID: 4216130404021582565, guid: d4b68376d39ed5d4fa19b384f377fac5,
         type: 3}
       propertyPath: m_Name
       value: FieldChanger
+      objectReference: {fileID: 0}
+    - target: {fileID: 4828436320485792551, guid: d4b68376d39ed5d4fa19b384f377fac5,
+        type: 3}
+      propertyPath: popUpText
+      value: "\u68EE\u6797\u3078"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4b68376d39ed5d4fa19b384f377fac5, type: 3}
@@ -612,10 +642,40 @@ PrefabInstance:
       propertyPath: num
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3576354934991060510, guid: d4b68376d39ed5d4fa19b384f377fac5,
+        type: 3}
+      propertyPath: text
+      value: "\u5E73\u539F\u3078"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3853956942410213538, guid: d4b68376d39ed5d4fa19b384f377fac5,
+        type: 3}
+      propertyPath: popUpText
+      value: "\u5E73\u539F\u3078"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3853956942410213538, guid: d4b68376d39ed5d4fa19b384f377fac5,
+        type: 3}
+      propertyPath: popUpColor.b
+      value: 0.19020998
+      objectReference: {fileID: 0}
+    - target: {fileID: 3853956942410213538, guid: d4b68376d39ed5d4fa19b384f377fac5,
+        type: 3}
+      propertyPath: popUpColor.g
+      value: 0.735849
+      objectReference: {fileID: 0}
+    - target: {fileID: 3853956942410213538, guid: d4b68376d39ed5d4fa19b384f377fac5,
+        type: 3}
+      propertyPath: popUpColor.r
+      value: 0.427563
+      objectReference: {fileID: 0}
     - target: {fileID: 4216130404021582565, guid: d4b68376d39ed5d4fa19b384f377fac5,
         type: 3}
       propertyPath: m_Name
       value: FieldChanger (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4828436320485792551, guid: d4b68376d39ed5d4fa19b384f377fac5,
+        type: 3}
+      propertyPath: popUpText
+      value: "\u5E73\u539F\u3078"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4b68376d39ed5d4fa19b384f377fac5, type: 3}
@@ -697,10 +757,55 @@ PrefabInstance:
       propertyPath: num
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3576354934991060510, guid: d4b68376d39ed5d4fa19b384f377fac5,
+        type: 3}
+      propertyPath: text
+      value: "\u30DC\u30B9\u90E8\u5C4B\u3078\n\u203B\u7247\u9053\u5207\u7B26"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3853956942410213538, guid: d4b68376d39ed5d4fa19b384f377fac5,
+        type: 3}
+      propertyPath: popUpText
+      value: "\u30DC\u30B9\u90E8\u5C4B\u3078"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3853956942410213538, guid: d4b68376d39ed5d4fa19b384f377fac5,
+        type: 3}
+      propertyPath: popUpColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3853956942410213538, guid: d4b68376d39ed5d4fa19b384f377fac5,
+        type: 3}
+      propertyPath: popUpColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3853956942410213538, guid: d4b68376d39ed5d4fa19b384f377fac5,
+        type: 3}
+      propertyPath: popUpColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3853956942410213538, guid: d4b68376d39ed5d4fa19b384f377fac5,
+        type: 3}
+      propertyPath: popUpBackColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3853956942410213538, guid: d4b68376d39ed5d4fa19b384f377fac5,
+        type: 3}
+      propertyPath: popUpBackColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3853956942410213538, guid: d4b68376d39ed5d4fa19b384f377fac5,
+        type: 3}
+      propertyPath: popUpBackColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4216130404021582565, guid: d4b68376d39ed5d4fa19b384f377fac5,
         type: 3}
       propertyPath: m_Name
       value: FieldChanger (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4828436320485792551, guid: d4b68376d39ed5d4fa19b384f377fac5,
+        type: 3}
+      propertyPath: popUpText
+      value: "\u30DC\u30B9\u90E8\u5C4B\u3078"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4b68376d39ed5d4fa19b384f377fac5, type: 3}
