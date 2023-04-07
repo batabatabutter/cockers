@@ -43,6 +43,9 @@ public class Cook : MonoBehaviour
     private List<GameObject> menu_contents;
     private List<Text> menutext;
 
+    //今作った料理
+    private CookID now_cooked;
+
     private const int Full = 100;
 
     //確認画面用
@@ -168,13 +171,14 @@ public class Cook : MonoBehaviour
         CookID id = cook_dic.Search_CookID(now_select);
         if (id == now_select_id) return;
         now_select_id = id;
-        if (!cook_manager.Get_menu_cookable(id)) return;
         Menu menu = cook_manager.Get_Menu(id);
+        bool cook_able = cook_manager.Get_menu_cookable(id);
         for(int i=0;i<item_text.Count;++i)
         {
             string str = item_text_no_val[i];
             item_text_obj[i].GetComponent<Text>().text = item_text_str[i];
             item_text[i].text = item_text_str[i];
+            if (!cook_able) continue;
             foreach (var material in menu.need_material)
             {
             
@@ -192,6 +196,7 @@ public class Cook : MonoBehaviour
 
     public void Cooking(CookID id)
     {
+        now_cooked = id;
         if (!cook_manager.Get_menu_cookable(id)) return;
         Menu menu = cook_manager.Get_Menu(id);
         foreach (var material in menu.need_material)
@@ -201,6 +206,7 @@ public class Cook : MonoBehaviour
         All_Item_Val_Check();
         Item_List_Create();
         Check_Visible();
+        Change_text_color();
     }
 
     private void OnButtonPress()
@@ -326,6 +332,25 @@ public class Cook : MonoBehaviour
             menu_button[0].GetComponent<Button>().Select();
             Reset_now_select_id();
             All_Item_Spend_Check(menu_button[0]);
+            Change_text_color();
+        }
+    }
+
+    //作成可能かどうかで文字色を変える
+    private void Change_text_color()
+    {
+        for (int i = 0; i < menutext.Count; ++i)
+        {
+            string cook_name = menutext[i].text;
+            bool cookable = cook_manager.Get_menu_cookable(cook_dic.Search_CookID(cook_name));
+            if (cookable)
+            {
+                menutext[i].color = new Color(1.0f, 0.67711f, 0.0f);
+            }
+            else
+            {
+                menutext[i].color = new Color(0.3098039f, 0.3098039f, 0.3098039f);
+            }
         }
     }
 
@@ -376,7 +401,7 @@ public class Cook : MonoBehaviour
     //Yesボタンを押したとき(Yesのとき)
     public void Eat()
     {
-        Menu menu = cook_manager.Get_Menu(now_select);
+        Menu menu = cook_manager.Get_Menu(now_cooked);
         if (player_status.Get_full_stomach() + menu.full_stomach > Full)
         {
             Check_Unvisible();
@@ -389,35 +414,39 @@ public class Cook : MonoBehaviour
         player_status.Heal(menu.calory);
 
         //アクションスキル解放
-        switch (menu.get_skill_name)
+        foreach (string skill_name in menu.get_skill_name)
         {
-            case "armor":
-                player.GetComponent<Armor>().Allow_action_skill_to_player();
-                break;
+            Debug.Log(skill_name);
+            switch (skill_name)
+            {
+                case "armor":
+                    player.GetComponent<Armor>().Allow_action_skill_to_player();
+                    break;
 
-            case "charge_attack":
-                player.GetComponent<ChargeAttack>().Allow_action_skill_to_player();
-                break;
+                case "charge_attack":
+                    player.GetComponent<ChargeAttack>().Allow_action_skill_to_player();
+                    break;
 
-            case "dash":
-                player.GetComponent<Dash>().Allow_action_skill_to_player();
-                break;
+                case "dash":
+                    player.GetComponent<Dash>().Allow_action_skill_to_player();
+                    break;
 
-            case "double_jump":
-                player.GetComponent<DoubleJump>().Allow_action_skill_to_player();
-                break;
+                case "double_jump":
+                    player.GetComponent<DoubleJump>().Allow_action_skill_to_player();
+                    break;
 
-            case "shield":
-                player.GetComponent<Shield>().Allow_action_skill_to_player();
-                break;
+                case "shield":
+                    player.GetComponent<Shield>().Allow_action_skill_to_player();
+                    break;
 
-            case "special_attack":
-                player.GetComponent<SpecialAttack>().Allow_action_skill_to_player();
-                break;
+                case "special_attack":
+                    player.GetComponent<SpecialAttack>().Allow_action_skill_to_player();
+                    break;
 
-            case "through_attack":
-                player.GetComponent<ThrowingAttack>().Allow_action_skill_to_player();
-                break;
+                case "through_attack":
+                    player.GetComponent<ThrowingAttack>().Allow_action_skill_to_player();
+                    break;
+            }
         }
 
         Check_Unvisible();
@@ -426,7 +455,7 @@ public class Cook : MonoBehaviour
     ///Noボタンを押したとき(Noのとき)
     public void Cook_Stack()
     {
-        cook_manager.AddCook((CookID)now_select);
+        cook_manager.AddCook(now_cooked);
         Check_Unvisible();
     }
 
