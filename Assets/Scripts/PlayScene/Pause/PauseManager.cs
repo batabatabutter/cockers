@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using System.Linq;
 
 public enum Select_ID
@@ -47,6 +48,10 @@ public class PauseManager : MonoBehaviour
 
     private bool eat_check;
 
+    [SerializeField]private GameObject item_list_scroll_view;
+    [SerializeField]private GameObject other_list_view;
+    [SerializeField]private Button setting_button;
+    
     //確認画面用
     [SerializeField, HeaderAttribute("確認画面")] private GameObject check_panel;
     private GameObject check_text;
@@ -275,6 +280,7 @@ public class PauseManager : MonoBehaviour
     public void Item_List_Visible()
     {
         select_id = Select_ID.Item;
+        Item_Content_Visible();
         Item_List_Create();
         Make_Button_Relation();
     }
@@ -282,6 +288,7 @@ public class PauseManager : MonoBehaviour
     public void Cook_List_Visible()
     {
         select_id = Select_ID.Cook;
+        Item_Content_Visible();
         Cook_List_Create();
         Make_Button_Relation();
     }
@@ -346,5 +353,28 @@ public class PauseManager : MonoBehaviour
     public bool Get_is_pause_active()
     {
         return pause_menu.activeSelf;
+    }
+
+    private void Item_Content_Visible()
+    {
+        item_list_scroll_view.SetActive(true);
+        other_list_view.SetActive(false);
+    }
+
+    public void Other_Content_Visible()
+    {
+        item_list_scroll_view.SetActive(false);
+        other_list_view.SetActive(true);
+        setting_button.Select();
+    }
+
+    public void Back_Title()
+    {
+        SceneManager.LoadScene("StageSelectScene");
+    }
+
+    public void Back_Stage_Select()
+    {
+        SceneManager.LoadScene("StageSelectScene");
     }
 }
