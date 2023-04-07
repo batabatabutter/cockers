@@ -15,10 +15,8 @@ public enum BGMID
     BGMNum
 };
 
-public class SoundManager : MonoBehaviour
+public class SoundManager : Singleton<SoundManager>
 {
-    public static SoundManager instance;
-
     [SerializeField, Header("効果音"), Label("音量"), Range(0, 1)] float soundVol;
     [SerializeField, Label("素材")] List<AudioClip> sound;
     [SerializeField, Label("再生用")] AudioSource soundAudioSource;
@@ -27,18 +25,12 @@ public class SoundManager : MonoBehaviour
     [SerializeField, Label("素材")] List<AudioClip> bgm;
     [SerializeField, Label("再生用")] AudioSource bgmAudioSource;
 
-
-    private void Awake()
+    //-------------------------------------------------------------------------------------
+    // 初期化処理（継承先で必ず記述）
+    //-------------------------------------------------------------------------------------
+    protected override void Initialize()
     {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+
     }
 
     //  Update

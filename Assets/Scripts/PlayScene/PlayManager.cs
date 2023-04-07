@@ -9,6 +9,7 @@ public class PlayManager : MonoBehaviour
     [SerializeField, Label("アイテム管理")] ItemManager itemManager;      public ItemManager GetItemManager() { return itemManager; }
     [SerializeField, Label("料理物管理")] CookManager cookManager;          public CookManager GetCookManager() { return cookManager; }
     [SerializeField, Label("敵管理")] EnemyManager enemyManager;          public EnemyManager GetEnemyManager() { return enemyManager; }
+    [SerializeField, Label("ゲーム内UI管理")] GameInUIManager gameInUIManager;    public GameInUIManager GetGameInUIManager() { return gameInUIManager; }
     [SerializeField, Label("ポーズ管理")] PauseManager pauseManager;      public PauseManager GetPauseManager() { return pauseManager; }
     [SerializeField, Label("料理メニュー")] GameObject cookingCamvas; public GameObject GetCookingCamvas() { return cookingCamvas; }
 
@@ -33,6 +34,7 @@ public class PlayManager : MonoBehaviour
 
         itemManager.ItemStart();
         if (cookManager != null) cookManager.CookManager_Reset();
+        if (gameInUIManager != null) gameInUIManager.Initialize();
         if (pauseManager != null) pauseManager.PauseReset();
         stageManager.SetStageID(s);
         ChangeField(0);
@@ -44,6 +46,7 @@ public class PlayManager : MonoBehaviour
         stageManager.CreateField(fieldNum);
         itemManager.ItemReset();
         enemyManager.EnemyReset();
+        gameInUIManager.Reset();
         player.transform.position = new Vector3(0.0f, 1.0f, 0.0f);
         cam.transform.position = Vector3.zero;
     }

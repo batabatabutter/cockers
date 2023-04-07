@@ -42,7 +42,11 @@ public class StageManager : MonoBehaviour
     //  フィールド生成
     public void CreateField(int fieldID)
     {
-        if (nowField != null) Destroy(nowField);
+        if (nowField != null)
+        {
+            Destroy(nowField);
+            nowField.SetActive(false);
+        }
         if (nowStageID == StageID.Debug) nowStageID--;
         if (stages[(int)nowStageID].GetField(fieldID) == null)
         {
