@@ -702,7 +702,7 @@ RectTransform:
   - {fileID: 312267062470596768}
   - {fileID: 2078884339380801682}
   m_Father: {fileID: 5372862637976281774}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -862,7 +862,7 @@ RectTransform:
   - {fileID: 16918488039221915}
   - {fileID: 4053605571799366215}
   m_Father: {fileID: 5372862637976281774}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1742,8 +1742,8 @@ RectTransform:
   - {fileID: 5372862637611874864}
   - {fileID: 5372862638784970225}
   - {fileID: 5372862637580357222}
-  - {fileID: 497184864984829137}
   - {fileID: 1713803538854890822}
+  - {fileID: 497184864984829137}
   m_Father: {fileID: 5372862638811525202}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1808,7 +1808,7 @@ MonoBehaviour:
     type: 3}
   item_manager: {fileID: 0}
   menu_button: []
-  button_def: {fileID: 4898759739059357031, guid: 68fcf02c97bf3794680aec356fb9cea1,
+  button_def: {fileID: 5936095019406649326, guid: 3d19ac73824c65c4fbe25338824b2030,
     type: 3}
   menu_content: {fileID: 5372862637641470575}
   check_panel: {fileID: 4936405915160414954}

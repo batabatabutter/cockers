@@ -16,7 +16,7 @@ public class Menu
     public int spd;                 //スピード
     public int full_stomach;        //満腹度
     public List<KeyValuePair<string, int>> need_material = new List<KeyValuePair<string, int>>();
-    public string get_skill_name;
+    public List<string> get_skill_name = new List<string>();
     public bool is_unlock_key;
 }
 
@@ -31,16 +31,16 @@ public class InputMenu
     public int full_stomach;        //満腹度
     public string[] need_material;  //素材
     public string[] need_value;     //素材の必要数
-    public string get_skill_name;
+    public string[] get_skill_name;
     public bool is_unlock_key;
 }
 
 public enum CookID
 {
     [InspectorName("やみつきキャベツ")] GoodCabegge,
-    [InspectorName("豚とキャベツの冷しゃぶ")] PorkAndCabeggeSyabu,
-    [InspectorName("豚肉とキャベツの甘辛みそ炒め")] PorkCabeggeAndMiso,
-    [InspectorName("カットリンゴ")] CutApple,
+    [InspectorName("サクサクとんかつ")] PorkAndCabeggeSyabu,
+    [InspectorName("りんご飴")] PorkCabeggeAndMiso,
+    [InspectorName("もりもり甘たれ酢豚")] CutApple,
 
 
 
@@ -56,9 +56,9 @@ public class Cook_Dictionary
     {
         cookid_dic = new Dictionary<string, CookID>();
         cookid_dic.Add("やみつきキャベツ", CookID.GoodCabegge);
-        cookid_dic.Add("豚とキャベツの冷しゃぶ", CookID.PorkAndCabeggeSyabu);
-        cookid_dic.Add("豚肉とキャベツの甘辛みそ炒め", CookID.PorkCabeggeAndMiso);
-        cookid_dic.Add("カットリンゴ", CookID.CutApple);
+        cookid_dic.Add("サクサクとんかつ", CookID.PorkAndCabeggeSyabu);
+        cookid_dic.Add("りんご飴", CookID.PorkCabeggeAndMiso);
+        cookid_dic.Add("もりもり甘たれ酢豚", CookID.CutApple);
 
         cook_dic = new Dictionary<CookID, Menu>();
     }
@@ -162,7 +162,12 @@ public class CookManager : MonoBehaviour
                 value = value.Replace(erase_str.ToString(), "");
                 new_menu.need_material.Add(new KeyValuePair<string, int>(material, int.Parse(value)));
             }
-            new_menu.get_skill_name = m.get_skill_name;
+            for (int i = 0; i < m.get_skill_name.Length; ++i)
+            {
+                string skill_name = m.get_skill_name[i];
+                skill_name = skill_name.Replace(erase_str.ToString(), "");
+                new_menu.get_skill_name.Add(skill_name);
+            }
             new_menu.is_unlock_key = m.is_unlock_key;
             menu.Add(new_menu);
 
@@ -224,14 +229,6 @@ public class CookManager : MonoBehaviour
     public void Set_cookable(int button_id, bool cookable)
     {
         menu_cookable[button_id] = cookable;
-        //if (cookable)
-        //{
-        //    menutext[button_id].color = new Color(1.0f, 0.67711f, 0.0f);
-        //}
-        //else
-        //{
-        //    menutext[button_id].color = new Color(0.3098039f, 0.3098039f, 0.3098039f);
-        //}
     }
 
     //そのメニューが作れるかどうかを見る
