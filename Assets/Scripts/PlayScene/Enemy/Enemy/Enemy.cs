@@ -144,7 +144,9 @@ public class Enemy : MonoBehaviour
     public virtual void Death()
     {
         statas.death = true;
-        Destroy(gameObject, 0.3f);
+        Destroy(gameObject);
+        GameObject effect = Instantiate(enemyManager.GetEnemyDeathEffect(), this.transform.position, Quaternion.identity);
+        Destroy(effect, 5.0f);
 
         //  ÉAÉCÉeÉÄê∂ê¨
         foreach (EnemyDropItem item in dropItem)

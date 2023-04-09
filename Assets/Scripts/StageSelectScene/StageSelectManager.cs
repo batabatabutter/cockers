@@ -13,14 +13,36 @@ public class StageSelectManager : MonoBehaviour
     private static List<bool> stageClear = new List<bool>();
     public static bool GetStageClear(StageID stageID) { return stageClear[(int)stageID]; }
 
-    [SerializeField, Header("UI周り"), Label("ステージ全体追従Y位置")] GameObject followAll;
+    bool isSelected = false;
+
     [SerializeField, Label("選択カーソル")] GameObject selectObj;
-    [SerializeField, Label("カーソル速度")] float cursorSpeed;
-    [SerializeField, Label("選択ステージ")] List<GameObject> stageObj;
+    [SerializeField, Label("選択カーソル")] floatMotion selectFloat;
+    [SerializeField, Label("カーソル速度")] float selectSpeed;
+    [SerializeField, Label("カーソル移動差")] Vector3 selectError;
+    [SerializeField, Label("カーソル移動間隔")] float selectDelay;
+    [SerializeField, Label("選択ボタン")] List<GameObject> buttonObj;
+    [SerializeField, Label("選択位置")] List<Transform> buttonSelect;
+
+    [SerializeField, Header("フェイド関係"), Label("フェード速度")] float fadeSpeed;
+    [SerializeField, Label("フェードアウト用黒幕")] UnityEngine.UI.RawImage rawImage;
+
+    float timer = 0.0f;
+
 
     // Update is called once per frame
     private void Update()
     {
+        timer += Time.deltaTime;
+        //  既に選択されていたら
+        if (isSelected)
+        {
+            selectObj.transform.position = Vector3.Lerp(selectObj.transform.position, buttonSelect[(int)stageID].position, Time.deltaTime * selectSpeed);
+            rawImage.color = new Color(rawImage.color.r, rawImage.color.g, rawImage.color.b, rawImage.color.a + fadeSpeed * Time.deltaTime);
+            if (rawImage.color.a >= 1.0f)
+                this.Select();
+            return;
+        }
+
         var keyboad = Keyboard.current;
 
         //  ステージ選択
@@ -38,19 +60,27 @@ public class StageSelectManager : MonoBehaviour
 
             if (keyboad.zKey.wasPressedThisFrame)
             {
-                SceneManager.LoadScene("StageWorks");
+                isSelected = true;
+                selectFloat.SetMove(false);
             }
         }
 
         //  カーソル移動
-        if(stageObj[(int)stageID] != null)
+        if(buttonObj[(int)stageID] != null)
         {
-            selectObj.transform.position = Vector3.Lerp(selectObj.transform.position, stageObj[(int)stageID].transform.position, Time.deltaTime * cursorSpeed);
+            selectObj.transform.position = Vector3.Lerp(selectObj.transform.position, buttonObj[(int)stageID].transform.position, Time.deltaTime * selectSpeed);
         }
 
         //  UI移動
     }
 
+    //  決定
+    private void Select()
+    {
+        SceneManager.LoadScene("StageWorks");
+    }
+
+    //  クリア
     public static void ClearStage(StageID stageID)
     {
         while((int)StageID.StageNum > stageClear.Count)

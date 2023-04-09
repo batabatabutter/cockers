@@ -26,6 +26,7 @@ public class GameOverUI : MonoBehaviour
     bool isSelected = false;
 
     [SerializeField, Label("選択カーソル")] GameObject selectObj;
+    [SerializeField, Label("選択カーソル")] floatMotion selectFloat;
     [SerializeField, Label("カーソル速度")] float selectSpeed;
     [SerializeField, Label("カーソル移動差")] Vector3 selectError;
     [SerializeField, Label("カーソル移動間隔")] float selectDelay;
@@ -41,6 +42,7 @@ public class GameOverUI : MonoBehaviour
         playManager = GameObject.FindGameObjectWithTag("PlayManager").GetComponent<PlayManager>();
         canvasGroop = gameObject.GetComponent<CanvasGroup>();
         canvasGroop.alpha = minFadeVal;
+        selectFloat.SetMove(true);
     }
 
     // Update is called once per frame
@@ -74,10 +76,6 @@ public class GameOverUI : MonoBehaviour
         if (buttonObj[(int)buttonStatas] != null && !isSelected)
         {
             selectObj.transform.position = Vector3.Lerp(selectObj.transform.position, buttonObj[(int)buttonStatas].transform.position, Time.deltaTime * selectSpeed);
-            if (timer > selectDelay)
-                selectObj.transform.position = Vector3.Lerp(selectObj.transform.position, buttonObj[(int)buttonStatas].transform.position + selectError, Time.deltaTime * selectSpeed * 2);
-            if (timer > selectDelay * 2)
-                timer = 0.0f;
         }
 
         //  キー関係
@@ -101,6 +99,7 @@ public class GameOverUI : MonoBehaviour
         if (keyboad.zKey.wasPressedThisFrame)
         {
             isSelected = true;
+            selectFloat.SetMove(false);
         }
     }
 

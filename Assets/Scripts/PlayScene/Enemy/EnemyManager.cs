@@ -57,6 +57,12 @@ public class EnemyManager : MonoBehaviour
     //  重力設定
     [SerializeField, Label("重力")] float gravity;
 
+    //  エフェクトを格納
+    [SerializeField, Label("敵死亡エフェクト")] GameObject enemyDeathEffect; public GameObject GetEnemyDeathEffect() { return enemyDeathEffect; }
+
+    //  ボス
+    [SerializeField, Label("ボス死亡エフェクト")] GameObject bossDeathEffect; public GameObject GetBossDeathEffect() { return bossDeathEffect; }
+
     //  配列か仮格納用
     GameObject[] HolderArray;
     //  敵の生成を格納
