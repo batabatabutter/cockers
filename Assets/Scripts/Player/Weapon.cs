@@ -133,14 +133,15 @@ public class Weapon : MonoBehaviour
     }
 
     //’ÊíUŒ‚‚ÌUŒ‚ŠJnŠÖ”
-    public void Attack()
+    public bool Attack()
     {
-        if (now_cool_time > 0.0f) return;
+        if (now_cool_time > 0.0f) return false;
         box_collider.enabled = true;
         now_atk_enable_time = atk_enable_time;
         now_cool_time = 1.0f / (atk_per_sec);
         atk_cnt++;
         if (atk_cnt % Atk_MOD == 0) player.Sub_full_stomach(Sub_full_val);
+        return true;
     }
 
     //ƒ`ƒƒ[ƒWUŒ‚‚ÌUŒ‚ŠJnŠÖ”

@@ -264,7 +264,6 @@ public class PauseManager : MonoBehaviour
             button_list[i].navigation = nv;
 
             item_contents[i].GetComponent<Button>().navigation = button_list[i].navigation;
-            Debug.Log(item_contents[i].GetComponent<Button>().onClick);
 
             if (i == 0)
             {
