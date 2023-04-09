@@ -13,13 +13,17 @@ public class PlayManager : MonoBehaviour
     [SerializeField, Label("ポーズ管理")] PauseManager pauseManager;      public PauseManager GetPauseManager() { return pauseManager; }
     [SerializeField, Label("料理メニュー")] GameObject cookingCamvas; public GameObject GetCookingCamvas() { return cookingCamvas; }
 
-
+    [SerializeField, Label("ゲームオーバーUI")] GameOverUI gameOverUIManager;
 
     [SerializeField, Label("プレイヤー")] GameObject p;
     [SerializeField, Label("カメラ")] GameObject c;
 
+
+
     [SerializeField, Label("デバッグスイッチ")] bool debug; public bool GetDebug() { return debug; }
     [SerializeField, Label("デバッグ用ステージ番号")] StageID stageID;
+
+    [SerializeField, ReadOnly] bool gameOver = false;
 
     GameObject player;  public GameObject GetPlayer() { return player; }
     GameObject cam;     public GameObject GetPlayerCam() { return cam; }
@@ -30,6 +34,7 @@ public class PlayManager : MonoBehaviour
         player = Instantiate(p);
         cam = Instantiate(c);
         StageID s = StageSelectManager.GetStageID();
+        gameOver = false;
         if (debug) s = this.stageID;
 
         itemManager.ItemStart();
@@ -38,6 +43,23 @@ public class PlayManager : MonoBehaviour
         if (pauseManager != null) pauseManager.PauseReset();
         stageManager.SetStageID(s);
         ChangeField(0);
+    }
+
+    private void Update()
+    {
+        //  ゲームオーバー時
+        if (gameOver)
+        {
+            gameOverUIManager.gameObject.SetActive(true);
+            return;
+        }
+        else gameOverUIManager.gameObject.SetActive(false);
+
+        //  HP確認
+        if (player.GetComponent<PlayerStatus>().Get_now_hp() <= 0)
+        {
+            GameOver();
+        }
     }
 
     //  フィールド切り替え
@@ -55,6 +77,25 @@ public class PlayManager : MonoBehaviour
     public void StageClear()
     {
         StageSelectManager.ClearStage(StageSelectManager.GetStageID());
+        SceneManager.LoadScene("StageSelectScene");
+    }
+
+    //  ゲームオーバー画面
+    public void GameOver()
+    {
+        gameOverUIManager.SetFadeIn(true);
+        gameOver = true;
+    }
+
+    // リスタート
+    public void Restart()
+    {
+        SceneManager.LoadScene("StageWorks");
+    }
+
+    //  ステージセレクトへ戻る
+    public void ReturnSelectScene()
+    {
         SceneManager.LoadScene("StageSelectScene");
     }
 }
