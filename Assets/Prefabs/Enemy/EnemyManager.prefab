@@ -66,6 +66,10 @@ MonoBehaviour:
   distance: 30
   invincibilityTime: 0.2
   gravity: 3
+  enemyDeathEffect: {fileID: 2880011952015053716, guid: 819c13481ac4cf344958c354be734d09,
+    type: 3}
+  bossDeathEffect: {fileID: 7631624743188343962, guid: b8f996c622c53204db19b87dc703eee7,
+    type: 3}
   enemySpawns: []
   enemyObjects: []
   bossSpawns: []

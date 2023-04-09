@@ -159,8 +159,10 @@ public class Boss : MonoBehaviour
     public virtual void Death()
     {
         statas.death = true;
-        Destroy(gameObject, 0.3f);
-        
+        Destroy(gameObject);
+        GameObject effect = Instantiate(enemyManager.GetBossDeathEffect(), this.transform.position, Quaternion.identity);
+        Destroy(effect, 5.0f);
+
         //  ÉAÉCÉeÉÄê∂ê¨
         for (int i = 0; i < dropItem.Count; i++)
         {
@@ -169,6 +171,6 @@ public class Boss : MonoBehaviour
                 Instantiate(itemManager.GetItemObject(dropItem[i]), gameObject.transform.position, Quaternion.identity);
             }
         }
-        Instantiate(clearObj, gameObject.transform.position, Quaternion.identity);
+       Instantiate(clearObj, gameObject.transform.position, Quaternion.identity);
     }
 }
