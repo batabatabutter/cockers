@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43b57918a2bfe9f47b52ea29f98e12fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 5
+  distance: 6
   ScalingSpeed: 1
   fieldChangerUIPrefab: {fileID: 2121612407821713183, guid: 58966e324e685fd4d8ef0801bb05be61,
     type: 3}

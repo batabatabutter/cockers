@@ -58,8 +58,9 @@ public class GameInUIManager : MonoBehaviour
             {
                 case PopUpUIID.FieldChanger:
                     fieldChangerUI[i].transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Text>().text = fieldChanger[i].GetComponent<PopUpTextUIAdd>().GetPopUpText();
-                    //fieldChangerUI[i].transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Text>().color = fieldChanger[i].GetComponent<PopUpTextUIAdd>().GetPopUpColor();
-                    //fieldChangerUI[i].GetComponent<UnityEngine.UI.RawImage>().color = fieldChanger[i].GetComponent<PopUpTextUIAdd>().GetPopUpBackColor();
+                    fieldChangerUI[i].transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Text>().color = fieldChanger[i].GetComponent<PopUpTextUIAdd>().GetPopUpColor();
+                    fieldChangerUI[i].GetComponent<UnityEngine.UI.RawImage>().color = fieldChanger[i].GetComponent<PopUpTextUIAdd>().GetPopUpBackColor();
+                    fieldChangerUI[i].GetComponent<UnityEngine.UI.RawImage>().texture = fieldChanger[i].GetComponent<PopUpTextUIAdd>().GetPopUpTexture();
                     break;
             }
         }

@@ -91,16 +91,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followStatas:
-  - range: 3
-    speed: 0.7
   - range: 5
-    speed: 2
+    speed: 1
+  - range: 9
+    speed: 3
   - range: 15
-    speed: 4
+    speed: 6
   - range: 999
     speed: 30
   followObject: {fileID: 0}
   followDifference: {x: 0, y: 1.3, z: -10}
+  dontFollowVec:
+    x: 0
+    y: 0
+    z: 0
 --- !u!81 &3371827554363898738
 AudioListener:
   m_ObjectHideFlags: 0

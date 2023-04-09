@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8061d5f1ae186c4498a99a5abc4e521f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  popUpUIID: 0
   popUpText: 
-  popUpColor: {r: 0, g: 0, b: 0, a: 0}
-  popUpBackColor: {r: 0, g: 0, b: 0, a: 0}
+  popUpColor: {r: 0, g: 0, b: 0, a: 1}
+  popUpBackColor: {r: 1, g: 1, b: 1, a: 1}
+  popUpTexture: {fileID: 0}

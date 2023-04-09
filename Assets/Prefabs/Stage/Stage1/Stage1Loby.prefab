@@ -487,6 +487,11 @@ PrefabInstance:
       propertyPath: popUpText
       value: "\u68EE\u6797\u3078"
       objectReference: {fileID: 0}
+    - target: {fileID: 4828436320485792551, guid: d4b68376d39ed5d4fa19b384f377fac5,
+        type: 3}
+      propertyPath: popUpTexture
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4b68376d39ed5d4fa19b384f377fac5, type: 3}
 --- !u!4 &1257046032370242344 stripped
