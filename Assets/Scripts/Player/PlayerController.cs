@@ -95,6 +95,14 @@ public class PlayerController : MonoBehaviour
     ThrowingAttack throwing_attack;
 
 
+    /// <summary> ///////////////////////
+    /// アニメーター
+    /// </summary> ///////////////////////
+    Animator animator;
+    private const string NormalAttackFlg = "NormalAttackFlg";
+    private const string WeaponNo = "WeaponNo";
+
+
 
     /// <summary> ///////////////////////
     /// 関数
@@ -120,6 +128,8 @@ public class PlayerController : MonoBehaviour
             Weapon wpclass = wp.GetComponent<Weapon>();
             weapon.Add(wpclass);
         }
+        animator = transform.GetComponent<Animator>();
+        animator.SetInteger(WeaponNo, 1);
     }
 
     private void Update()
@@ -161,6 +171,9 @@ public class PlayerController : MonoBehaviour
 
         //キーボード操作
         Key_Controll();
+
+        //アニメーションのチェック
+        Animation_Check();
     }
 
     // Update is called once per frame
@@ -281,7 +294,8 @@ public class PlayerController : MonoBehaviour
             //攻撃処理
             if (keyboard.zKey.wasPressedThisFrame)
             {
-                weapon[(int)now_use_weapon_no].Attack();
+                bool action = weapon[(int)now_use_weapon_no].Attack();
+                if(action) animator.SetBool(NormalAttackFlg, true);
             }
 
             if (weapon[(int)now_use_weapon_no].Get_is_attack_now()) return;
@@ -340,6 +354,14 @@ public class PlayerController : MonoBehaviour
             //        now_use_weapon_no = Weapon_no.knife;
             //    }
             //}
+        }
+    }
+
+    private void Animation_Check()
+    {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Knife_Normal_Attack") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.5f)
+        {
+            animator.SetBool(NormalAttackFlg, false);
         }
     }
 }
