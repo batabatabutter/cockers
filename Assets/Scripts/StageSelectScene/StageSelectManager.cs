@@ -13,6 +13,10 @@ public class StageSelectManager : MonoBehaviour
     private static List<bool> stageClear = new List<bool>();
     public static bool GetStageClear(StageID stageID) { return stageClear[(int)stageID]; }
 
+    //  ステージ解放状況
+    private static List<bool> stageCanPlay = new List<bool>();
+
+    //  選択されているかどうか
     bool isSelected = false;
 
     [SerializeField, Label("選択カーソル")] GameObject selectObj;
@@ -28,6 +32,15 @@ public class StageSelectManager : MonoBehaviour
 
     float timer = 0.0f;
 
+    private void Awake()
+    {
+        while ((int)StageID.StageNum > stageClear.Count)
+        {
+            stageClear.Add(false);
+            stageCanPlay.Add(false);
+        }
+        stageCanPlay[0] = true;
+    }
 
     // Update is called once per frame
     private void Update()
@@ -50,11 +63,33 @@ public class StageSelectManager : MonoBehaviour
         {
             if (keyboad.leftArrowKey.wasPressedThisFrame)
             {
+                StageID beforeStageID = stageID;
                 stageID--;
+                stageID = (StageID)Mathf.Clamp((float)stageID, (float)StageID.Stage1, (float)StageID.StageNum - 1);
+                while (!stageCanPlay[(int)stageID])
+                {
+                    stageID--;
+                    if (stageID < 0)
+                    {
+                        stageID = beforeStageID;
+                        break;
+                    }
+                }
             }
             if (keyboad.rightArrowKey.wasPressedThisFrame)
             {
+                StageID beforeStageID = stageID;
                 stageID++;
+                stageID = (StageID)Mathf.Clamp((float)stageID, (float)StageID.Stage1, (float)StageID.StageNum - 1);
+                while (!stageClear[(int)stageID - 1])
+                {
+                    stageID++;
+                    if (stageID > StageID.StageNum - 1)
+                    {
+                        stageID = beforeStageID;
+                        break;
+                    }
+                }
             }
             stageID = (StageID)Mathf.Clamp((float)stageID, (float)StageID.Stage1, (float)StageID.StageNum - 1);
 
@@ -86,9 +121,12 @@ public class StageSelectManager : MonoBehaviour
         while((int)StageID.StageNum > stageClear.Count)
         {
             stageClear.Add(false);
+            stageCanPlay.Add(false);
         }
-        if(stageID >= StageID.StageNum)
+        if (stageID >= StageID.StageNum)
             stageID = StageID.Stage1;
-        stageClear[(int)stageID] = true; 
+        stageClear[(int)stageID] = true;
+        if (stageID < StageID.StageNum)
+            stageCanPlay[(int)stageID + 1] = true;
     }
 }
