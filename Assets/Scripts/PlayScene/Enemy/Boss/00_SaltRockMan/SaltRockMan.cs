@@ -10,35 +10,39 @@ public class SaltRockMan : Boss
         throwSalt,
         arm,
 
-        attackNum
+        attackNum,
+        none
     };
 
-    //  タイミング
-    [SerializeField, HeaderAttribute("個別")] float coolTime;
-    //  行動してくる距離
-    [SerializeField] float distance;
+    [Header("個別")]
+    [SerializeField, Label("攻撃間隔")] float coolTime;
+    [SerializeField, Label("近接行動距離")] float clossDistance;
+    [SerializeField, Label("超近接距離")] float veryCloseDistance;
+    [SerializeField, Label("移動速度")] float moveSpeed;
 
-    //  突進時間
-    [SerializeField] float rushTime;
-    //  突進速度
-    [SerializeField] float rushSpeed;
+    [Header("突進")]
+    [SerializeField, Label("突進時間")] float rushTime;
+    [SerializeField, Label("突進速度")] float rushSpeed;
+    [SerializeField, Label("突進前隙")] float rushForwordTime;
+    [SerializeField, Label("突進後隙")] float rushAfterTime;
 
-    //  腕を振る時間
-    [SerializeField] float throwSaltTime;
-    //  前隙
-    [SerializeField] float throwSaltForwordTime;
-    //  塩を振るダメージ
-    [SerializeField] float throwSaltDmgRate;
-    //  塩を振るSpeed
-    [SerializeField] float throwSaltSpeed;
-    //  振るオブジェクト
-    [SerializeField] GameObject throwSaltObject;
+    [Header("塩投げ")]
+    [SerializeField, Label("投げ時間")] float throwSaltTime;
+    [SerializeField, Label("塩投げ前隙")] float throwSaltForwordTime;
+    [SerializeField, Label("塩投げ後隙")] float throwSaltAfterTime;
 
-    //  腕を振る時間
-    [SerializeField] float armTime;
-    //  前隙
-    [SerializeField] float armForwordTime;
+    [SerializeField, Label("塩投げ速度")] float throwSaltSpeed;
+    [SerializeField, Label("塩投げ物")] GameObject throwSaltObject;
 
+    [Header("腕を振る")]
+    [SerializeField, Label("腕振り時間")] float armTime;
+    [SerializeField, Label("腕振り前隙")] float armForwordTime;
+    [SerializeField, Label("腕振り後隙")] float armAfterTime;
+
+    [Header("その他")]
+    [SerializeField, Label("体のヒットボックス")] Collider bodyHitBox;
+    [SerializeField, Label("腕のヒットボックス")] Collider armHitBox;
+    
     // デバッグ用振り下ろす手
     [SerializeField] Transform arm;
     //  指先
@@ -47,7 +51,7 @@ public class SaltRockMan : Boss
     //  時間カウント用
     private float time;
 
-    //  
+    //  各状態
     private bool move;
     private Attack attack;
 
@@ -57,6 +61,8 @@ public class SaltRockMan : Boss
     public override void BossStart()
     {
         time = coolTime;
+        bodyHitBox.enabled = false;
+        armHitBox.enabled = false;
     }
 
     //  更新
@@ -67,12 +73,27 @@ public class SaltRockMan : Boss
         //  条件が合えば左右反転
         if (time < 0.0f) time = 0.0f;
 
-        if (Vector3.Distance(transform.position, player.transform.position) < distance && time <= 0.0f)
+        if (Vector3.Distance(transform.position, player.transform.position) < clossDistance && time <= 0.0f)
         {
-            attack = (Attack)Random.Range(0, (int)Attack.attackNum);
+            do
+            {
+                attack = (Attack)Random.Range(0, (int)Attack.attackNum);
+            } while (attack == Attack.throwSalt);
             move = true;
+            rb.velocity = Vector3.zero;
         }
+        else if(time <= 0.0f)
+        {
+            do
+            {
+                attack = (Attack)Random.Range(0, (int)Attack.attackNum);
+            } while (attack == Attack.arm);
+            move = true;
+            rb.velocity = Vector3.zero;
+        }
+        attack = Attack.rush;
 
+        //  動き
         if (move)
         {
             switch (attack)
@@ -93,26 +114,56 @@ public class SaltRockMan : Boss
         }
         else
         {
+            //  方向転換
             float distance = (player.transform.position.x - gameObject.transform.position.x);
             if (distance < 0.0f) transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.x, 0.0f, transform.rotation.z));
             else transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.x, 180.0f, transform.rotation.z));
+
+            //  近づきマン
+            angle = new Vector3(player.transform.position.x - transform.position.x, 0.0f, 0.0f);
+            rb.velocity = angle.normalized * moveSpeed;
+
+            //  近かったら停止
+            if (veryCloseDistance >= distance && -veryCloseDistance <= distance) rb.velocity = Vector3.zero;            
         }
     }
 
     //  突進攻撃
     private void Rush()
     {
+        //  最初
         if (time <= 0.0f)
         {
-            nowAttack = true;
-            angle = new Vector3(player.transform.position.x - transform.position.x, 0.0f, 0.0f);
-            rb.AddForce(angle.normalized * rushSpeed);
-            time = coolTime + rushTime;
+            time = coolTime + rushAfterTime + rushTime + rushForwordTime;
         }
-        else if (time >= coolTime)
+        //  前隙
+        else if(time >= coolTime + rushAfterTime + rushTime)
         {
+            arm.Rotate(new Vector3(0.0f, 0.0f, 270.0f) * Time.deltaTime / rushForwordTime);
+        }
+        //  実行動
+        else if(time >= coolTime + rushAfterTime)
+        {
+            //  最初だけ実行される
+            if (!nowAttack)
+            {
+                angle = new Vector3(player.transform.position.x - transform.position.x, 0.0f, 0.0f);
+                rb.velocity = angle.normalized * rushSpeed;
+            }
+            bodyHitBox.enabled = true;
+            nowAttack = true;
+        }
+        //  後隙
+        else if(time >= coolTime)
+        {
+            arm.Rotate(new Vector3(0.0f, 0.0f, -270.0f) * Time.deltaTime / rushAfterTime);
+            bodyHitBox.enabled = false;
             nowAttack = false;
             rb.velocity = Vector3.zero;
+        }
+        //  最後
+        else
+        {
             move = false;
         }
     }
@@ -123,37 +174,50 @@ public class SaltRockMan : Boss
         //  攻撃
         if (time <= 0.0f)
         {
-            time = coolTime + throwSaltTime + throwSaltForwordTime;
+            time = coolTime + throwSaltAfterTime + throwSaltTime + throwSaltForwordTime;
             move = true;
-            Invoke(nameof(CreateSalt), 3.0f);
         }
-        //  (デバッグ)前隙中
-        else if (time >= coolTime + throwSaltTime)
+        //  前隙
+        else if (time >= coolTime + throwSaltAfterTime + throwSaltTime)
         {
             arm.Rotate(new Vector3(0.0f, 0.0f, -45.0f) * Time.deltaTime / throwSaltForwordTime);
         }
-        //  (デバッグ)振っているとき
-        else if (time >= coolTime)
+        //  実行動
+        else if (time >= coolTime + throwSaltAfterTime)
         {
+            //  最初だけ実行
+            if (!nowAttack)
+                CreateSalt();
+            armHitBox.enabled = true;
             nowAttack = true;
             arm.Rotate(new Vector3(0.0f, 0.0f, 165.0f) * Time.deltaTime / throwSaltTime);
         }
-        //  振り終わった時
+        //  後隙
+        else if(time >= coolTime)
+        {
+            //  最初だけ実行
+            if (nowAttack)
+                CreateSalt();
+            armHitBox.enabled = false;
+            nowAttack = false;
+            arm.Rotate(new Vector3(0.0f, 0.0f, -120.0f) * Time.deltaTime / throwSaltAfterTime);
+
+        }
+        //  最後
         else
         {
-            nowAttack = false;
             move = false;
-            arm.Rotate(new Vector3(0.0f, 0.0f, -120.0f));
-            rb.velocity = Vector3.zero;
         }
     }
 
+    //  塩生成
     private void CreateSalt()
     {
-        angle = (player.transform.position - transform.position);
-        GameObject obj = Instantiate(throwSaltObject, hand.transform.position, Quaternion.identity);
+        angle = (player.transform.position - hand.transform.position);
+        Vector3 pos = hand.transform.position;
+        pos.z = 0.0f;
+        GameObject obj = Instantiate(throwSaltObject, pos, Quaternion.identity);
         obj.GetComponent<Rigidbody>().velocity = angle.normalized * throwSaltSpeed;
-        obj.GetComponent<Salt>().SetDmg((int)(throwSaltDmgRate * statas.ATK));
     }
 
     //  腕ブンブン
@@ -162,27 +226,33 @@ public class SaltRockMan : Boss
         //  攻撃
         if (time <= 0.0f)
         {
-            time = coolTime + armTime + armForwordTime;
+            time = coolTime + armAfterTime + armTime + armForwordTime;
             move = true;
         }
-        //  (デバッグ)前隙中
-        else if (time >= coolTime + armTime)
+        //  前隙
+        else if (time >= coolTime + armAfterTime + armTime)
         {
             arm.Rotate(new Vector3(0.0f, 0.0f, -45.0f) * Time.deltaTime / armForwordTime);
         }
-        //  (デバッグ)振っているとき
-        else if (time >= coolTime)
+        //  実行動
+        else if (time >= coolTime + armAfterTime)
         {
+            armHitBox.enabled = true;
             nowAttack = true;
             arm.Rotate(new Vector3(0.0f, 0.0f, 165.0f) * Time.deltaTime / armTime);
         }
-        //  振り終わった時
+        //  後隙
+        else if (time >= coolTime)
+        {
+            armHitBox.enabled = false;
+            nowAttack = false;
+            arm.Rotate(new Vector3(0.0f, 0.0f, -120.0f) * Time.deltaTime / armAfterTime);
+
+        }
+        //  最後
         else
         {
-            nowAttack = false;
             move = false;
-            arm.Rotate(new Vector3(0.0f, 0.0f, -120.0f));
-            rb.velocity = Vector3.zero;
         }
     }
 }

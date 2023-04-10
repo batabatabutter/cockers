@@ -178,7 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da63c23983b702349bb4789ac5cb1033, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossID: 0
+  bossID: 1
   hp: 300
   atk: 34
   dropItem: 

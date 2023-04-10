@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4904460562175615526}
   - component: {fileID: 4904460562175615525}
   - component: {fileID: 4904460562175615524}
+  - component: {fileID: 1678496915881384907}
   m_Layer: 0
   m_Name: 01_Syouyu02
   m_TagString: Untagged
@@ -114,3 +115,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
+--- !u!114 &1678496915881384907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4904460562175615531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cc7b555d0bf5a04cae831f075199301, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 34
+  destroyTime: 5

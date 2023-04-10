@@ -63,6 +63,12 @@ public class EnemyManager : MonoBehaviour
     //  ボス
     [SerializeField, Label("ボス死亡エフェクト")] GameObject bossDeathEffect; public GameObject GetBossDeathEffect() { return bossDeathEffect; }
 
+    //  ボスヒットストップ
+    [SerializeField, Label("ボス死亡ヒットストップ秒数")] float hitStopSec;
+    [SerializeField, Label("ボス死亡ヒットストップ倍率")] float hitStopRate;
+    private bool nowHitStop = false;
+    private float hitStopTimer = 0.0f;
+
     //  配列か仮格納用
     GameObject[] HolderArray;
     //  敵の生成を格納
@@ -81,6 +87,17 @@ public class EnemyManager : MonoBehaviour
     //  更新
     private void Update()
     {
+        //  ヒットストップ計算
+        if (nowHitStop)
+        {
+            hitStopTimer -= Time.deltaTime / hitStopRate;
+            if (hitStopTimer <= 0.0f)
+            {
+                nowHitStop = false;
+                Time.timeScale = 1.0f;
+            }
+        }
+
         //  敵の生成更新
         foreach (EnemySpawn enemy in enemySpawns)
         {
@@ -254,5 +271,13 @@ public class EnemyManager : MonoBehaviour
     {
         GameObject boss = Instantiate(Bosses[(int)ID], pos, Quaternion.identity);
         enemyObjects.Add(boss);
+    }
+
+    //  ヒットストップ生成
+    public void HitStop()
+    {
+        nowHitStop = true;
+        Time.timeScale = hitStopRate;
+        hitStopTimer = hitStopSec;
     }
 }
