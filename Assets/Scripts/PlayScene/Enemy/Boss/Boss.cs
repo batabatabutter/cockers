@@ -37,17 +37,17 @@ public class Boss : MonoBehaviour
     [SerializeField] List<ItemID> dropItem;
     [SerializeField] List<int> dropItemNum;
 
-    [SerializeField, Label("クリアドロップ")] GameObject clearObj;
-
     ItemManager itemManager;
     EnemyManager enemyManager;
+    PlayManager playManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        enemyManager = GameObject.FindGameObjectWithTag("EnemyManager").GetComponent<EnemyManager>();
-        itemManager = GameObject.FindGameObjectWithTag("ItemManager").GetComponent<ItemManager>();
-        player = GameObject.FindGameObjectWithTag("Player");
+        playManager = GameObject.FindGameObjectWithTag("PlayManager").GetComponent<PlayManager>();
+        enemyManager = playManager.GetEnemyManager();
+        itemManager = playManager.GetItemManager();
+        player = playManager.GetPlayer();
         nowAttack = false;
         rb = gameObject.GetComponent<Rigidbody>();
         //  ステータス格納
@@ -97,7 +97,6 @@ public class Boss : MonoBehaviour
 
         // Aキーの入力状態取得
         var aKey = current.aKey;
-        var bKey = current.bKey;
 
         // Aキーが押された瞬間かどうか
         if (aKey.wasPressedThisFrame)
@@ -116,6 +115,14 @@ public class Boss : MonoBehaviour
         rb.velocity = Vector3.zero;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player") && nowAttack)
+        {
+            other.GetComponent<PlayerStatus>().Damage(statas.ATK);
+        }
+    }
+
     private void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -130,16 +137,10 @@ public class Boss : MonoBehaviour
     }
 
     //  敵の初期設定
-    public virtual void BossStart()
-    {
-
-    }
+    public virtual void BossStart() { }
 
     //  敵の更新
-    public virtual void BossUpdate()
-    {
-
-    }
+    public virtual void BossUpdate() { }
 
     //  ダメージ処理
     public void Damage(int dmg)
@@ -159,7 +160,7 @@ public class Boss : MonoBehaviour
     public virtual void Death()
     {
         statas.death = true;
-        Destroy(gameObject);
+        Destroy(gameObject, 0.22f);
         GameObject effect = Instantiate(enemyManager.GetBossDeathEffect(), this.transform.position, Quaternion.identity);
         Destroy(effect, 5.0f);
 
@@ -171,6 +172,6 @@ public class Boss : MonoBehaviour
                 Instantiate(itemManager.GetItemObject(dropItem[i]), gameObject.transform.position, Quaternion.identity);
             }
         }
-       Instantiate(clearObj, gameObject.transform.position, Quaternion.identity);
+        playManager.EliminatedBoss();
     }
 }

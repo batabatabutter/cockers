@@ -14,6 +14,7 @@ public class PlayManager : MonoBehaviour
     [SerializeField, Label("料理メニュー")] GameObject cookingCamvas; public GameObject GetCookingCamvas() { return cookingCamvas; }
 
     [SerializeField, Label("ゲームオーバーUI")] GameOverUI gameOverUIManager;
+    [SerializeField, Label("ゲームクリアUI")] GameClearUI gameClearUIManager;
 
     [SerializeField, Label("プレイヤー")] GameObject p;
     [SerializeField, Label("カメラ")] GameObject c;
@@ -23,7 +24,8 @@ public class PlayManager : MonoBehaviour
     [SerializeField, Label("デバッグスイッチ")] bool debug; public bool GetDebug() { return debug; }
     [SerializeField, Label("デバッグ用ステージ番号")] StageID stageID;
 
-    [SerializeField, ReadOnly] bool gameOver = false;
+    private bool gameOver = false;
+    private bool gameClear = false;
 
     GameObject player;  public GameObject GetPlayer() { return player; }
     GameObject cam;     public GameObject GetPlayerCam() { return cam; }
@@ -47,6 +49,13 @@ public class PlayManager : MonoBehaviour
 
     private void Update()
     {
+        //  ゲームクリア時
+        if (gameClear)
+        {
+            gameClearUIManager.gameObject.SetActive(true);
+        }
+        else gameClearUIManager.gameObject.SetActive(false);
+
         //  ゲームオーバー時
         if (gameOver)
         {
@@ -85,6 +94,13 @@ public class PlayManager : MonoBehaviour
     {
         gameOverUIManager.SetFadeIn(true);
         gameOver = true;
+    }
+
+    public void EliminatedBoss()
+    {
+        gameClearUIManager.SetFadeIn(true);
+        gameClear = true;
+        enemyManager.HitStop();
     }
 
     // リスタート

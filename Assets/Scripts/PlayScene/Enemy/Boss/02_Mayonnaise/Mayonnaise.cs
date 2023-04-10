@@ -211,7 +211,9 @@ public class Mayonnaise : Boss
                     Vector3 dir = new Vector3(Mathf.Cos(rad), Mathf.Sin(rad), 0.0f).normalized;
 
                     //  手からマヨネーズを飛ばす
-                    CreateMayo(hands[1].transform.position, dir * mayoSpeed, false);
+                    Vector3 pos = hands[1].transform.position;
+                    pos.z = 0.0f;
+                    CreateMayo(pos, dir * mayoSpeed, false);
 
                     //  カウンターを進める
                     counter++;

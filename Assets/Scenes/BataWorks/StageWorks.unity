@@ -692,7 +692,7 @@ PrefabInstance:
     - target: {fileID: 152736825178440902, guid: a2b467666ff86f146be62148819227a4,
         type: 3}
       propertyPath: stageID
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 152736825178440902, guid: a2b467666ff86f146be62148819227a4,
         type: 3}
@@ -1128,7 +1128,7 @@ PrefabInstance:
     - target: {fileID: -4061509362201813733, guid: 8d0cc98976121af4cbbef949d8e41c32,
         type: 3}
       propertyPath: spawnStatas.Array.data[0].bossSpawnID
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4061509362201813733, guid: 8d0cc98976121af4cbbef949d8e41c32,
         type: 3}
@@ -1352,7 +1352,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1277242486
 Transform:
   m_ObjectHideFlags: 0
@@ -1830,7 +1830,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1792979793
 Transform:
   m_ObjectHideFlags: 0

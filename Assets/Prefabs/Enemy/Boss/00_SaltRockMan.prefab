@@ -93,7 +93,6 @@ GameObject:
   m_Component:
   - component: {fileID: 200716112478765866}
   - component: {fileID: 7926704868080084911}
-  - component: {fileID: 2182729751546949853}
   m_Layer: 10
   m_Name: ArmR
   m_TagString: Untagged
@@ -129,19 +128,6 @@ BoxCollider:
   m_GameObject: {fileID: 1566669542369008395}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.69279397, y: 2.6689038, z: 3.8743963}
-  m_Center: {x: 0.08367551, y: 1.0951076, z: 1.4363607}
---- !u!65 &2182729751546949853
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1566669542369008395}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.69279397, y: 2.6689038, z: 3.8743963}
@@ -818,19 +804,25 @@ MonoBehaviour:
   atk: 28
   dropItem: 
   dropItemNum: 
-  clearObj: {fileID: 2411928225817392182, guid: d6d3ebc6166234d41989f27a5bd3cbb3,
+  coolTime: 2.2
+  clossDistance: 1.7
+  veryCloseDistance: 1.2
+  moveSpeed: 5
+  rushTime: 1
+  rushSpeed: 15
+  rushForwordTime: 1
+  rushAfterTime: 1
+  throwSaltTime: 0.2
+  throwSaltForwordTime: 1
+  throwSaltAfterTime: 0.5
+  throwSaltSpeed: 8
+  throwSaltObject: {fileID: 8592149738081341322, guid: 268d4c8c1db67564f858c3156d633e64,
     type: 3}
-  coolTime: 3
-  distance: 10
-  rushTime: 2
-  rushSpeed: 7
-  throwSaltTime: 0
-  throwSaltForwordTime: 0
-  throwSaltDmgRate: 0
-  throwSaltSpeed: 0
-  throwSaltObject: {fileID: 0}
-  armTime: 0.5
-  armForwordTime: 1
+  armTime: 0.2
+  armForwordTime: 0.5
+  armAfterTime: 0.3
+  bodyHitBox: {fileID: 7935707243093148588}
+  armHitBox: {fileID: 7926704868080084911}
   arm: {fileID: 200716112478765866}
   hand: {fileID: 6817918023478584216}
 --- !u!65 &7851003033840174553
