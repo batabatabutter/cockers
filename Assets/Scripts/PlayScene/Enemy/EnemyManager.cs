@@ -84,6 +84,14 @@ public class EnemyManager : MonoBehaviour
     //  プレイヤーを格納しておく
     GameObject player;
 
+    PlayManager playManager;
+
+    //  最初
+    private void Start()
+    {
+        playManager = GameObject.FindGameObjectWithTag("PlayManager").GetComponent<PlayManager>();
+    }
+
     //  更新
     private void Update()
     {
@@ -267,10 +275,12 @@ public class EnemyManager : MonoBehaviour
     }
 
     //  ボス生成
-    public void GenerateBoss(BossID ID, Vector3 pos)
+    public GameObject GenerateBoss(BossID ID, Vector3 pos)
     {
         GameObject boss = Instantiate(Bosses[(int)ID], pos, Quaternion.identity);
         enemyObjects.Add(boss);
+        playManager.GetBossUIManager().GenerateBossUI(boss);
+        return boss;
     }
 
     //  ヒットストップ生成

@@ -11,6 +11,7 @@ public class Boss : MonoBehaviour
 {
     //  ステータス格納用
     protected EnemyStatas statas;
+    public int GetNowBossHP() { return statas.HP; }
 
     //  無敵時間
     protected float invincibilityTime;
@@ -30,7 +31,7 @@ public class Boss : MonoBehaviour
     //  敵の種類を設定
     [SerializeField, Label("ボス種類")] BossID bossID;
 
-    [SerializeField, HeaderAttribute("ステータス")] int hp;
+    [SerializeField, Header("ステータス")] int hp; public int GetMaxBossHP() { return hp; }
     [SerializeField] int atk;
 
     //  ドロップアイテム
@@ -97,11 +98,16 @@ public class Boss : MonoBehaviour
 
         // Aキーの入力状態取得
         var aKey = current.aKey;
+        var bKey = current.bKey;
 
         // Aキーが押された瞬間かどうか
         if (aKey.wasPressedThisFrame)
         {
             Damage(9999);
+        }
+        if (bKey.wasPressedThisFrame)
+        {
+            Damage(35);
         }
     }
 
@@ -117,23 +123,14 @@ public class Boss : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && nowAttack)
-        {
-            other.GetComponent<PlayerStatus>().Damage(statas.ATK);
-        }
     }
 
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            //rb.velocity = Vector3.zero;
-        }
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        //rb.velocity = Vector3.zero;
     }
 
     //  敵の初期設定
