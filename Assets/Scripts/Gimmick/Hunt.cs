@@ -14,7 +14,6 @@ public class Hunt : MonoBehaviour
     GameObject iObject;         //ƒAƒCƒeƒ€Ši”[—p
     UIManager UIManager;        //UIŠi”[—p
 
-    private PlayerStatus player = null;
     private EnemyManager enemy = null;
     private ItemManager item = null;
 
@@ -57,7 +56,7 @@ public class Hunt : MonoBehaviour
         if (item == null) item = iObject.GetComponent<ItemManager>();
 
         //ƒL[‚ğ‰Ÿ‚µ‚Ä“G‚ªoŒ»
-        if (EnterFlag == true)
+        if (EnterFlag == true && SuccessFlag == false)
         {
             text.SetActive(true);
             if (current.cKey.wasPressedThisFrame && use == 0)

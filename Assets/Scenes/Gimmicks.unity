@@ -270,18 +270,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &803496464 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3379843424066184886, guid: b101d5c4b19a19f49a012e07126a50fe,
-    type: 3}
-  m_PrefabInstance: {fileID: 3379843424336463014}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1026018774 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3379843423751375216, guid: b101d5c4b19a19f49a012e07126a50fe,
-    type: 3}
-  m_PrefabInstance: {fileID: 3379843424336463014}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1973227446
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -785,16 +773,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6118291213808863815, guid: b101d5c4b19a19f49a012e07126a50fe,
-        type: 3}
-      propertyPath: rewardUI
-      value: 
-      objectReference: {fileID: 803496464}
-    - target: {fileID: 6118291213808863815, guid: b101d5c4b19a19f49a012e07126a50fe,
-        type: 3}
-      propertyPath: successUI
-      value: 
-      objectReference: {fileID: 1026018774}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b101d5c4b19a19f49a012e07126a50fe, type: 3}
 --- !u!1001 &5318774815222951745
