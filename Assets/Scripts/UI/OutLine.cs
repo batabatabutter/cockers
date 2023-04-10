@@ -5,13 +5,13 @@ using UnityEngine.UI;
 
 public class OutLine : MonoBehaviour
 {
-    Vector2 tmp;
-    float ArmorLength;
-    float HPLength;
-    GameObject ArmorBer;
-    GameObject HPber;
-    public float HP = 100;
-    // Start is called before the first frame update
+    Vector2 tmp;            //オブジェクトのRightとBottom
+    float ArmorLength;      //アーマーの幅
+    float HPLength;         //HPの幅
+    GameObject ArmorBer;    //アーマー格納用
+    GameObject HPber;       //HP格納用
+    public float HP = 100;  //MAX状態のHP
+
     void Start()
     {
         ArmorBer = GameObject.Find("ArmorBer");
@@ -25,16 +25,16 @@ public class OutLine : MonoBehaviour
         ArmorLength = ArmorBer.GetComponent<ArmorBer>().Get_currentArmor();
         HPLength = HPber.GetComponent<HPber>().Get_HP();
 
-        //Debug.Log(HPLength + ArmorLength);
-
+        //HPとアーマーの合計が100以下
         if (HPLength + ArmorLength <= HP)
         {
+            //枠線初期状態
             GetComponent<RectTransform>().offsetMax = new Vector2(0f, 0f);
         }
+        //HPとアーマーの合計が100以上
         else if (HPLength + ArmorLength >= HP)
         {
             tmp.x = ArmorLength + HPLength - HP;
-            tmp.x = tmp.x * 1f;
             GetComponent<RectTransform>().offsetMax = tmp;
         }
     }
