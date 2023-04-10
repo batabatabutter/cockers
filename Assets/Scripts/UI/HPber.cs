@@ -5,14 +5,14 @@ using UnityEngine.UI;
 
 public class HPber : MonoBehaviour
 {
-    private float currentHp;          //現在の体力
+    private float currentHp;             //現在の体力
     public int beforHP = 100;            //前の体力
-    public Slider slider;           //Skider格納用
-    GameObject PlayerStatus;        //プレイヤーのステータス格納用
+    public Slider slider;                //Slider格納用
+    GameObject PlayerStatus;             //プレイヤーのステータス格納用
 
-    Vector3 tmpWidth;
-    float HPberPos;
-    float division;
+    Vector3 tmpWidth;                    //オブジェクトの幅
+    float HPberPos;                      //位置
+    float division;                      //割る値
 
     void Start()
     {
@@ -27,13 +27,9 @@ public class HPber : MonoBehaviour
         division = currentHp * 0.01f;
         HPberPos = tmpWidth.x * division;
 
-        if (slider.value <= 0)
-        {
-            Debug.Log("死");
-        }
     }
 
+    //値の取得
     public float Get_HPberPos() { return HPberPos; }
-
     public float Get_HP() { return currentHp; }
 }
