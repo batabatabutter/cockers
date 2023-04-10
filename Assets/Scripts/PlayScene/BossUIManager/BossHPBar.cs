@@ -16,6 +16,10 @@ public class BossHPBar : MonoBehaviour
     [SerializeField, Label("ゲージ色一覧")] List<HPBarColor> hpBarColors;
     [SerializeField, Label("ゲージ消費速度")] float decreaseHpSpeed;
     [SerializeField, Label("1ゲージのHP")] int oneGaugeHP;
+    [Header("HPバー本数表示")]
+    [SerializeField, Label("バー数表示OBJ")] GameObject hpBarNumObj;
+    [SerializeField, Label("バー表示間隔")] Vector2 numBetWeen;
+
     //  HPゲージの数
     private int hpGaugeNum;
     
@@ -23,6 +27,8 @@ public class BossHPBar : MonoBehaviour
     private List<GameObject> hpBars;
     //  消滅HPバーオブジェクト
     private List<GameObject> decreaseHpBars;
+    //  HPバー表示オブジェクト
+    private List<GameObject> hpBarNumObjs;
 
     //  消滅HP数値
     private float decreaseHpBarVal;
@@ -34,6 +40,7 @@ public class BossHPBar : MonoBehaviour
     {
         decreaseHpBars = new List<GameObject>();
         hpBars = new List<GameObject>();
+        hpBarNumObjs = new List<GameObject>();
     }
 
     //  更新
@@ -91,6 +98,14 @@ public class BossHPBar : MonoBehaviour
                 pos.x -= gameObject.GetComponent<RectTransform>().rect.width / 2 * (1 - hpBarPer);
                 hpBars[i].transform.position = pos;
             }
+
+            //  バーの数表示
+            //  もう次のゲージに行っているとき
+            if (oneGaugeHP * i >= boss.GetNowBossHP())
+                hpBarNumObjs[i].SetActive(false);
+            else
+                hpBarNumObjs[i].SetActive(true);
+
         }
     }
 
@@ -100,6 +115,7 @@ public class BossHPBar : MonoBehaviour
         //  リセット
         decreaseHpBars.Clear();
         hpBars.Clear();
+        hpBarNumObjs.Clear();
 
         this.boss = boss.GetComponent<Boss>();
 
@@ -119,6 +135,17 @@ public class BossHPBar : MonoBehaviour
             bar = Instantiate(hpBarObj, gameObject.transform);
             hpBars.Add(bar);
             hpBars[i].GetComponent<UnityEngine.UI.RawImage>().color = hpBarColors[i].BarColor;
+
+            //  ゲージ表示追加
+            bar = Instantiate(hpBarNumObj, gameObject.transform);
+            hpBarNumObjs.Add(bar);
+            hpBarNumObjs[i].GetComponent<UnityEngine.UI.RawImage>().color = hpBarColors[i].BarColor;
+            //  位置調整
+            Vector3 pos = hpBarNumObjs[i].transform.position;
+            pos.x -= gameObject.GetComponent<RectTransform>().rect.width / 2 - hpBarNumObjs[i].GetComponent<RectTransform>().rect.width / 2 - numBetWeen.x;
+            pos.x += (hpBarNumObjs[i].GetComponent<RectTransform>().rect.width + numBetWeen.x) * i;
+            pos.y -= gameObject.GetComponent<RectTransform>().rect.height / 2 + hpBarNumObjs[i].GetComponent<RectTransform>().rect.height / 2 + numBetWeen.y;
+            hpBarNumObjs[i].transform.position = pos;
         }
     }
 }

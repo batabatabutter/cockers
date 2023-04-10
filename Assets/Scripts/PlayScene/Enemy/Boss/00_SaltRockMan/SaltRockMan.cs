@@ -55,6 +55,9 @@ public class SaltRockMan : Boss
     private bool move;
     private Attack attack;
 
+    private bool oneAction;
+    private bool secAction;
+
     private Vector3 angle;
 
     //  最初に実行
@@ -131,10 +134,16 @@ public class SaltRockMan : Boss
         if (time <= 0.0f)
         {
             time = coolTime + rushAfterTime + rushTime + rushForwordTime;
+            oneAction = false;
         }
         //  前隙
         else if(time >= coolTime + rushAfterTime + rushTime)
         {
+            if (!oneAction)
+            {
+                angle = new Vector3(player.transform.position.x - transform.position.x, 0.0f, 0.0f);
+            }
+            oneAction = true;
             arm.Rotate(new Vector3(0.0f, 0.0f, 270.0f) * Time.deltaTime / rushForwordTime);
         }
         //  実行動
@@ -143,7 +152,6 @@ public class SaltRockMan : Boss
             //  最初だけ実行される
             if (!nowAttack)
             {
-                angle = new Vector3(player.transform.position.x - transform.position.x, 0.0f, 0.0f);
                 rb.velocity = angle.normalized * rushSpeed;
             }
             bodyHitBox.enabled = true;

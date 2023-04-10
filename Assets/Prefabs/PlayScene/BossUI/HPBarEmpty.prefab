@@ -121,3 +121,6 @@ MonoBehaviour:
     BarDecreaseColor: {r: 0.7394229, g: 0.48490566, b: 1, a: 1}
   decreaseHpSpeed: 25
   oneGaugeHP: 100
+  hpBarNumObj: {fileID: 2604298705900981831, guid: 97159f3e3d2304d4b831d982499eb8db,
+    type: 3}
+  numBetWeen: {x: 2, y: 10}
