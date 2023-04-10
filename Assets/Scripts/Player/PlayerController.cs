@@ -100,6 +100,7 @@ public class PlayerController : MonoBehaviour
     /// </summary> ///////////////////////
     Animator animator;
     private const string NormalAttackFlg = "NormalAttackFlg";
+    private const string SpecialAttackFlg = "SpecialAttackFlg";
     private const string WeaponNo = "WeaponNo";
 
 
@@ -332,9 +333,8 @@ public class PlayerController : MonoBehaviour
             if (keyboard.xKey.wasPressedThisFrame && special_attack.Get_can_action_skill())
             {
                 special_attack.Start_special_attack();
-                Debug.Log("Start");
                 weapon[(int)now_use_weapon_no].Special_Attack();
-
+                animator.SetBool(SpecialAttackFlg, true);
             }
 
             //“Š±UŒ‚
@@ -362,6 +362,10 @@ public class PlayerController : MonoBehaviour
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Knife_Normal_Attack") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.5f)
         {
             animator.SetBool(NormalAttackFlg, false);
+        }
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Knife_Special_Attack") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.5f)
+        {
+            animator.SetBool(SpecialAttackFlg, false);
         }
     }
 }
