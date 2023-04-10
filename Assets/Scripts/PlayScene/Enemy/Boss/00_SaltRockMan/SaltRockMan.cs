@@ -91,7 +91,6 @@ public class SaltRockMan : Boss
             move = true;
             rb.velocity = Vector3.zero;
         }
-        attack = Attack.rush;
 
         //  “®‚«
         if (move)
@@ -99,15 +98,12 @@ public class SaltRockMan : Boss
             switch (attack)
             {
                 case Attack.rush:
-                    Debug.Log("Rush");
                     Rush();
                     break;
                 case Attack.throwSalt:
-                    Debug.Log("ThrowSalt");
                     ThrrowSalt();
                     break;
                 case Attack.arm:
-                    Debug.Log("Arm");
                     Arm();
                     break;
             }

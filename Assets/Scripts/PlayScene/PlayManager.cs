@@ -10,6 +10,7 @@ public class PlayManager : MonoBehaviour
     [SerializeField, Label("料理物管理")] CookManager cookManager;          public CookManager GetCookManager() { return cookManager; }
     [SerializeField, Label("敵管理")] EnemyManager enemyManager;          public EnemyManager GetEnemyManager() { return enemyManager; }
     [SerializeField, Label("ゲーム内UI管理")] GameInUIManager gameInUIManager;    public GameInUIManager GetGameInUIManager() { return gameInUIManager; }
+    [SerializeField, Label("ボスゲージUI")] BossUIManager bossUIManager; public BossUIManager GetBossUIManager() { return bossUIManager; }
     [SerializeField, Label("ポーズ管理")] PauseManager pauseManager;      public PauseManager GetPauseManager() { return pauseManager; }
     [SerializeField, Label("料理メニュー")] GameObject cookingCamvas; public GameObject GetCookingCamvas() { return cookingCamvas; }
 
