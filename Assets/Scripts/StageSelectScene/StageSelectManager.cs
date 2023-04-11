@@ -112,7 +112,7 @@ public class StageSelectManager : MonoBehaviour
     //  Œˆ’è
     private void Select()
     {
-        SceneManager.LoadScene("StageWorks");
+        SceneManager.LoadScene("PlayScene");
     }
 
     //  ƒNƒŠƒA
