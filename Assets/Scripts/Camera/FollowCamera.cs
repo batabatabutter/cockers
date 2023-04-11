@@ -15,10 +15,6 @@ public class FollowCameraStatas
 [System.Serializable]
 public class Vector3Bool
 {
-    //[SerializeField] bool x; public bool GetX() { return x; }
-    //[SerializeField] bool y; public bool GetY() { return y; }
-    //[SerializeField] bool z; public bool GetZ() { return z; }
-
     public bool x;
     public bool y;
     public bool z;
@@ -29,7 +25,7 @@ public class FollowCamera : MonoBehaviour
     [SerializeField, Label("カメラ追従ステータス")] List<FollowCameraStatas> followStatas;
     [SerializeField, Label("追従対象")] protected Transform followObject;
 
-    [SerializeField, Label("追従位置差")] Vector3 followDifference;
+    [SerializeField, Label("追従位置差")] Vector3 followDifference; public Vector3 GetFollowDifference() { return followDifference; }
     [SerializeField, Label("無追従座標")] Vector3Bool dontFollowVec;
 
     // Start is called before the first frame update

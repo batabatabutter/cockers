@@ -80,7 +80,7 @@ public class PlayManager : MonoBehaviour
         enemyManager.EnemyReset();
         gameInUIManager.Reset();
         player.transform.position = new Vector3(0.0f, 1.0f, 0.0f);
-        cam.transform.position = Vector3.zero;
+        cam.transform.position = cam.GetComponent<FollowCamera>().GetFollowDifference();
     }
 
     //  ステージクリア関数
@@ -107,7 +107,7 @@ public class PlayManager : MonoBehaviour
     // リスタート
     public void Restart()
     {
-        SceneManager.LoadScene("StageWorks");
+        SceneManager.LoadScene("PlayScene");
     }
 
     //  ステージセレクトへ戻る

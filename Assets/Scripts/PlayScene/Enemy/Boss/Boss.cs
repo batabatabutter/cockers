@@ -96,18 +96,13 @@ public class Boss : MonoBehaviour
             return;
         }
 
-        // Aキーの入力状態取得
-        var aKey = current.aKey;
+        // Bキーの入力状態取得
         var bKey = current.bKey;
 
-        // Aキーが押された瞬間かどうか
-        if (aKey.wasPressedThisFrame)
-        {
-            Damage(9999);
-        }
+        // Bキーが押された瞬間かどうか
         if (bKey.wasPressedThisFrame)
         {
-            Damage(35);
+            Damage(int.MaxValue);
         }
     }
 
