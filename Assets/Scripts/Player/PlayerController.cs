@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField, HeaderAttribute("所持武器")] private List<GameObject> weapons_list;
 
+    //プレイヤーのステータス
+    private PlayerStatus player_status;
 
 
     /// <summary> ///////////////////////
@@ -102,6 +104,7 @@ public class PlayerController : MonoBehaviour
     private const string NormalAttackFlg = "NormalAttackFlg";
     private const string SpecialAttackFlg = "SpecialAttackFlg";
     private const string WeaponNo = "WeaponNo";
+    private const string Speed = "Speed";
 
 
 
@@ -131,6 +134,8 @@ public class PlayerController : MonoBehaviour
         }
         animator = transform.GetComponent<Animator>();
         animator.SetInteger(WeaponNo, 1);
+
+        player_status = transform.GetComponent<PlayerStatus>();
     }
 
     private void Update()
@@ -184,6 +189,10 @@ public class PlayerController : MonoBehaviour
         Vector3 now_velocity = rigid.velocity;
         Vector3 now_x = new Vector3(now_velocity.x, 0, 0);
 
+        if(horizontal_speed>0.0f) transform.localScale = new Vector3(1, 1, 1);
+        else if(horizontal_speed<0.0f) transform.localScale = new Vector3(-1, 1, -1);
+        animator.SetFloat(Speed, Mathf.Abs(horizontal_speed));
+
         if (!isGround)
         {
             now_velocity.y -= gravity * Time.deltaTime;
@@ -221,21 +230,19 @@ public class PlayerController : MonoBehaviour
         //もしダッシュしてたら、操作を切る
         if (dash.Get_is_dash()) return;
 
+        if (player_status.Get_now_hp() == 0) return;
+
         if (keyboard != null)
         {
             //キャラクターの回転
             if (keyboard.rightArrowKey.wasPressedThisFrame)
             {
-                transform.localScale = new Vector3(1, 1, 1);
-                //rigid.rotation = Quaternion.LookRotation(new Vector3(0, 0, 0), Vector3.up);
                 look_allow = true;
             }
 
             //キャラクターの回転
             if (keyboard.leftArrowKey.wasPressedThisFrame)
             {
-                transform.localScale = new Vector3(-1, 1, -1);
-                //rigid.rotation = Quaternion.LookRotation(new Vector3(0, 180, 0), Vector3.up);
                 look_allow = false;
             }
 
