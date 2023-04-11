@@ -91,12 +91,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followStatas:
-  - range: 5
+  - range: 3
     speed: 1
-  - range: 9
+  - range: 5
     speed: 3
-  - range: 15
-    speed: 6
+  - range: 10
+    speed: 8
   - range: 999
     speed: 30
   followObject: {fileID: 0}
