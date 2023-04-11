@@ -66,6 +66,7 @@ public class PlayerStatus : MonoBehaviour
         now_atk = def_atk;
         now_spd = def_spd;
         full_stomach = 0;
+        max_hp = 100;
     }
 
     // Update is called once per frame
@@ -117,7 +118,8 @@ public class PlayerStatus : MonoBehaviour
     public void Sub_hp(int val)
     {
         status.hp -= val;
-        now_hp = Mathf.Clamp(now_hp, Min_nut, Mathf.CeilToInt(def_hp * (1 + (status.hp * 0.01f))));
+        max_hp = Mathf.CeilToInt(def_hp * (1 + (status.hp * 0.01f)));
+        now_hp = Mathf.Clamp(now_hp, Min_nut, max_hp);
         status.hp = Mathf.Clamp(status.hp, Min_nut, Max_nut);
     }
     public void Sub_atk(int val)
