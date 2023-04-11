@@ -219,7 +219,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyID: 3
   hp: 30
-  atk: 45
+  atk: 18
   dropItem:
   - dropID: 5
     dropNum: 2
@@ -227,7 +227,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 7973961292059650412, guid: 677c2b855b313a5488cf10b8e48cc76f,
     type: 3}
   head: {fileID: 6516491507447467304}
-  coolTime: 2
+  coolTime: 3
 --- !u!54 &6516491507876262526
 Rigidbody:
   m_ObjectHideFlags: 0

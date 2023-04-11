@@ -131,10 +131,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyID: 4
   hp: 20
-  atk: 35
+  atk: 30
   dropItem:
   - dropID: 6
     dropNum: 1
+  time: 3
 --- !u!136 &3676890705988641414
 CapsuleCollider:
   m_ObjectHideFlags: 0
