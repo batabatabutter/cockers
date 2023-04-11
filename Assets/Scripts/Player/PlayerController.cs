@@ -223,6 +223,22 @@ public class PlayerController : MonoBehaviour
 
         if (keyboard != null)
         {
+            //キャラクターの回転
+            if (keyboard.rightArrowKey.wasPressedThisFrame)
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+                //rigid.rotation = Quaternion.LookRotation(new Vector3(0, 0, 0), Vector3.up);
+                look_allow = true;
+            }
+
+            //キャラクターの回転
+            if (keyboard.leftArrowKey.wasPressedThisFrame)
+            {
+                transform.rotation = Quaternion.Euler(0, 180, 0);
+                //rigid.rotation = Quaternion.LookRotation(new Vector3(0, 180, 0), Vector3.up);
+                look_allow = false;
+            }
+
             //移動
             if (keyboard.rightArrowKey.isPressed)
             {
@@ -231,20 +247,6 @@ public class PlayerController : MonoBehaviour
             if (keyboard.leftArrowKey.isPressed)
             {
                 horizontal_speed = -move_speed;
-            }
-
-            //キャラクターの回転
-            if (keyboard.rightArrowKey.wasPressedThisFrame)
-            {
-                rigid.rotation = Quaternion.Euler(0, 0, 0);
-                look_allow = true;
-            }
-
-            //キャラクターの回転
-            if (keyboard.leftArrowKey.wasPressedThisFrame)
-            {
-                rigid.rotation = Quaternion.Euler(0, 180, 0);
-                look_allow = false;
             }
 
             //着地してるとき、ジャンプする
