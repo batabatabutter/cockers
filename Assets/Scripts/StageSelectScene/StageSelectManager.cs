@@ -19,6 +19,7 @@ public class StageSelectManager : MonoBehaviour
     //  選択されているかどうか
     bool isSelected = false;
 
+    [Header("選択UI")]
     [SerializeField, Label("選択カーソル")] GameObject selectObj;
     [SerializeField, Label("選択カーソル")] floatMotion selectFloat;
     [SerializeField, Label("カーソル速度")] float selectSpeed;
@@ -27,19 +28,30 @@ public class StageSelectManager : MonoBehaviour
     [SerializeField, Label("選択ボタン")] List<GameObject> buttonObj;
     [SerializeField, Label("選択位置")] List<Transform> buttonSelect;
 
+    [Header("選択色")]
+    [SerializeField, Label("ステージ未開放時透明度"), Range(0.0f, 1.0f)] float lockdArpha;
+
     [SerializeField, Header("フェイド関係"), Label("フェード速度")] float fadeSpeed;
     [SerializeField, Label("フェードアウト用黒幕")] UnityEngine.UI.RawImage rawImage;
 
     float timer = 0.0f;
+    private List<UnityEngine.UI.RawImage> buttonRawImages;
 
     private void Awake()
     {
+        buttonRawImages = new List<UnityEngine.UI.RawImage>();
+
         while ((int)StageID.StageNum > stageClear.Count)
         {
             stageClear.Add(false);
             stageCanPlay.Add(false);
         }
         stageCanPlay[0] = true;
+
+        foreach (GameObject obj in buttonObj)
+        {
+            buttonRawImages.Add(obj.GetComponent<UnityEngine.UI.RawImage>());
+        }
     }
 
     // Update is called once per frame
@@ -101,12 +113,21 @@ public class StageSelectManager : MonoBehaviour
         }
 
         //  カーソル移動
-        if(buttonObj[(int)stageID] != null)
+        if (buttonObj[(int)stageID] != null)
         {
             selectObj.transform.position = Vector3.Lerp(selectObj.transform.position, buttonObj[(int)stageID].transform.position, Time.deltaTime * selectSpeed);
         }
 
-        //  UI移動
+        //  UI仕様
+        for (int i = 0; i < buttonRawImages.Count; i++)
+        {
+            Color color = buttonRawImages[i].color;
+            if (stageCanPlay[i])
+                color.a = 1.0f;
+            else
+                color.a = lockdArpha;
+            buttonRawImages[i].color = color;
+        }
     }
 
     //  決定
