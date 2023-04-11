@@ -50,8 +50,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyID: 10
-  hp: 65
-  atk: 45
+  hp: 60
+  atk: 35
   dropItem:
   - dropID: 4
     dropNum: 2

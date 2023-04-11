@@ -101,14 +101,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyID: 1
   hp: 30
-  atk: 30
+  atk: 17
   dropItem:
   - dropID: 1
     dropNum: 1
-  shotSpeed: 10
+  shotSpeed: 6
   coolTime: 3
   flyTime: 0.7
-  distance: 4
+  distance: 5
 --- !u!54 &-4732964138819660442
 Rigidbody:
   m_ObjectHideFlags: 0
