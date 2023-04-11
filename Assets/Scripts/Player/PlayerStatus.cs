@@ -53,6 +53,7 @@ public class PlayerStatus : MonoBehaviour
     [SerializeField, ReadOnly] private int full_stomach;                                             //満腹度
     [SerializeField, ReadOnly] private float now_invincible_time;                                    //無敵時間
 
+    [SerializeField, ReadOnly, HeaderAttribute("最大ステータス(編集するな)")] private int max_hp;        //体力
 
 
     // Start is called before the first frame update
@@ -89,8 +90,8 @@ public class PlayerStatus : MonoBehaviour
     public void Add_hp(int val)
     {
         status.hp += val;
-        //now_hp = Mathf.CeilToInt(def_hp * (1 + (status.hp * 0.01f)));
         status.hp = Mathf.Clamp(status.hp, Min_nut, Max_nut);
+        max_hp = Mathf.CeilToInt(def_hp * (1 + (status.hp * 0.01f)));
     }
     public void Add_atk(int val)
     {
@@ -151,6 +152,8 @@ public class PlayerStatus : MonoBehaviour
     public int Get_now_spd() { return now_spd; }
     public int Get_full_stomach() { return full_stomach; }
 
+    public int Get_Max_hp() { return max_hp; }
+
     //敵からダメージを負ったとき
     public void Damage(int val)
     {
@@ -176,6 +179,6 @@ public class PlayerStatus : MonoBehaviour
     public void Heal(int val)
     {
         now_hp += val;
-        now_hp= Mathf.Clamp(now_hp, Min_nut, Mathf.CeilToInt(def_hp * (1 + (status.hp * 0.01f))));
+        now_hp= Mathf.Clamp(now_hp, Min_nut, max_hp);
     }
 }
