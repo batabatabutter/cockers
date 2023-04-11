@@ -97,6 +97,7 @@ public class SaltRockMan : Boss
             move = true;
             rb.velocity = Vector3.zero;
         }
+        attack = Attack.arm;
 
         //  ìÆÇ´
         if (move)
@@ -254,8 +255,8 @@ public class SaltRockMan : Boss
             nowAttack = true;
             armRHitBox.enabled = true;
             armLHitBox.enabled = true;
-            armR.Rotate(new Vector3(0.0f, 0.0f, 165.0f) * Time.deltaTime / armTime);
-            armL.Rotate(new Vector3(0.0f, 0.0f, 165.0f) * Time.deltaTime / armTime);
+            armR.Rotate(new Vector3(0.0f, 0.0f, 205.0f) * Time.deltaTime / armTime);
+            armL.Rotate(new Vector3(0.0f, 0.0f, 205.0f) * Time.deltaTime / armTime);
         }
         //  å„åÑ
         else if (time >= coolTime)
@@ -263,8 +264,8 @@ public class SaltRockMan : Boss
             nowAttack = false;
             armRHitBox.enabled = false;
             armLHitBox.enabled = false;
-            armR.Rotate(new Vector3(0.0f, 0.0f, -120.0f) * Time.deltaTime / armAfterTime);
-            armL.Rotate(new Vector3(0.0f, 0.0f, -120.0f) * Time.deltaTime / armAfterTime);
+            armR.Rotate(new Vector3(0.0f, 0.0f, -160.0f) * Time.deltaTime / armAfterTime);
+            armL.Rotate(new Vector3(0.0f, 0.0f, -160.0f) * Time.deltaTime / armAfterTime);
         }
         //  ç≈å„
         else
