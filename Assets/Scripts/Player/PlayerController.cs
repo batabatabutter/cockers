@@ -42,8 +42,6 @@ public class PlayerController : MonoBehaviour
     //プレイヤーがどっち向いてるか(true : 右,false : 左)
     private bool look_allow;
 
-    private Vector3 player_Vector;
-
 
 
     /// <summary> ///////////////////////
@@ -54,10 +52,10 @@ public class PlayerController : MonoBehaviour
     private int jump_cnt;
 
     //上昇中か
-    [SerializeField] private bool isJumping;
+    private bool isJumping;
 
     //着地してるか
-    [SerializeField] private bool isGround;
+    private bool isGround;
 
     //rayの距離
     [SerializeField] private float ray_dist = 0.5f;
@@ -147,10 +145,10 @@ public class PlayerController : MonoBehaviour
         vertical_speed = -jump_force;
 
         //落下し始めたら着地判定を行うようにする
-        if (isJumping && player_Vector.y < 0.0f)
-        {
-            isJumping = false;
-        }
+        if (isJumping && rigid.velocity.y <= 0.0f) isJumping = false;
+
+        //着地判定
+        CheckGround();
 
         //着地してるとき、ジャンプ可能にする
         if (isGround)
@@ -191,14 +189,11 @@ public class PlayerController : MonoBehaviour
         Vector3 now_velocity = rigid.velocity;
         Vector3 now_x = new Vector3(now_velocity.x, 0, 0);
 
-        if (horizontal_speed > 0.0f) transform.localScale = new Vector3(1, 1, 1);
-        else if (horizontal_speed < 0.0f) transform.localScale = new Vector3(-1, 1, -1);
+        if(horizontal_speed>0.0f) transform.localScale = new Vector3(1, 1, 1);
+        else if(horizontal_speed<0.0f) transform.localScale = new Vector3(-1, 1, -1);
         animator.SetFloat(Speed, Mathf.Abs(horizontal_speed));
 
-        //着地判定
-        CheckGround();
-
-        //  重力
+        if (!isGround)
         {
             now_velocity.y -= gravity * Time.deltaTime;
             now_velocity.y = Mathf.Clamp(now_velocity.y, min_vertical_vel, 1000000.0f);
@@ -206,18 +201,16 @@ public class PlayerController : MonoBehaviour
 
         rigid.velocity = now_velocity;
 
-        //  横移動
         velocity.x = move_speed * horizontal_speed;
         rigid.AddForce(speed_force * (velocity - now_x));
 
-        player_Vector = rigid.velocity;
         velocity = Vector3.zero;
     }
 
     //地面についてるかの確認
     private void CheckGround()
     {
-        if (isJumping || rigid.velocity.y < -0.3f)
+        if (isJumping && rigid.velocity.y > 0)
         {
             isGround = false;
             return;
@@ -225,7 +218,6 @@ public class PlayerController : MonoBehaviour
         Vector3 rayPosition = transform.position;
         Ray ray = new Ray(rayPosition, Vector3.down);
         isGround = Physics.Raycast(ray, ray_dist);
-        isGround = true;
     }
 
     //キーボード操作
@@ -313,7 +305,7 @@ public class PlayerController : MonoBehaviour
             if (keyboard.zKey.wasPressedThisFrame)
             {
                 bool action = weapon[(int)now_use_weapon_no].Attack();
-                if (action) animator.SetBool(NormalAttackFlg, true);
+                if(action) animator.SetBool(NormalAttackFlg, true);
             }
 
             if (weapon[(int)now_use_weapon_no].Get_is_attack_now()) return;
