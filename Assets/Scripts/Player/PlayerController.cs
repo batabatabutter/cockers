@@ -226,18 +226,16 @@ public class PlayerController : MonoBehaviour
             //キャラクターの回転
             if (keyboard.rightArrowKey.wasPressedThisFrame)
             {
-                //rigid.rotation = Quaternion.Euler(0, 0, 0);
+                transform.localScale = new Vector3(1, 1, 1);
                 //rigid.rotation = Quaternion.LookRotation(new Vector3(0, 0, 0), Vector3.up);
-                transform.rotation = Quaternion.LookRotation(new Vector3(0, 0, 0), Vector3.up);
                 look_allow = true;
             }
 
             //キャラクターの回転
             if (keyboard.leftArrowKey.wasPressedThisFrame)
             {
-                //rigid.rotation = Quaternion.Euler(0, 180, 0);
+                transform.localScale = new Vector3(-1, 1, -1);
                 //rigid.rotation = Quaternion.LookRotation(new Vector3(0, 180, 0), Vector3.up);
-                transform.rotation = Quaternion.LookRotation(new Vector3(0, 180, 0), Vector3.up);
                 look_allow = false;
             }
 

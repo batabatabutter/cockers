@@ -4,12 +4,6 @@ using UnityEngine;
 
 class SpecialAttack : ActionSkill
 {
-
-    //rigidbody
-    [SerializeField] private Rigidbody rigid;
-
-    private float one_add = 360.0f / 0.5f;
-
     public SpecialAttack () : base()
     {
 
@@ -18,20 +12,12 @@ class SpecialAttack : ActionSkill
     // Start is called before the first frame update
     void Start()
     {
-        rigid = transform.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     public override void FixedUpdate() {
         if(is_action_skill)
         {
-            //yé≤éxì_ÇÃâÒì]
-            Quaternion rot = Quaternion.AngleAxis(one_add * Time.fixedDeltaTime, Vector3.up);
-            //åªç›ÇÃrotationéÊìæ
-            Quaternion q = transform.rotation;
-            //âÒì]
-            transform.rotation = q * rot;
-
             now_effect_time += Time.fixedDeltaTime;
             Check_end_special_attack();
         }
