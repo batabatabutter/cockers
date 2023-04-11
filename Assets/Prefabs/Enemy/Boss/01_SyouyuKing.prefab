@@ -93,7 +93,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5387662589600255163}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: bcf142c24798e2b4bbd7c5723779f5be, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5000001
@@ -126,9 +126,10 @@ GameObject:
   - component: {fileID: 5387662589748905210}
   - component: {fileID: 5387662589748905213}
   - component: {fileID: 5387662589748905212}
+  - component: {fileID: 4953243792985412746}
   m_Layer: 0
   m_Name: 01_SyouyuKing
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -183,8 +184,6 @@ MonoBehaviour:
   atk: 34
   dropItem: 
   dropItemNum: 
-  clearObj: {fileID: 2411928225817392182, guid: d6d3ebc6166234d41989f27a5bd3cbb3,
-    type: 3}
   syouyuPrefabs:
   - {fileID: 4904460562175615531, guid: 1f2f6b479c7052949ab3a9b059dfc4d3, type: 3}
   - {fileID: 4904460562175615531, guid: 609db1e18db2b2f4ca7f58ebfdeead65, type: 3}
@@ -206,6 +205,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29aa763fd687a464abf0e81fa0d8b169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &4953243792985412746
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5387662589748905208}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2.2873254, z: 1}
+  m_Center: {x: 0, y: 0.123600066, z: 0}
 --- !u!1 &5387662590610402353
 GameObject:
   m_ObjectHideFlags: 0

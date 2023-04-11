@@ -12,11 +12,12 @@ GameObject:
   - component: {fileID: 2165244003030766980}
   - component: {fileID: 2165244003030766983}
   - component: {fileID: 2165244003030766982}
+  - component: {fileID: 3525370360218918839}
   - component: {fileID: 2165244003030766985}
   - component: {fileID: 2165244003030766978}
   m_Layer: 0
   m_Name: 03_MisonoOke
-  m_TagString: Enemy
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -93,8 +94,21 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2165244003030766984}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: bcf142c24798e2b4bbd7c5723779f5be, type: 2}
   m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &3525370360218918839
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2165244003030766984}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -116,8 +130,6 @@ MonoBehaviour:
   atk: 40
   dropItem: 
   dropItemNum: 
-  clearObj: {fileID: 2411928225817392182, guid: d6d3ebc6166234d41989f27a5bd3cbb3,
-    type: 3}
   coolTime: 3.5
   coolTimer: 0
   attackDistance: 10
