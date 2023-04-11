@@ -136,7 +136,6 @@ public class Weapon : MonoBehaviour
     public bool Attack()
     {
         if (now_cool_time > 0.0f) return false;
-        box_collider.enabled = true;
         now_atk_enable_time = atk_enable_time;
         now_cool_time = 1.0f / (atk_per_sec);
         atk_cnt++;
