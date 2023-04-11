@@ -599,9 +599,10 @@ GameObject:
   - component: {fileID: 4641191116173148442}
   - component: {fileID: 4641191116173148441}
   - component: {fileID: 4641191116173148440}
+  - component: {fileID: -723940458013505622}
   m_Layer: 0
   m_Name: 02_Mayonnaise
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -656,8 +657,6 @@ MonoBehaviour:
   atk: 44
   dropItem: 
   dropItemNum: 
-  clearObj: {fileID: 2411928225817392182, guid: d6d3ebc6166234d41989f27a5bd3cbb3,
-    type: 3}
   mayoPrefab: {fileID: 2071990653708470940, guid: 8ab09873a6b1beb449b5ca2c5e434344,
     type: 3}
   shoulders:
@@ -672,6 +671,19 @@ MonoBehaviour:
   jumpForce: 500
   mayoSpeed: 300
   speed: 0
+--- !u!65 &-723940458013505622
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4641191116173148443}
+  m_Material: {fileID: 13400000, guid: bcf142c24798e2b4bbd7c5723779f5be, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2.2345328, z: 1}
+  m_Center: {x: 0, y: 0.080623806, z: 0}
 --- !u!1 &4641191116392169991
 GameObject:
   m_ObjectHideFlags: 0
