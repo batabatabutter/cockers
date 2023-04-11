@@ -735,6 +735,7 @@ MonoBehaviour:
   now_spd: 0
   full_stomach: 0
   now_invincible_time: 0
+  max_hp: 0
 --- !u!114 &80272284986384602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -821,7 +822,6 @@ MonoBehaviour:
   can_action_skill: 0
   cool_time: 3
   effect_time: 0.5
-  rigid: {fileID: 4044031700620459806}
 --- !u!114 &3202897734092255116
 MonoBehaviour:
   m_ObjectHideFlags: 0
