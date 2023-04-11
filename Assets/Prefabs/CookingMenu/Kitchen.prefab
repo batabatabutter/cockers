@@ -121,7 +121,7 @@ PrefabInstance:
     - target: {fileID: 3539774594626894192, guid: c4a53b07749939548b12f91fd3e174ad,
         type: 3}
       propertyPath: popUpText
-      value: "\u30AD\u30C3\u30C1\u30F3"
+      value: "\u30AD\u30C3\u30C1\u30F3\nC\u30AD\u30FC\u3067\u5229\u7528"
       objectReference: {fileID: 0}
     - target: {fileID: 5046575714614148792, guid: c4a53b07749939548b12f91fd3e174ad,
         type: 3}
