@@ -97,7 +97,6 @@ public class SaltRockMan : Boss
             move = true;
             rb.velocity = Vector3.zero;
         }
-        attack = Attack.arm;
 
         //  “®‚«
         if (move)
@@ -175,6 +174,8 @@ public class SaltRockMan : Boss
         else
         {
             move = false;
+            armR.localRotation = Quaternion.Euler(Vector3.zero);
+            armL.localRotation = Quaternion.Euler(Vector3.zero);
         }
     }
 
@@ -222,6 +223,8 @@ public class SaltRockMan : Boss
         else
         {
             move = false;
+            armR.localRotation = Quaternion.Euler(Vector3.zero);
+            armL.localRotation = Quaternion.Euler(Vector3.zero);
         }
     }
 
@@ -271,6 +274,8 @@ public class SaltRockMan : Boss
         else
         {
             move = false;
+            armR.localRotation = Quaternion.Euler(Vector3.zero);
+            armL.localRotation = Quaternion.Euler(Vector3.zero);
         }
     }
 }
