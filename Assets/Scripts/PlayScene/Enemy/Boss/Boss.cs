@@ -123,6 +123,10 @@ public class Boss : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("Player") && nowAttack)
+        {
+            other.GetComponent<PlayerStatus>().Damage(statas.ATK);
+        }
     }
 
     private void OnCollisionStay(Collision collision)
